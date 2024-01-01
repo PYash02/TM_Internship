@@ -1,0 +1,36 @@
+kind: BASE 
+metadata: 
+key: km 
+displayName: KM 
+dataModelId: ${{purchase_to_pay_training_en}} 
+isDataModelFromBG: false 
+records: [] 
+kpis: 
+- id: NUMBER_OF_PROCESS_VARIANTS__CEL_P2P_ACTIVITIES_EN__ACTIVITY_EN 
+displayName: Number Of Process Variants Cel P2p Activities En Activity En 
+customAttributes: {} 
+pql: COUNT(DISTINCT 
+SHORTENED(VARIANT("_CEL_P2P_ACTIVITIES_EN"."ACTIVITY_EN"))) 
+breakdowns: [] 
+aggregations: [] 
+parameters: [] 
+targets: [] 
+allowTargetUpdate: true 
+type: KPI 
+origin: PACKAGE 
+filters: [] 
+variables: [] 
+activities: [] 
+eventLogsMetadata: 
+eventLogs: [] 
+transitions: [] 
+kpiViews: [] 
+anomalies: [] 
+eventLogs: [] 
+customObjects: [] 
+ruleGroups: [] 
+visualMappings: [] 
+id: p2p-analysis.km 
+tenantId: cc84ec38-5e3e-45f4-a3da-ec10c9fd9786 
+actions: [] 
+nodeEntityId: 2f3edf09-8022-41a1-a963-22fe510e4c6d

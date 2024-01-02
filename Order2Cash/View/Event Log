@@ -1,0 +1,65 @@
+metadata: 
+key: sales-information 
+template: false 
+name: Event Log 
+knowledgeModelKey: order-management 
+knowledgeObjectId: sales_order 
+profileView: true 
+allowAdvancedFilters: true 
+layout: 
+rows: 
+- id: row_94f61724-d850-4408-a4ea-1c3838170ef7 
+columns: 
+- id: column_2c568d50-32b0-496d-92c8-23659b1b5603 
+componentId: table-262903d5-2ef3-42bd-af69-1f59c23670be 
+size: "1" 
+type: default 
+order: 100 
+order: 100 
+components: 
+- id: table-262903d5-2ef3-42bd-af69-1f59c23670be 
+type: table 
+settings: 
+data: 
+columns: 
+- field: CEL_O2C_ACTIVITIES.CASE_KEY 
+id: fa1c73f7-7674-422f-9aea-ef83d56a6c7f
+order: 100 
+- field: sales_order.sales_document_number 
+id: a1e7e21f-f892-4419-a16f-8d59ab1d67b6 
+order: 200 
+- field: CEL_O2C_ACTIVITIES.ACTIVITY_EN 
+id: d22b2ac5-9691-48d6-8f53-7f44ef54f718 
+order: 300 
+- field: CEL_O2C_ACTIVITIES.CELONIS_CHANGE_DATE 
+id: 2abefcda-816a-4aae-97b1-e6c9a29a2860 
+order: 400 
+- field: CEL_O2C_ACTIVITIES.EVENTTIME 
+id: 0cf1d471-0869-4893-9cfe-7818237a47f6 
+order: 500 
+- field: CEL_O2C_ACTIVITIES.ONTIME 
+id: 5fc4669a-57bb-47cc-b51f-8d070cd711d1 
+order: 600 
+- field: CEL_O2C_ACTIVITIES.USER_NAME 
+id: d897a802-13fe-4c23-8c59-f36f0caa766c 
+order: 700 
+- field: CEL_O2C_ACTIVITIES.USER_TYPE 
+id: dd045065-dfdf-4f6f-9abc-249462482e03 
+order: 800 
+breakdownSelector: {} 
+options: 
+showPagination: false 
+- id: attribute-list-cbcc824b-6670-4bbb-9ff4-1e8285a30cd6 
+type: attribute-list 
+settings: {} 
+- id: attribute-list-d942991f-485c-4f44-8435-844f9fc26e14 
+type: attribute-list 
+settings: 
+data: 
+- field: sales_order.sales_document_number 
+id: 39f494b7-3094-4b97-9249-a97eed406edc 
+order: 100 
+- field: sales_order.sales_document_type 
+id: ac481216-12e9-4c44-a6e1-ef81cce233b9 
+order: 200 
+orientation: vertical

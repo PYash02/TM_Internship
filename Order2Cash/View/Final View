@@ -1,0 +1,29 @@
+metadata: 
+key: final-view 
+template: false 
+name: Final View 
+knowledgeModelKey: order-management 
+allowAdvancedFilters: false 
+layout: 
+rows: 
+- id: row_d4e8897a-8248-4227-919f-28639fa59184 
+columns: 
+- id: column_fc8866a9-0366-45c9-8d8a-3c43cbcb641b 
+componentId: view-e03aef94-71c8-47fb-8590-933d6485adc8 
+size: "1" 
+type: default 
+order: 100 
+order: 100 
+components: 
+- id: view-e03aef94-71c8-47fb-8590-933d6485adc8 
+type: view 
+settings: 
+key: order-management-practice 
+- id: view-ae9594bd-1568-4e3c-8f8d-f0462675b01c 
+type: view 
+settings: 
+key: ${(Show_hide === 'Hide' && 'filterslist') || (Show_hide === 'Show' && 'filterslist')} 
+shareAll: true 
+shareFilters: true 
+shareSelections: true 
+shareVariables: true

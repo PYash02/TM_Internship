@@ -1,0 +1,131 @@
+metadata: 
+key: filterslist 
+template: false 
+name: filterslist 
+knowledgeModelKey: order-management 
+profileView: false 
+allowAdvancedFilters: false 
+layout: 
+rows: 
+- id: row_ff23610e-9eb1-449c-bb11-e44239b4b2e0 
+columns: 
+- id: column_4a6bbe8e-78ba-443c-8946-81daea3cff41 
+componentId: text-box-44e0b91d-a5a2-4556-9170-46d315025857 
+size: "1" 
+type: panel 
+order: 100 
+order: 50 
+- id: row_ccbae536-4cf8-4811-ab0e-117e2ee6140f 
+columns: 
+- id: column_6f9a8e46-0575-4244-9464-fa07b1c58e8a 
+componentId: dropdown-list-85dafb15-6f07-42c6-b78a-fa41f6aef390 
+size: "1" 
+type: default 
+order: 100 
+order: 100 
+- id: row_eb56e5d5-ff59-46f0-8fb5-f260c79e69b8 
+columns: 
+- id: column_1a51d91a-3705-4de1-8b71-3479e3589dc3 
+componentId: dropdown-list-f3773086-5ad3-48cc-ba6d-e561edc5f64b 
+size: "1" 
+type: default 
+order: 100 
+order: 200 
+- id: row_8d118675-4a49-4d71-b116-4b3960b47c76 
+columns: 
+- id: column_dd38a014-ba7d-4d38-82d4-7f73dc85f325 
+componentId: dropdown-list-be35e2dd-4cdd-4a09-a26f-894b396279f0 
+size: "1" 
+type: default 
+order: 100 
+order: 300 
+- id: row_b6f0c771-0268-4fcd-b7d6-770d9243ce48
+columns: 
+- id: column_457c7432-04af-42a6-97f8-30c3580a24d8 
+componentId: dropdown-list-03262414-9047-4c46-af90-068a2d896cd8 
+size: "1" 
+type: default 
+order: 100 
+order: 400 
+- id: row_ee5ecfd1-9367-4323-a6f0-7d40f85457b1 
+columns: 
+- id: column_b768c64f-ef68-4fb7-a445-44ea4fdb3e5a 
+componentId: text-box-b67947d3-3a31-442c-ac3e-467e2308e6a1 
+size: "1" 
+type: panel 
+order: 100 
+order: 500 
+- id: row_e48680ef-a11d-41a8-8b73-439442ffc4a4 
+columns: 
+- id: column_e10db2c0-9991-45c3-b6f2-6ebc7b3ebe26 
+componentId: time-filter-e8599480-5e85-4d9d-a47c-e7de6fbdacf0 
+size: "1" 
+type: default 
+order: 100 
+order: 600 
+components: 
+- id: attribute-list-4aa637ce-8e99-45ed-b0d5-8f14fe3093c9 
+type: attribute-list 
+settings: {} 
+- id: dropdown-list-85dafb15-6f07-42c6-b78a-fa41f6aef390 
+type: dropdown-list 
+settings: 
+data: 
+columns: 
+- attribute: sales_order.sales_document_number 
+id: c7610323-30a2-41eb-907c-4ab1012c717f 
+order: 100
+floatingPlaceholder: true 
+- id: text-box-44e0b91d-a5a2-4556-9170-46d315025857 
+type: text-box 
+settings: 
+title: Filter Option 
+content: "" 
+- id: dropdown-list-f3773086-5ad3-48cc-ba6d-e561edc5f64b 
+type: dropdown-list 
+settings: 
+data:
+columns: - 
+attribute: sales_order.sales_document_type 
+id: 965214eb-10d3-4372-a510-00567eeb6111 
+order: 100 
+floatingPlaceholder: true 
+- id: dropdown-list-be35e2dd-4cdd-4a09-a26f-894b396279f0 
+type: dropdown-list 
+settings: 
+data: 
+columns: 
+- attribute: sales_order.country 
+id: 9f813b36-cf1f-44c2-9570-7db1a7f020ec 
+order: 100 
+floatingPlaceholder: true 
+- id: dropdown-list-03262414-9047-4c46-af90-068a2d896cd8 
+type: dropdown-list 
+settings: 
+data: 
+columns: 
+- attribute: sales_order.client 
+id: cb4a2d02-53bd-47cc-b3c1-73b31ca6e6c3 
+order: 100 
+floatingPlaceholder: true 
+- id: text-box-b67947d3-3a31-442c-ac3e-467e2308e6a1 
+type: text-box settings: 
+title: Filter By Date 
+content: "" 
+- id: time-filter-e8599480-5e85-4d9d-a47c-e7de6fbdacf0 
+type: time-filter 
+settings: 
+dateAttribute: CEL_O2C_ACTIVITIES.EVENTTIME 
+- id: button-list-9d6e2e02-f014-40b1-9907-39890f571fb3 
+type: button-list 
+settings: 
+buttons: 
+- label: Close 
+id: 15da1bf2-6190-4ce9-975d-f31b948b4bc6 
+order: 100 
+onClick: 
+update: 
+variables: 
+- name: FilterBox 
+value: "0" 
+variant: primary

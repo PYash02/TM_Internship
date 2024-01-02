@@ -1,0 +1,248 @@
+metadata: 
+key: order-management-practice 
+template: false 
+name: O2C View 
+knowledgeModelKey: order-management 
+showCaseCount: true 
+allowAdvancedFilters: false 
+variables: 
+- id: 8889c1b5-50d1-4fc9-8e98-f468f211ccae 
+name: size 
+defaultValue: "" 
+layout: 
+rows: 
+- id: row_19b32c34-ba51-4409-b51c-e6fdfa27761b 
+columns: 
+- id: column_f7f4ce60-612e-4c3b-ac69-46159fc7b754 
+layout: 
+rows: 
+- id: row_7c007143-ddec-492a-828b-3c00a202baba 
+growHeight: false 
+columns: 
+- id: column_92cdd0a4-7a28-464b-9441-b04a923fff5c 
+componentId: kpi-list-bc54db7c-3dae-412f-9e26-0b221f02e636 
+size: "4" 
+type: default 
+order: 100 
+- id: column_b2542f77-92b0-44ea-a94b-0308e3722a7f 
+componentId: dropdown-list-43df7674-2910-4eed-9788-5e35154c852c 
+size: "1.25" 
+order: 200 
+- id: column_a0e26ca1-9ab7-4960-9d0c-9941ec0dfd4f 
+componentId: global-search-8ecb3cce-bcbc-43e4-9b2e-716d9e1d9269 
+size: "1.25" 
+order: 250 
+- id: column_6744fa1d-5bc6-496d-a985-6ada87b4f177 
+componentId: button-list-6e596087-12db-4c50-a84c-5f3fbff5dc3e 
+size: "1.25" 
+type: default 
+order: 300 
+- id: column_9f5495a6-5d7c-4f5b-8051-dbb48d7695eb 
+componentId: button-list-2216854b-82fe-495e-8771-17e132664f45
+size: "1.25" 
+order: 400 
+height: "" 
+order: 50 
+- id: row_63bcb313-9817-402d-9913-c6fe3639720e 
+growHeight: false 
+columns: 
+- id: column_ef51dcc0-924e-437b-a4f1-e96d86253b4e 
+componentId: chart-d0db64f7-9cc7-4459-9ecb-5c3720ef04ca 
+size: "0.5" 
+type: default 
+order: 100 
+- id: column_5bb8c309-b996-482b-8b18-f25aac9b53a1 
+componentId: treemap-71cbe7ae-1498-4f3f-bd58-2f5e845f936b 
+size: "0.5" 
+type: default 
+height: "" 
+order: 200 
+- id: column_b3d5cf13-5a96-46f9-89b3-208cb2d09548 
+componentId: view-0e7fb512-e6fe-4729-817c-c8c9fe6ce02d 
+size: ${size === 'expanded' && '1' || '0'} 
+order: 300 
+height: "650" 
+order: 100 
+- id: row_dcacf6c6-3994-479c-90cc-60efc5fefd83 
+columns: 
+- id: column_3bedf197-90ff-4174-8083-abc5b4aeac99 
+componentId: table-e57d2824-1c34-4b4c-a41e-9f48fc79b691 
+size: "1" 
+type: default 
+order: 100 
+order: 150 
+size: "1" 
+type: "" 
+order: 100 
+order: 50 
+components: 
+- id: kpi-list-bc54db7c-3dae-412f-9e26-0b221f02e636 
+type: kpi-list 
+settings: 
+data: 
+kpis: 
+- kpi: number_of_express_order 
+show: true 
+id: 2d2afeac-4a3c-4275-b9da-8616cc01a198
+order: 100 
+- kpi: total_sales_order 
+show: true 
+id: 5b7ca1e3-4ff5-4e54-85f3-1be68e24e155 
+order: 200 
+- kpi: NUMBER_OF_PROCESS_VARIANTS__CEL_O2C_ACTIVITIES__ACTIVITY_EN 
+show: true 
+id: af0bc011-c7d1-48f2-9591-db894c09d34c 
+order: 300 
+- kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS__CEL_O2C_ACTIVITIES__EVENTTIME 
+show: true 
+id: 95de0511-863c-4d56-8d02-e6d8845671ec 
+order: 400 
+- id: dropdown-list-43df7674-2910-4eed-9788-5e35154c852c 
+type: dropdown-list 
+settings: 
+data: 
+columns: 
+- attribute: sales_order.sales_document_type 
+id: 8cd2dc92-34e9-4643-9ba9-314214881a8d 
+order: 100 
+- id: global-search-8ecb3cce-bcbc-43e4-9b2e-716d9e1d9269 
+type: global-search 
+settings: 
+search: 
+- attribute: sales_order.sales_document_number 
+- attribute: sales_order.sales_document_type 
+- id: button-list-6e596087-12db-4c50-a84c-5f3fbff5dc3e 
+type: button-list 
+settings: 
+buttons: 
+- label: Process Explorer 
+id: c6186f5b-a349-49a0-89a4-b164277215a6 
+order: 100 
+onClick: 
+openView: 
+viewKey: processexplorer 
+openInSideOverlay: true 
+syncFilters: forward-only
+variant: primary 
+- id: chart-d0db64f7-9cc7-4459-9ecb-5c3720ef04ca 
+type: chart 
+settings: 
+colors: DIVERGING_GREEN_TO_YELLOW_TO_RED 
+visuals:
+- mark: 
+type: bar 
+bandwidth: 0 
+id: 95ca9481-6d36-47d8-9ebf-593e7281347f 
+order: 100 
+encodings: 
+color: 
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS__CEL_O2C_ACTIVITIES__EVENTTIME 
+scheme: DIVERGING_GREEN_TO_YELLOW_TO_RED 
+limit: 1000 
+encodings: 
+y: 
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS__CEL_O2C_ACTIVITIES__EVENTTIME 
+axis: 
+position: left 
+x: 
+field: KNA1.LAND1 
+axis: 
+position: bottom 
+- id: treemap-71cbe7ae-1498-4f3f-bd58-2f5e845f936b 
+type: treemap 
+settings: 
+name: Treemap-KPIs compared 
+showConfig: false 
+colors: SEQUENTIAL_GREEN 
+dimensions: 
+root: NAME1 
+kpis: 
+- kpi: total_sales_order 
+type: primary 
+default: true 
+id: fada99df-e552-4b5c-b34a-b53bbde10983
+order: 100 
+- kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS__CEL_O2C_ACTIVITIES__EVENTTIME
+type: secondary 
+id: 35a89827-ffa9-4177-bebd-b59b52bc5302
+order: 200 
+default: true 
+- id: table-fa495c7e-fd4b-4225-a4d4-436723ece3fd 
+type: table 
+settings: 
+data: 
+columns: 
+- field: CEL_O2C_ACTIVITIES.CASE_KEY 
+id: 45f29c26-498b-4f1d-8a2e-d0f699de6646
+order: 100 
+- field: KNA1.NAME1 
+id: fc3460b1-4c23-43f1-bc9a-d9692d0c6677 
+order: 200 
+- field: INDUSTRY.FMCG_RETAIL 
+id: 5988c62f-b627-41f6-ae67-d20e41153925 
+order: 300 - 
+field: VBAK.AUART_TEXT 
+id: 2d00e496-c297-46d2-b3eb-7bc5ad8412b1 
+order: 400 
+- field: VBAK.VBELN 
+id: e2af1d6f-bade-4a72-a56c-0ae40fc1596f 
+order: 500 
+- field: VBAP.MATNR 
+id: 05ca88b5-74f5-4823-91d9-b02d6f3bf65f 
+order: 600 
+- field: VBAP.MATNR_TEXT 
+id: 96e6d209-ed58-4704-84ab-3639a5b66a6e 
+order: 700 
+breakdownSelector: {} 
+options: 
+showPagination: false 
+- id: table-e57d2824-1c34-4b4c-a41e-9f48fc79b691 
+type: table 
+settings: 
+data: 
+columns: 
+- field: sales_order.sales_document_number 
+id: 725814e0-5aa2-42c3-82e3-2dcf10702012 
+order: 100 
+onClick: 
+openView: 
+profileView: true 
+syncFilters: forward-only 
+openInSideOverlay: true 
+- field: sales_order.sales_document_type 
+id: 8e2f9ff4-9b37-4855-8e17-04e012355551 
+order: 200 
+- field: sales_order.client 
+id: 2073b6f9-a810-4d93-bb47-a605e743b91b 
+order: 300 
+-field: sales_order.country 
+id: ad7c729c-cceb-4c8d-adb3-8df6ba81aace 
+order: 400 
+- field: sales_order.sales_order_value
+id: a21d07d5-94b7-4611-8fab-327af28fe220 
+order: 500 
+breakdownSelector: {} 
+options: 
+showPagination: false 
+allowDataExport: false 
+selectable: true 
+- id: button-list-2216854b-82fe-495e-8771-17e132664f45 
+type: button-list 
+settings: 
+buttons: 
+- label: Filter 
+id: b73dd8db-0e5f-4152-bec3-096fc7b6638b 
+order: 100
+variant: primary
+onClick: 
+update: 
+variables:
+- name: 
+size value: ${size === 'expanded' && 'collapsed' || 'expanded'} 
+- id: view-d4af22b9-7288-49a0-8803-bf5b4351e370 
+type: view 
+settings: 
+key: filterslist 
+- id: view-0e7fb512-e6fe-4729-817c-c8c9fe6ce02d 
+type: view 
+settings: key: ${(size === 'expanded' && 'filterslist') || ''}

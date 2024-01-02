@@ -1,0 +1,28 @@
+metadata: 
+key: processexplorer 
+template: false 
+name: Process_explorer 
+knowledgeModelKey: order-management 
+allowAdvancedFilters: true 
+layout: 
+rows: 
+- id: row_22ea3ee0-7aac-4e47-8676-816948ae4eff 
+growHeight: false 
+columns: 
+- id: column_072538c0-c747-4573-a9b6-04adbdc4ab40 
+componentId: process-explorer-d8ab6b1d-c10e-4af3-a8c5-02d23c9ca84d 
+size: "1" 
+type: default 
+height: "750" 
+order: 100 
+order: 100 
+components: 
+- id: process-explorer-d8ab6b1d-c10e-4af3-a8c5-02d23c9ca84d 
+type: process-explorer 
+settings: 
+eventLogs: 
+- eventLog: CEL_O2C_ACTIVITIES__ACTIVITY_EN 
+id: 00236bc6-0924-4937-834f-ea4fc59af5ac 
+order: 100 
+transitions: false 
+graphControls: panel

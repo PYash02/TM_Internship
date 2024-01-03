@@ -1,0 +1,12 @@
+select distinct(ACTIVITY_NAME) from _ITSM_ACTIVITIES
+where ACTIVITY_NAME IN ('1 - Critical','2 - High','3 - Medium','4 - Low'); 
+
+select distinct(ACTIVITY_NAME) from _ITSM_ACTIVITIES 
+where ACTIVITY_NAME IN ('Queued'); 
+
+UPDATE _ITSM_ACTIVITIES 
+SET SORTING = 9 
+WHERE ACTIVITY_NAME IN ('1 - Critical','2 - High','3 - Medium','4 - Low'); 
+
+UPDATE _ITSM_ACTIVITIES SET SORTING = 8 
+WHERE ACTIVITY_NAME IN ('Queued');

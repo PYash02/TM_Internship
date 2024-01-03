@@ -1,0 +1,233 @@
+kind: BASE 
+metadata: 
+key: order-management 
+displayName: O2C KM 
+dataModelId: ${{order_to_cash_training_en}} 
+isDataModelFromBG: false 
+records: 
+- id: sales_order 
+displayName: Sales Order 
+customAttributes: {} 
+identifier: 
+id: id 
+displayName: ID 
+customAttributes: {} 
+pql: "'Document Type:- ' || \"VBAP\".\"VBELN\" || ' Document No:- ' || \"VBAP\".\"POSNR\"" 
+attributes: 
+- id: sales_document_number 
+displayName: Sales Document Number 
+pql: '"VBAK"."VBELN"' 
+columnType: STRING 
+format: "" 
+type: ATTRIBUTE 
+- id: sales_document_type 
+displayName: Sales Document Type 
+pql: '"VBAK"."AUART_TEXT"' 
+columnType: STRING 
+format: "" 
+type: ATTRIBUTE 
+- id: sales_order_value 
+displayName: Sales Order Value 
+customAttributes: {} 
+pql: '"VBAP"."NETWR_CONVERTED"' 
+columnType: FLOAT 
+unit: $ 
+format: ",.2f" 
+type: ATTRIBUTE 
+- id: client 
+displayName: Client 
+customAttributes: {} 
+pql: '"KNA1"."NAME1"' 
+columnType: STRING
+format: "" 
+type: ATTRIBUTE 
+- id: country 
+displayName: Country 
+pql: '"KNA1"."LAND1"' 
+columnType: STRING 
+format: "" 
+type: ATTRIBUTE 
+newAttributes: [] 
+augmentedAttributes: [] 
+flags: [] 
+priorities: [] 
+triggers: [] 
+type: RECORD 
+origin: PACKAGE 
+- id: KNA1 
+displayName: Client 
+customAttributes: {} 
+attributes: 
+- id: NAME1 
+displayName: Client 
+customAttributes: {} 
+pql: '"KNA1"."NAME1"' 
+format: "" 
+type: ATTRIBUTE 
+- id: LAND1 
+displayName: Country 
+customAttributes: {} 
+pql: '"KNA1"."LAND1"' 
+format: "" 
+type: ATTRIBUTE 
+newAttributes: [] 
+augmentedAttributes: [] 
+flags: [] 
+priorities: [] 
+triggers: [] 
+type: RECORD 
+origin: PACKAGE 
+- id: CEL_O2C_ACTIVITIES 
+displayName: Cel O2c Activities Event Log 
+customAttributes: {} 
+attributes: [] 
+newAttributes: [] 
+augmentedAttributes: [] 
+flags: []
+priorities: [] 
+triggers: [] 
+type: RECORD 
+origin: PACKAGE 
+- id: distinct_order_detail 
+displayName: Distinct Order Detail 
+customAttributes: {} 
+attributes: 
+- id: case_key 
+displayName: Case Key 
+pql: '"_CEL_O2C_ACTIVITIES"."_CASE_KEY"' 
+columnType: STRING 
+format: "" 
+type: ATTRIBUTE 
+- id: client 
+displayName: Client
+pql: '"KNA1"."NAME1"'
+columnType: STRING
+format: "" 
+type: ATTRIBUTE 
+- id: vendor 
+displayName: Vendor 
+pql: '"VBAK"."VKORG_TEXT"' 
+columnType: STRING
+format: "" 
+type: ATTRIBUTE 
+- id: item 
+displayName: Item 
+pql: '"VBAP"."MATNR_TEXT"' 
+columnType: STRING 
+format: "" 
+type: ATTRIBUTE 
+- id: date 
+displayName: Date 
+pql: '"_CEL_O2C_ACTIVITIES"."EVENTTIME"' 
+columnType: DATETIME 
+format: "%Y-%m-%d" 
+type: ATTRIBUTE 
+newAttributes: [] 
+augmentedAttributes: [] 
+flags: [] 
+priorities: [] 
+triggers: [] 
+type: RECORD 
+origin: PACKAGE
+kpis:
+- id: number_of_express_order 
+displayName: "# Express Order" 
+customAttributes: {} 
+pql: SUM( CASE WHEN "VBAK"."VTWEG_TEXT" = 'Express 1' THEN 1 ELSE 0 END) 
+format: .3s 
+breakdowns: []
+aggregations: [] 
+parameters: [] 
+targets: [] 
+allowTargetUpdate: true 
+type: KPI 
+origin: PACKAGE 
+- id: total_sales_order 
+displayName: Total Sales Order 
+customAttributes: {} 
+pql: COUNT_TABLE("VBAK") 
+format: .3s 
+breakdowns: [] 
+aggregations: [] 
+parameters: [] 
+targets: [] 
+allowTargetUpdate: true 
+desiredDirection: INCREASE 
+type: KPI 
+origin: PACKAGE 
+- id: NUMBER_OF_PROCESS_VARIANTS__CEL_O2C_ACTIVITIES__ACTIVITY_EN 
+displayName: "# Variants" 
+customAttributes: {} 
+pql: COUNT(DISTINCT SHORTENED(VARIANT("_CEL_O2C_ACTIVITIES"."ACTIVITY_EN"))) 
+breakdowns: [] 
+aggregations: [] 
+parameters: [] 
+targets: [] 
+allowTargetUpdate: true 
+type: KPI 
+origin: PACKAGE 
+- id: TOTAL_THROUGHPUT_TIME_IN_DAYS__CEL_O2C_ACTIVITIES__EVENTTIME 
+displayName: Avg TPT 
+customAttributes: {} 
+pql: AVG(CALC_THROUGHPUT(CASE_START TO CASE_END, REMAP_TIMESTAMPS("_CEL_O2C_ACTIVITIES"."EVENTTIME", DAYS))) 
+unit: Days 
+format: ",.0f" 
+breakdowns: []
+aggregations: [] 
+parameters: [] 
+targets: [] 
+allowTargetUpdate: true 
+type: KPI 
+origin: PACKAGE 
+filters: [] 
+variables: [] 
+activities: [] 
+eventLogsMetadata: 
+eventLogs: 
+- id: process_explorer_event_log 
+displayName: Process_Explorer_Event_Log 
+pql: '"_CEL_O2C_ACTIVITIES"."ACTIVITY_EN"' 
+recordId: CEL_O2C_ACTIVITIES 
+transitions: [] 
+kpiViews: []
+anomalies: []
+eventLogs: []
+customObjects: []
+ruleGroups: []
+visualMappings: []
+id: order-management-training.order-management
+tenantId: cc84ec38-5e3e-45f4-a3da-ec10c9fd9786 
+actions: 
+-id: csv_email 
+displayName: CSV Email 
+customAttributes: 
+options: 
+iconPosition: left 
+hideLabel: false 
+tooltipPosition: below 
+buttonVariant: primary 
+ownerIds: [] 
+viewKeys: null 
+ownerTypes: null 
+componentTypes: null 
+skillKey: skill-csv-email 
+records: 
+- sales_order 
+filters: [] 
+inputs: 
+- name: Table 
+attribute: sales_order.client 
+type: ACTION
+- id: action 
+displayName: Action 
+skillKey: skill 
+records: 
+- sales_order 
+filters: [] 
+inputs: 
+-name: Purchase Document Name 
+attribute: sales_order.sales_document_number 
+- name: Purchase Document Type 
+attribute: sales_order.sales_document_type 
+type: ACTION 
+nodeEntityId: bc712b9a-9ef9-49ad-9a57-96cbd1ae1fe4

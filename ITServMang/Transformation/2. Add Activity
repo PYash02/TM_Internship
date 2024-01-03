@@ -1,0 +1,23 @@
+select count(*) from "ITSM_Practice_Data" 
+where MI_DEFINITION IN ('Incident State Duration','Assignment Group','Priority Duration'); 
+
+INSERT INTO _ITSM_ACTIVITIES ( 
+INC_NUMBER 
+, ACTIVITY_NAME 
+, EVENTTIME 
+, _USER 
+, DEFINITION 
+, SORTING ) 
+SELECT 
+ITSM_Practice_Data.INC_NUMBER AS INC_NUMBER, 
+ITSM_Practice_Data.MI_VALUE AS ACTIVITY_NAME, 
+ITSM_Practice_Data.MI_SYS_CREATED_ON AS EVENTTIME, 
+ITSM_Practice_Data.INC_RESOLVED_BY AS _USER, 
+ITSM_Practice_Data.MI_DEFINITION AS DEFINITION, 
+10 AS _SORTING 
+FROM ITSM_Practice_Data 
+where MI_DEFINITION IN ('Incident State Duration','Assignment Group','Priority Duration'); 
+
+/* 
+DELETE FROM _ITSM_ACTIVITIES; 
+*/

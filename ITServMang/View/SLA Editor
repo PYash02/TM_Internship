@@ -1,0 +1,541 @@
+metadata:
+
+key: sla-editbox template: false name: SLA EditBox
+
+knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_1aea58d9-eee6-4d70-a580-396a6a4ad1a0 columns:
+
+- id: column_ca1a478d-7977-4c73-a44b-151b0010062d componentId: text-box-f24395bf-a2d2-418e-9e90-e07d6ba9be39 size: "1"
+
+type: panel order: 0
+
+order: 0
+
+- id: row_7b6d1432-1cff-42ed-a301-9d69a481a9c0 columns:
+
+- id: column_f5cadaf8-2adc-4379-bc73-6d9f42910025 layout:
+
+rows:
+
+- id: row_295cb300-0342-40eb-9ae9-227e7874ced7 columns:
+
+- id: column_a37cc4ad-0c8c-43b2-9b81-ef83965bc3d4 componentId: text-box-5d924da2-1599-4fd7-9f5a-4b6c4bfbfd02 size: "1"
+
+order: 0
+
+order: 50
+
+- id: row_8b08cb4a-fca5-4a9c-b843-d0880d700273 columns:
+
+- id: column_0323466e-21cf-4ede-9770-ef6e79e31f96 componentId: dropdown-list-56b20824-0111-4c75-b0cb-
+
+6518df74ce36
+
+
+
+size: "1"
+
+order: 100
+
+order: 100
+
+size: "1" type: panel order: 100
+
+order: 50
+
+- id: row_ae0e1189-e25d-4ef0-bfc8-ce3c06d1d24c columns:
+
+- id: column_bc078d95-5a55-431d-889b-c69dce9ff0c6 layout:
+
+rows:
+
+- id: row_ad05313a-e0be-4283-82a7-e63082079f72 columns:
+
+- id: column_0cc30086-a9b7-4a3e-bf13-42274010f431 componentId: text-box-83e6155d-4611-419c-b66e-a2d68e69289f size: "1"
+
+order: 0
+
+order: 100
+
+- id: row_a26217e8-6bf4-4fa6-9a08-85ce0aef858a columns:
+
+- id: column_ded6d337-d9c0-4757-8f1e-cecdff76179f componentId: dropdown-list-9a4868f6-0cb7-4133-a907-
+
+5afeacf6f41d
+
+
+
+size: "1"
+
+order: 100
+
+order: 200
+
+size: "1" type: panel order: 100
+
+order: 225
+
+- id: row_9353dadb-04ae-4607-acc5-f8c3d8af6a6a columns:
+
+- id: column_0578aaff-975a-41b5-8297-153cf4d6d552 layout:
+
+rows:
+
+- id: row_8dbcd603-98d9-4bff-83aa-d03140432ef9 columns:
+
+- id: column_7ed31198-bdbb-4e51-bb5c-6cc9cc1876a0 componentId: text-box-e18c8e37-7da1-453f-bf6a-5246ca5e12c4 size: "1"
+
+order: 0
+
+order: 100
+
+- id: row_16864676-666d-4d4b-819e-07f2f4160255
+
+columns:
+
+- id: column_a154b988-df48-4949-9209-8d842632dd57 componentId: dropdown-list-e14c5a20-193a-4137-963f-
+
+51f35a9a7f34
+
+
+
+size: "1"
+
+order: 100
+
+order: 200
+
+size: "1"
+
+type: panel order: 100
+
+order: 350
+
+- id: row_5f2ad861-46d8-4c84-8a40-a29b79ff275f columns:
+
+- id: column_348601e3-63a6-4ddc-8a0c-655e2719831e layout:
+
+rows:
+
+- id: row_2f6e9d41-00d5-49ba-9761-35c01344572c columns:
+
+- id: column_ea892414-8617-45a7-8bc7-5f948906988e componentId: text-box-9c6362ac-b1bb-40f2-8c19-9539daf8af85 size: "1"
+
+order: 0
+
+order: 100
+
+- id: row_e7088e61-d7f0-4d13-a97f-f0a528914690 columns:
+
+- id: column_53e03a12-630e-415c-9ea3-da2ee8b5e661 componentId: dropdown-list-9f7f7241-70d9-4b96-91c2-
+
+74aeacb242ce
+
+
+
+size: "1"
+
+order: 100
+
+order: 200
+
+size: "1" type: panel order: 100
+
+order: 475
+
+- id: row_3d3cae28-96e3-4c30-b161-225e5d8479e1 columns:
+
+- id: column_f01303a7-f1b0-4023-b512-e7abe9fd9c61
+
+componentId: button-list-a7a25db6-af3d-4aea-b634-566f96c8ae12 size: "1"
+
+type: default order: 100
+
+- id: column_e49237d6-b60a-449d-a963-09a38918d378
+
+componentId: button-list-d7be6a93-d6f4-48e6-bb98-e04209c39a51 size: "1"
+
+order: 200
+
+order: 600 components:
+
+- id: kpi-list-81072ecd-344c-4918-9c0b-fb574be54280 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: closed_ticket show: true
+
+id: 1cff2395-7395-40b1-a1a2-d4618b94aabf order: 100
+
+- id: text-box-f24395bf-a2d2-418e-9e90-e07d6ba9be39 type: text-box
+
+settings:
+
+title: Service Level Agreement -content: (In Days)
+
+infoText: title: title
+
+content: content
+
+id: dropdown-list-ff7ff452-9c1c-4f5c-b8ec-3fe3b78743f0 type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: CASE_TABLE.INC_NUMBER
+
+id: c8db9627-1151-4c8b-8b4d-c89a6873ff0e order: 100
+
+- id: dropdown-list-65929c78-8639-4a01-99c8-35ade9f15659 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: CASE_TABLE.LOCATION
+
+id: fd5ec70a-6c5c-48fe-9d6e-efc2cb68115e order: 100
+
+- id: dropdown-list-94501bad-a599-4c03-87f1-3e5d1706577b type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: CASE_TABLE.DEPARTMENT
+
+id: 389c9e6a-f34f-4774-8b82-a7d22a3a58e8 order: 100
+
+id: dropdown-list-4f524b2b-a9d7-4239-8f0c-d54ba2bbc6fb type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: ACTIVITY_TABLE.USER
+
+id: a33fe40c-4b39-422f-affb-df0e1ef79227 order: 100
+
+- id: dropdown-list-24552466-8c00-4132-a22a-0313dbb4ef4e
+
+type: dropdown-list settings:
+
+data:
+
+columns:
+
+attribute: ACTIVITY_TABLE.DEFINITION id: 1fb1de26-5285-4352-aa70-b82f1329055b
+
+order: 100
+
+- id: dropdown-list-16e7973f-9e2c-4a52-9b51-80bbb0032f39 type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: CASE_TABLE.INCIDENT_STATUS
+
+id: c291e4b6-eff9-4a38-915b-6c14a974c5ca order: 100
+
+- id: text-box-e4e8ead5-1de1-417d-a159-409788525b7a type: text-box
+
+settings:
+
+title: Calculated Based On - ${CritVal} content: ""
+
+- id: time-filter-b6e7e8c7-cb42-41ce-9dbb-342e121845f6 type: time-filter
+
+settings:
+
+label: Activity Event Time dateAttribute: ACTIVITY_TABLE.EVENTTIME
+
+- id: time-filter-ff5b2d9f-45d3-45a1-9c58-305185bff2e2 type: time-filter
+
+settings:
+
+label: Ticket Creation Time
+
+dateAttribute: CASE_TABLE.INCIDENT_CREATE_TIME
+
+- id: quick-filters-207c36b7-1f2c-48d7-b18f-250fe4a3d19b type: quick-filters
+
+settings: filters:
+
+- filter: first_6d
+
+id: 7135c446-098c-4dec-9210-4b0bafad507a order: 100
+
+label: ""
+
+- id: quick-filters-08372dc0-47d7-4ab4-9fa4-8e47c352f2a8 type: quick-filters
+
+settings: filters:
+
+- filter: last_6d
+
+id: ebc80cfe-b34f-4feb-9d69-3db5b472c419 order: 100
+
+label: ""
+
+- id: dropdown-list-76611293-3f65-4187-8e11-68f2c94fd036 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: ACTIVITY_TABLE.DEFINITION
+
+id: f4839ab9-dee5-4070-9b16-147d199b616b order: 100
+
+id: dropdown-list-1851ede0-21db-40f2-b2d2-5e8b5fe765ec type: dropdown-list
+
+settings: data: {}
+
+- id: input-box-a2d07b45-998f-4cf8-8b49-8f4a3a04fe93 type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: Critical Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: CritVal
+
+- id: input-box-b053bc9a-0516-48d0-9c2d-2c00dd88e409 type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: High Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: HighVal
+
+- id: input-box-7473f7c0-56e7-42aa-bae5-24168f9e8811 type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: Medium Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: MedVal
+
+id: input-box-e0cc6cc1-bee5-4017-8cb5-f1a625c3f7c9 type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: Low Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: LowVal
+
+- id: text-box-1de0e9e9-a251-4f8b-963a-affe04b975f9 type: text-box
+
+settings:
+
+title: "Critical Value : ${CritVal} Days" content: ""
+
+- id: text-box-7c658e1b-1370-4f40-a611-9017ccfed938 type: text-box
+
+settings:
+
+title: "High Value : ${HighVal} Days" content: ""
+
+- id: text-box-5d924da2-1599-4fd7-9f5a-4b6c4bfbfd02 type: text-box
+
+settings:
+
+title: "C${SLAType} Val: ${CritVal}Days" content: ""
+
+- id: input-box-cc8048ed-1b10-48e6-a7e4-037c7770d573 type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: Critical Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: CritVal
+
+- id: text-box-83e6155d-4611-419c-b66e-a2d68e69289f type: text-box
+
+settings:
+
+title: "H${SLAType} Val: ${HighVal}Days" content: ""
+
+- id: input-box-07df634f-68e4-44ab-b015-c4ac95ebc760 type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: High Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: HighVal
+
+- id: text-box-e18c8e37-7da1-453f-bf6a-5246ca5e12c4 type: text-box
+
+settings:
+
+title: "M${SLAType} Val: ${MedVal}Days" content: ""
+
+- id: input-box-512a6e21-6f3d-4c85-a42c-830756bdcd29 type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: Medium Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: MedVal
+
+id: input-box-84e440f0-2a0c-4b45-bd5d-5daff174ae9d type: input-box
+
+settings: styles:
+
+position: horizontal: full
+
+placeholderText: Low Value(In Days) type: number
+
+onChange: update:
+
+variables:
+
+- name: LowVal
+
+- id: text-box-9c6362ac-b1bb-40f2-8c19-9539daf8af85
+
+type: text-box settings:
+
+title: "L${SLAType} Val: ${LowVal}Days" content: ""
+
+id: button-list-a7a25db6-af3d-4aea-b634-566f96c8ae12 type: button-list
+
+settings: buttons:
+
+label: Priority
+
+id: 39e003d2-2eb6-4de4-8ea9-f9da39681499 order: 100
+
+variant: ${SLAType === 'Priority' && 'primary' || 'info'} onClick:
+
+update: variables:
+
+name: SLAType value: Priority
+
+- id: button-list-d7be6a93-d6f4-48e6-bb98-e04209c39a51 type: button-list
+
+settings: buttons:
+
+label: Urgency
+
+id: c1abd81d-d284-4d58-99bb-046db81d1b22 order: 100
+
+variant: ${SLAType === 'Urgency' && 'primary' || 'info'} onClick:
+
+update: variables:
+
+name: SLAType value: Urgency
+
+- id: dropdown-list-56b20824-0111-4c75-b0cb-6518df74ce36 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: Dropdown_SLATime
+
+id: 736ff498-ea69-44de-9a81-a33d83f8c92e order: 100
+
+displayName: Critical ${SLAType} Time(In Days) onClick:
+
+update: variables:
+
+- name: CritVal selection: single
+
+id: dropdown-list-9a4868f6-0cb7-4133-a907-5afeacf6f41d
+
+type: dropdown-list settings:
+
+data:
+
+columns:
+
+attribute: Dropdown_SLATime
+
+id: 736ff498-ea69-44de-9a81-a33d83f8c92e order: 100
+
+displayName: High ${SLAType} Time(In Days) onClick:
+
+update: variables:
+
+name: HighVal selection: single
+
+- id: dropdown-list-e14c5a20-193a-4137-963f-51f35a9a7f34 type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: Dropdown_SLATime
+
+id: 736ff498-ea69-44de-9a81-a33d83f8c92e order: 100
+
+displayName: Medium ${SLAType} Time(In Days) onClick:
+
+update: variables:
+
+name: MedVal selection: single
+
+- id: dropdown-list-9f7f7241-70d9-4b96-91c2-74aeacb242ce type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: Dropdown_SLATime
+
+id: 736ff498-ea69-44de-9a81-a33d83f8c92e order: 100
+
+displayName: Low ${SLAType} Time(In Days) onClick:
+
+update: variables:
+
+name: LowVal selection: single

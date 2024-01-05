@@ -1,0 +1,291 @@
+metadata:
+
+key: itsm-view template: false name: Main Page
+
+knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_c954a690-fb9b-42af-b6d7-9eb5ea2a0e73 columns:
+
+- id: column_bc74dad1-3558-460b-bdc1-aabfd2b782b0 componentId: kpi-list-7025c616-e2e4-4125-84ae-73a967e980bf size: "5"
+
+type: panel order: 100
+
+- id: column_a9214e5f-4245-4437-8576-616d55211014
+
+componentId: image-ee3dce14-2548-4f63-a9d2-690af6f1330f size: "1"
+
+type: panel order: 200
+
+order: 50
+
+- id: row_129c03da-b00c-4b51-a205-c511e7734b95 columns:
+
+- id: column_cc9a5150-8da8-49bc-b200-24be7869984a componentId: view-24e15ee9-2e63-43c1-a553-d6fe93e2e491 size: "1"
+
+type: default order: 100
+
+order: 200
+
+- id: row_b61ee697-709c-4a12-a8d7-8499d43345fc growHeight: false
+
+columns:
+
+- id: column_6a2c519e-2b3c-434c-b29b-e0c7b2352845 componentId: chart-8fdd4074-1bd2-41b1-bd1b-9ff8ef9ee4ae size: "1"
+
+type: default height: "350"
+
+order: 100
+
+order: 300 components:
+
+id: table-df3b6a2a-79ee-432a-919a-1d0caecde30b type: table
+
+settings: data:
+
+columns:
+
+field: ACTIVITY_TABLE.INC_NUMBER
+
+id: 27d9924f-464f-4b6b-b981-a43feaca5b73 order: 100
+
+field: priority_count
+
+id: b052bea3-ab09-4483-8988-fa4a3c9232ee order: 200
+
+field: CASE_TABLE.PRIORITY
+
+id: 4e946104-6aa9-49df-a8af-e84d379d9d9a order: 300
+
+field: ACTIVITY_TABLE.ACTIVITY_NAME
+
+id: 18afeac6-597d-47d7-bedb-f834077ba534 order: 400
+
+field: ACTIVITY_TABLE.DEFINITION
+
+id: bb904e23-d21f-4191-870e-acad19676a8b order: 500
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: text-box-72d1ca03-dd92-4788-9a9c-0c78ac77ab2b type: text-box
+
+settings:
+
+content: <h1>Workload Report <h4>Use this report to understand overall workload
+
+in the organization
+
+- id: kpi-list-974ede86-06ee-4088-b343-207199e353d8 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: closed_ticket show: true
+
+id: dc70ec1d-262a-405e-8992-7ebd2a9bdb17 order: 100
+
+kpi: open_ticket show: true
+
+id: 798d807c-986d-42b4-8439-0ae7c3605f62
+
+order: 200
+
+kpi: unassigned_tickets show: true
+
+id: 8a1f48cf-c600-467b-815d-2172081af174
+
+order: 300 onClick:
+
+update: variables:
+
+id: TickType
+
+- id: kpi-list-fb0c1dc3-aa65-405a-ad29-32481325b68e type: kpi-list
+
+settings: data: {}
+
+- id: kpi-list-7025c616-e2e4-4125-84ae-73a967e980bf type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE CASE_TABLE
+
+show: true
+
+id: 1f14c393-c853-4ee6-ba78-13a5e865358f order: 100
+
+kpi: agents show: true
+
+id: 0e163377-ce5f-4d77-92d4-4eb49722e414
+
+order: 200
+
+kpi: departments show: true
+
+id: 55f2039b-4975-41ca-8d4c-6b349a08281d
+
+order: 300
+
+kpi: locations show: true
+
+id: 52ece72d-ceb1-4af9-ae18-fc4d8c8b5797 order: 400
+
+- id: table-517b5d81-1233-4ddd-a7e5-f195a3140abe type: table
+
+settings: data:
+
+columns:
+
+field: CASE_TABLE.INC_NUMBER
+
+id: 398e1db4-8ac3-4dce-8285-1cfcbc7feb52 order: 100
+
+field: CASE_TABLE.INCIDENT_CREATE_TIME
+
+id: 544fc73a-0a65-4429-9e77-ec981b5cecf4 order: 200
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: button-list-b7f99485-88fc-41e5-9d04-082c735231f9 type: button-list
+
+settings:
+
+buttons:
+
+- label: Filters
+
+id: 6f903629-cdec-4b9e-b8ab-d61ae3002416 order: 100
+
+variant: primary styles:
+
+position: vertical: center horizontal: full
+
+id: kpi-list-bdd2a65d-5d67-400f-b90d-ecf6450ad3db type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: closed_ticket show: true
+
+id: 2b527018-9978-4add-ba32-915be7830ced order: 100
+
+kpi: open_ticket show: true
+
+id: a562ece8-4d22-4522-91c1-83193a509e77
+
+order: 200
+
+kpi: unassigned_tickets show: true
+
+id: 57161bfc-4f62-46a3-b409-c128f9f4d4d1 order: 300
+
+onClick: update:
+
+variables: id: TickType
+
+- id: image-ee3dce14-2548-4f63-a9d2-690af6f1330f type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: table-4543c41f-48dd-4952-87c2-67fec752d62b type: table
+
+settings: data:
+
+columns:
+
+field: CASE_TABLE.INC_NUMBER
+
+id: 5836cb76-2f45-4469-a5ed-b62bba03f250 order: 100
+
+field: CASE_TABLE.INCIDENT_STATUS
+
+id: 43d09ce7-eb32-413d-b082-01d8d3eda311
+
+order: 200 breakdownSelector: {}
+
+options: showPagination: false
+
+- id: view-24e15ee9-2e63-43c1-a553-d6fe93e2e491 type: view
+
+settings:
+
+key: side-panel-kpi-ed
+
+id: chart-8fdd4074-1bd2-41b1-bd1b-9ff8ef9ee4ae type: chart
+
+settings:
+
+name: Automated Task by Date infoText:
+
+title: Bar Chart
+
+content: This Bar Chart displays the Total Activities Performed per Day.
+
+The
+
+
+
+color of the block represents the No. of Automated Activities performed that day
+
+visuals:
+
+- mark:
+
+color: GREEN_50 type: bar bandwidth: 0
+
+id: 6611115e-1429-4111-bf43-28b382dee8c9
+
+order: 100 encodings:
+
+y:
+
+field: dailydata.total_task stackBy: dailydata.automated_task color:
+
+field: dailydata.automated_task scheme: SEQUENTIAL_GRAY_REVERSE
+
+type: quantitative limit: 1000
+
+encodings: x:
+
+field: dailydata.day filters:
+
+id: ${TickType ==
+
+'closed_ticket'?'closed_ticket_filter':'open_ticket_filter'}
+
+- id: sankey-baca8f5f-b507-4305-8f91-d45f85c648b8 type: sankey
+
+settings: kpis:
+
+kpi: COUNT_TABLE ACTIVITY_TABLE
+
+type: primary
+
+id: 5cd1e0f5-ddb1-48af-9242-f30aa502db80 order: 100
+
+default: true dimensions:
+
+attribute: ACTIVITY_TABLE.USER
+
+id: a059322b-448b-42a6-bee5-aca28d38acc5 order: 100
+
+attribute: CASE_TABLE.LOCATION
+
+id: f4ca37b2-0d6c-4109-83c1-b3a5ea5f9d2b order: 200
+
+attribute: CASE_TABLE.DEPARTMENT
+
+id: 670db5e3-b537-4ce2-8fe5-93f474e7003d order: 300
+
+colors: SEQUENTIAL_GRAY showConfig: true

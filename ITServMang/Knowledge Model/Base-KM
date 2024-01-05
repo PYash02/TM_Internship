@@ -1,0 +1,1585 @@
+kind: BASE metadata:
+
+key: itsm-km displayName: ITSM - KM
+
+dataModelId: ${{itsm_data_model}} isDataModelFromBG: false records:
+
+- id: ACTIVITY_TABLE
+
+customAttributes: {} identifier:
+
+id: identifier displayName: identifier customAttributes: {}
+
+pql: '"Case Table"."INC_NUMBER" ' attributes:
+
+- id: ACTIVITY_NAME
+
+displayName: Activity Name customAttributes: {}
+
+pql: '"Activity Table"."ACTIVITY_NAME"' format: ""
+
+type: ATTRIBUTE
+
+- id: DEFINITION
+
+displayName: Activity Type customAttributes: {}
+
+pql: '"Activity Table"."DEFINITION"' format: ""
+
+type: ATTRIBUTE
+
+- id: indexorderasc displayName: IndexOrderASC
+
+pql: INDEX_ACTIVITY_ORDER ( "Activity Table"."ACTIVITY_NAME" )
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+- id: indexorderdesc displayName: IndexOrderDesc
+
+pql: INDEX_ACTIVITY_ORDER_REVERSE ( "Activity Table"."ACTIVITY_NAME" )
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+- id: EVENTTIME
+
+displayName: Eventtime customAttributes: {}
+
+pql: '"Activity Table"."EVENTTIME"' format: "%Y-%m-%d %H:%M"
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+- id: CASE_TABLE
+
+displayName: Case Table customAttributes: {} identifier:
+
+id: identifier displayName: Identifier
+
+pql: '"Case Table"."INC_NUMBER"' attributes:
+
+- id: DEPARTMENT
+
+displayName: Department customAttributes: {}
+
+pql: '"Case Table"."DEPARTMENT"' format: ""
+
+type: ATTRIBUTE
+
+- id: INCIDENT_CREATE_TIME
+
+displayName: Incident Create Time customAttributes: {}
+
+pql: '"Case Table"."INCIDENT_CREATE_TIME"' format: "%Y-%m-%d %H:%M"
+
+type: ATTRIBUTE
+
+- id: INCIDENT_OPEN_TIME
+
+displayName: Incident Open Time customAttributes: {}
+
+pql: '"Case Table"."INCIDENT_OPEN_TIME"' format: "%Y-%m-%d %H:%M"
+
+type: ATTRIBUTE
+
+- id: INCIDENT_UPDATE_TIME
+
+displayName: Incident Update Time customAttributes: {}
+
+pql: '"Case Table"."INCIDENT_UPDATE_TIME"' format: "%Y-%m-%d %H:%M"
+
+type: ATTRIBUTE
+
+- id: INCIDENT_RESOLVE_TIME
+
+displayName: Incident Resolve Time customAttributes: {}
+
+pql: '"Case Table"."INCIDENT_RESOLVE_TIME"'
+
+format: "%Y-%m-%d %H:%M" type: ATTRIBUTE
+
+id: user_count displayName: User Count
+
+pql: count (distinct "Activity Table"."_USER") columnType: STRING
+
+format: "" type: ATTRIBUTE
+
+id: INCIDENT_STATUS
+
+displayName: Incident Status customAttributes: {}
+
+pql: '"Case Table"."INCIDENT_STATUS"' format: ""
+
+type: ATTRIBUTE
+
+id: on_hold_count
+
+displayName: "#'On Hold' Count"
+
+pql: sum(case when "Activity Table"."ACTIVITY_NAME" = 'On Hold' then 1 else 0 end)
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: priority_Renamed displayName: Priority pql: |-
+
+case when "Case Table"."PRIORITY" = '4 - Low' then 'Low' else
+
+
+
+case when "Case Table"."PRIORITY" = '3 - Medium' then 'Medium' else case when "Case Table"."PRIORITY" = '2 - High' then 'High' else
+
+case when "Case Table"."PRIORITY" = '1 - Critical' then 'Critical' END END
+
+END
+
+
+
+END
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: urgency_Renamed displayName: Urgency
+
+pql: |-
+
+case when "Case Table"."Urgency" = '4 - Low' then 'Low' else
+
+
+
+case when "Case Table"."Urgency" = '3 - Medium' then 'Medium' else case when "Case Table"."Urgency" = '2 - High' then 'High' else
+
+case when "Case Table"."Urgency" = '1 - Critical' then 'Critical' END END
+
+END
+
+
+
+END
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: testfield_1 displayName: testfield 1 pql: |-
+
+case when "Case Table"."PRIORITY" ='4 - Low' then NULL
+
+
+
+else 'Low' end columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: rework_count displayName: Rework Count
+
+pql: pu_count("Case Table","Activity Table"."ACTIVITY_NAME","Activity Table"."ACTIVITY_NAME" = 'Queued')
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags:
+
+id: multi_hop_tickets displayName: Multi-Hop Tickets customAttributes: {}
+
+pql: PU_COUNT("CASE TABLE", "Activity Table"."DEFINITION","Activity Table"."DEFINITION" = 'Assignment Group') > 1
+
+id: on_hold_tickets displayName: On-Hold Tickets customAttributes: {}
+
+pql: PU_COUNT("CASE TABLE", "Activity Table"."ACTIVITY_NAME","Activity Table"."ACTIVITY_NAME" = 'On Hold') > 1
+
+id: unresolved_tickets displayName: Unresolved Tickets customAttributes: {}
+
+pql: "\"Case Table\".\"INCIDENT_STATUS\" = 'Queued'"
+
+id: priority_urgency_mismatch displayName: Priority/Urgency Mismatch customAttributes: {}
+
+pql: '"Case Table"."PRIORITY" != "Case Table"."URGENCY"'
+
+id: late_updation displayName: Late Updation customAttributes: {}
+
+pql: floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) > 0
+
+id: rework_tickets displayName: Rework Tickets customAttributes: {}
+
+pql: pu_count( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'Queued') > 1
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: dailydata displayName: DailyData customAttributes: {} attributes:
+
+id: day displayName: Day customAttributes: {}
+
+pql: TO_DATE ((TO_STRING("Activity Table"."EVENTTIME", FORMAT('%d-%m'))), FORMAT('%d-%m'))
+
+columnType: DATETIME format: "%m-%d" type: ATTRIBUTE
+
+id: automated_task displayName: Automated Task customAttributes: {}
+
+pql: KPI("automated_task") columnType: INTEGER format: ""
+
+type: ATTRIBUTE
+
+id: total_task displayName: Total Task
+
+pql: KPI("COUNT_TABLE ACTIVITY_TABLE")
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: on_hold_task displayName: On Hold Task
+
+pql: sum(case when "Activity Table"."ACTIVITY_NAME" = 'On Hold' then 1 else 0 END)
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: rework_task displayName: Rework Task
+
+pql: sum(case when "Activity Table"."ACTIVITY_NAME" = 'Queued' then 1 else 0 end)
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: multi_hop displayName: Multi-Hop customAttributes: {} identifier:
+
+id: identifier displayName: identifier
+
+pql: '"Case Table"."INC_NUMBER"' attributes:
+
+id: inc_number displayName: INC Number
+
+pql: '"Activity Table"."INC_NUMBER"' columnType: STRING
+
+format: "" type: ATTRIBUTE
+
+id: assignment_group_count displayName: Assignment Group Count customAttributes: {}
+
+pql: |-
+
+case when "Activity Table"."DEFINITION" = 'Assignment Group' then
+
+INDEX_ACTIVITY_TYPE ( "Activity Table"."DEFINITION" ) END
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: definition displayName: Definition
+
+pql: '"Activity Table"."DEFINITION"' columnType: STRING
+
+format: "" type: ATTRIBUTE
+
+id: assignment_activity displayName: Assignment Activity customAttributes: {}
+
+pql: |-
+
+sum(case when "Activity Table"."DEFINITION" = 'Assignment Group' then
+
+
+
+1 END)
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: multi_hop displayName: "#Multi-Hop" pql: |-
+
+sum(case when "Activity Table"."DEFINITION" = 'Assignment Group' then
+
+
+
+1 END) - 1
+
+columnType: INTEGER format: ",.0f" type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: loop_record displayName: Loop Record customAttributes: {} attributes:
+
+id: days_count displayName: Days Count pql: KPI("range_generator") columnType: STRING
+
+format: ""
+
+type: ATTRIBUTE
+
+id: case_count displayName: Case Count pql: |-
+
+floor((case when floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) > 0
+
+
+
+then (datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) end))
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+kpis:
+
+id: priority_count displayName: Priority Count customAttributes: {}
+
+pql: (case when "Activity Table"."DEFINITION" = 'Priority Duration' THEN 1 ELSE 0 END)
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: closed_ticket displayName: "#Closed Tickets" customAttributes: {}
+
+pql: sum(case when "Case Table"."INCIDENT_STATUS" = 'Closed' THEN 1 ELSE 0 END)
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: open_ticket
+
+displayName: "#Open Tickets" customAttributes: {}
+
+pql: sum(case when "Case Table"."INCIDENT_STATUS" != 'Closed' THEN 1 ELSE 0 END)
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: COUNT_TABLE CASE_TABLE
+
+displayName: "#Total Tickets" customAttributes: {}
+
+pql: COUNT_TABLE("Case Table") breakdowns: []
+
+aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: unassigned_tickets displayName: "#Unassigned Tickets"
+
+pql: sum(case when PU_COUNT ( "Case Table", "Activity Table"."_USER", "Activity Table"."_USER" IS NOT NULL) = 0 then 1 else 0 end)
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+displayName: Avg Resolve Time customAttributes: {}
+
+pql: AVG(CALC_THROUGHPUT(CASE_START TO CASE_END, REMAP_TIMESTAMPS("Activity Table"."EVENTTIME", DAYS)))
+
+unit: Days format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true
+
+type: KPI origin: PACKAGE
+
+id: avg_open_time displayName: Avg Open Time customAttributes: {}
+
+pql: |-
+
+sum(DATEDIFF ( mi, "Case Table"."INCIDENT_OPEN_TIME", "Case Table"."INCIDENT_CREATE_TIME" ))
+
+
+
+/ KPI("COUNT_TABLE CASE_TABLE")
+
+unit: Mins format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: avg_close_time displayName: Avg Close Time pql: |-
+
+SUM(DATEDIFF ( dd, "Case Table"."INCIDENT_RESOLVE_TIME", "Case Table"."INCIDENT_UPDATE_TIME" ))
+
+
+
+/ KPI("COUNT_TABLE CASE_TABLE")
+
+unit: Days format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: agents displayName: "#Agents"
+
+pql: count(distinct "Activity Table"."_USER") breakdowns: []
+
+aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: departments displayName: "#Departments"
+
+pql: COUNT ( DISTINCT "Case Table"."DEPARTMENT" )
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: locations displayName: "#Locations"
+
+pql: COUNT ( DISTINCT "Case Table"."LOCATION" )
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: automated_task displayName: Automated Task customAttributes: {}
+
+pql: |-sum(case when
+
+lead(INDEX_ACTIVITY_ORDER ( "Activity Table"."ACTIVITY_NAME" )) = 1 then 0 else (case when (DATEDIFF (ss, "Activity Table"."EVENTTIME", lead("Activity
+
+Table"."EVENTTIME"))) = 0 then 1 else 0 end)end)
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: AVG_EVENTS_PER_CASE ACTIVITY_TABLE ACTIVITY_NAME CASE_TABLE
+
+displayName: Avg Activity per Ticket customAttributes: {}
+
+pql: ' AVG(PU_COUNT("Case Table", "Activity Table"."ACTIVITY_NAME"))' unit: Activities
+
+format: ",.2f" breakdowns: [] aggregations: []
+
+parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: COUNT_TABLE ACTIVITY_TABLE
+
+displayName: "# Total Activities" customAttributes: {}
+
+pql: COUNT_TABLE("Activity Table") breakdowns: []
+
+aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: multi_hop_kpi displayName: Multi-Hop KPI customAttributes: {}
+
+pql: |-
+
+sum(case when PU_COUNT("CASE TABLE", "Activity Table"."DEFINITION","Activity Table"."DEFINITION" = 'Assignment Group') > 1 then
+
+1 else 0 end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: onhold_kpi displayName: OnHold KPI customAttributes: {} pql: |-
+
+SUM(CASE WHEN PU_COUNT("CASE TABLE", "Activity Table"."ACTIVITY_NAME","Activity Table"."ACTIVITY_NAME" = 'On Hold') > 1 THEN 1 ELSE 0 END)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: mismatch_kpi displayName: Mismatch KPI pql: |-
+
+sum(case when "Case Table"."PRIORITY" != "Case Table"."URGENCY" then 1 else 0 end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: unresolved_kpi displayName: Unresolved KPI pql: |-
+
+sum(case when "Case Table"."INCIDENT_STATUS" = 'Queued' then 1 else 0 end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: auto_activity_ displayName: Auto Activity% customAttributes: {}
+
+pql: |-KPI("automated_task")
+
+
+
+/
+
+KPI("COUNT_TABLE ACTIVITY_TABLE")
+
+
+
+*100
+
+unit: "%" format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: on_hold_cases_ displayName: On-Hold Cases% customAttributes: {}
+
+pql: |-
+
+(sum(PU_count_distinct ( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'On Hold'))
+
+
+
+/ COUNT_TABLE("Case Table"))
+
+* 100
+
+unit: "%" format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: sla_breach_priority displayName: SLA Breach% customAttributes: {} pql: |-
+
+sum(case when "Case Table"."PRIORITY" = '4 - Low' then(
+
+
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{LowVal}} then 1 else 0 end)
+
+
+
+else(
+
+
+
+case when "Case Table"."PRIORITY" = '3 - Medium' then(
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{MedVal}} then 1 else 0 end)
+
+
+
+else(
+
+
+
+case when "Case Table"."PRIORITY" = '2 - High' then(
+
+
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{HighVal}} then 1 else 0 end)
+
+
+
+else(
+
+
+
+case when "Case Table"."PRIORITY" = '1 - Critical' then(
+
+
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{CritVal}} then 1 else 0 end)
+
+
+
+else 0 end
+
+
+
+)end
+
+
+
+)end
+
+
+
+)end
+
+
+
+)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+* 100
+
+unit: "%" format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: sla_breach_urgency displayName: SLA Breach% customAttributes: {} pql: |-
+
+sum(case when "Case Table"."URGENCY" = '4 - Low' then(
+
+
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{LowVal}} then 1 else 0 end)
+
+
+
+else(
+
+
+
+case when "Case Table"."URGENCY" = '3 - Medium' then(
+
+
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{MedVal}} then 1 else 0 end)
+
+
+
+else(
+
+
+
+case when "Case Table"."URGENCY" = '2 - High' then(
+
+
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{HighVal}} then 1 else 0 end)
+
+
+
+else(
+
+
+
+case when "Case Table"."URGENCY" = '1 - Critical' then(
+
+
+
+case when DATEDIFF ( dd, "Case Table"."INCIDENT_OPEN_TIME","Case Table"."INCIDENT_UPDATE_TIME" )>${{CritVal}} then 1 else 0 end)
+
+
+
+else 0 end
+
+
+
+)end
+
+
+
+)end
+
+
+
+)end
+
+
+
+)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+* 100
+
+unit: "%" format: .2f breakdowns: [] aggregations: []
+
+parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: on_hold_activity_ displayName: On-Hold Activity% customAttributes: {}
+
+pql: |-
+
+sum(case when "Activity Table"."ACTIVITY_NAME" = 'On Hold' then 1 else 0
+
+end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE ACTIVITY_TABLE")
+
+
+
+* 100
+
+unit: "%" format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: multi_hop_count displayName: Multi-Hop Count pql: |-
+
+sum(case when "Activity Table"."DEFINITION" = 'Assignment Group' then
+
+
+
+1 END) - KPI("COUNT_TABLE CASE_TABLE")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: accuracy_ displayName: Single Hop% customAttributes: {} pql: |-
+
+sum(case when PU_COUNT ( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."DEFINITION" = 'Assignment Group' ) = 1 then 1 else 0 end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+
+
+* 100
+
+unit: "%" format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: ag_tpt_per_ticket_ displayName: AG TPT (Per Ticket) pql: |-
+
+sum(case when "Activity Table"."DEFINITION" = 'Assignment Group' THEN
+
+
+
+DATEDIFF ( dd, "Activity Table"."EVENTTIME", lead("Activity Table"."EVENTTIME"))
+
+
+
+END)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+unit: Days format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: time_spent
+
+displayName: Time Spent (In Hours) customAttributes: {}
+
+pql: |-
+
+sum(case when "Activity Table"."DEFINITION" = 'Assignment Group' THEN
+
+DATEDIFF ( HH, "Activity Table"."EVENTTIME", lead("Activity Table"."EVENTTIME"))
+
+
+
+END)
+
+format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: multi_kpi_filter displayName: multi-kpi-filter customAttributes: {}
+
+pql: pu_count("Case Table","Activity Table"."INC_NUMBER", "Activity Table"."DEFINITION" = 'Assignment Group') - 1
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: onhold_time_per_ticket_ displayName: OnHold Time (Per Ticket) pql: |-
+
+sum(case when "Activity Table"."ACTIVITY_NAME"= 'On Hold'
+
+
+
+then DATEDIFF ( hh, "Activity Table"."EVENTTIME", lead("Activity Table"."EVENTTIME")) else 0 end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+unit: Hrs format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: cases_onhold_1 displayName: "#Cases OnHold>1" customAttributes: {}
+
+pql: |-
+
+(sum(case when PU_COUNT
+
+
+
+( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'On Hold') > 1 then 1 end)
+
+
+
+/ (sum(PU_count_distinct ( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'On Hold'))))
+
+
+
+* 100
+
+unit: "%" format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: time_on_hold_in_hours_ displayName: Time 'On Hold' (In Hours) customAttributes: {}
+
+pql: |-
+
+sum(case when "Activity Table"."ACTIVITY_NAME" = 'On Hold' THEN
+
+
+
+DATEDIFF ( HH, "Activity Table"."EVENTTIME", lead("Activity Table"."EVENTTIME"))
+
+
+
+END)
+
+format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: on_hold_filter displayName: On-Hold Filter
+
+pql: pu_count("Case Table","Activity Table"."ACTIVITY_NAME","Activity Table"."ACTIVITY_NAME" = 'On Hold')
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: mismatch_ displayName: Mismatch% pql: |-
+
+sum(case when "Case Table"."PRIORITY" != "Case Table"."URGENCY" then 1 else 0 end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+format: ",.2%" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: mismatch_tpt displayName: Mismatch TPT pql: |-
+
+sum(case when "Case Table"."PRIORITY" != "Case Table"."URGENCY" then
+
+
+
+(CALC_THROUGHPUT(CASE_START TO CASE_END, REMAP_TIMESTAMPS("Activity Table"."EVENTTIME", DAYS)))
+
+
+
+else 0 end)
+
+
+
+/
+
+
+
+sum(case when "Case Table"."PRIORITY" != "Case Table"."URGENCY" then 1 else 0 end)
+
+unit: Days format: ",.2f" breakdowns: []
+
+aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: timespent_in_hours_ displayName: TimeSpent(In Hours) pql: |-
+
+sum(case when "Case Table"."INCIDENT_STATUS" = 'Queued' THEN
+
+
+
+(CALC_THROUGHPUT(CASE_START TO CASE_END, REMAP_TIMESTAMPS("Activity Table"."EVENTTIME", DAYS)))
+
+
+
+END)
+
+format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: unresolved_kpi_filter displayName: unresolved kpi filter
+
+pql: (case when "Case Table"."INCIDENT_STATUS" = 'Queued' then 1 else 0 end) breakdowns: []
+
+aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: resolve_time_in_hours_ displayName: Resolve Time(In Hours) pql: |-
+
+(case when "Case Table"."PRIORITY" != "Case Table"."URGENCY" THEN
+
+
+
+(CALC_THROUGHPUT(CASE_START TO CASE_END, REMAP_TIMESTAMPS("Activity Table"."EVENTTIME", DAYS)))
+
+
+
+END)
+
+breakdowns: [] aggregations: [] parameters: []
+
+targets: [] allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: cases_on_hold_1_overall_
+
+displayName: "#Cases On Hold>1 (Overall)" pql: |-
+
+(sum(case when PU_COUNT
+
+
+
+( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'On Hold') > 1 then 1 end)
+
+
+
+/ KPI("COUNT_TABLE CASE_TABLE"))
+
+
+
+* 100
+
+unit: "%" format: .2f breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: late_updation_kpi displayName: Late Updation KPI customAttributes: {}
+
+pql: |-
+
+sum(case when floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) > 0
+
+
+
+then 1 end)
+
+
+
+/
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: late_updation_filter displayName: Late Updation filter pql: |-
+
+(case when floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) > 0
+
+
+
+then 1 else 0 end) breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: lateupdate
+
+displayName: LateUpdate (In Days) customAttributes: {}
+
+pql: floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME"))
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: late_update_ displayName: Late Update% customAttributes: {} pql: |-
+
+sum(case when floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) > 0
+
+
+
+then 1 end)
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+
+
+*
+
+
+
+100
+
+unit: "%" format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: time_spend_late_update_ displayName: Time Spend(Late Update) pql: |-
+
+floor(sum(case when floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) > 0
+
+
+
+then (datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) end))
+
+unit: Days breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: time_spent_late_update_ displayName: Time Spent(Late Update) pql: |-
+
+floor((case when floor(datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) > 0
+
+then (datediff(dd,"Case Table"."INCIDENT_RESOLVE_TIME","Case Table"."INCIDENT_UPDATE_TIME")) end))
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: range_generator displayName: Range Generator
+
+pql: GENERATE_RANGE ( 1 , 1 , 150 )
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: rework_activity displayName: Rework Activity pql: |-
+
+sum(case when PU_COUNT ( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'Queued') > 1
+
+
+
+then PU_COUNT ( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'Queued')
+
+
+
+else 0 end) breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: rework_tickets displayName: Rework Tickets pql: |-
+
+sum(case when PU_COUNT ( "Case Table", "Activity Table"."ACTIVITY_NAME", "Activity Table"."ACTIVITY_NAME" = 'Queued') > 1
+
+
+
+then 1 else 0 end) breakdowns: [] aggregations: []
+
+parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: rework_cases_ displayName: Rework Cases% pql: |-
+
+KPI("rework_tickets")
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+* 100
+
+unit: "%"
+
+format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: rework_kpi displayName: Rework KPI pql: |-
+
+KPI("rework_tickets")
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+- id: no_rework_cases_ displayName: No Rework Cases% customAttributes: {}
+
+pql: |-
+
+sum(case when pu_count("Case Table","Activity Table"."ACTIVITY_NAME","Activity Table"."ACTIVITY_NAME"='Queued') = 1 then 1 else
+
+0 end)
+
+
+
+/
+
+
+
+KPI("COUNT_TABLE CASE_TABLE")
+
+* 100
+
+unit: "%" format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE filters:
+
+id: unassigned_user displayName: Unassigned User customAttributes: {}
+
+pql: FILTER "Activity Table"."_USER" IS NULL; type: FILTER
+
+origin: PACKAGE
+
+id: first_6d displayName: First 6D pql: |-
+
+FILTER ROUND_DAY ( "Case Table"."INCIDENT_CREATE_TIME" ) < ({d '2022-07-09'}) AND
+
+
+
+ROUND_DAY ( "Case Table"."INCIDENT_CREATE_TIME" ) >= ({d '2022-07-01'}) ;
+
+type: FILTER origin: PACKAGE
+
+id: last_6d displayName: Last 6D pql: |-
+
+FILTER ROUND_DAY ( "Case Table"."INCIDENT_CREATE_TIME" ) < ({d '2022-07-17'}) AND
+
+ROUND_DAY ( "Case Table"."INCIDENT_CREATE_TIME" ) >= ({d '2022-07-09'}) ;
+
+type: FILTER origin: PACKAGE
+
+id: closed_ticket_filter displayName: Closed Ticket Filter
+
+pql: FILTER "Case Table"."INCIDENT_STATUS" = 'Closed'; type: FILTER
+
+origin: PACKAGE
+
+id: open_ticket_filter displayName: Open Ticket Filter
+
+pql: FILTER "Case Table"."INCIDENT_STATUS" != 'Closed'; type: FILTER
+
+origin: PACKAGE
+
+id: emptyfilter displayName: EmptyFilter
+
+pql: FILTER "Case Table"."INC_NUMBER" IS NOT NULL;
+
+type: FILTER origin: PACKAGE
+
+id: multi_hop_filter displayName: Multi-Hop Filter customAttributes: {}
+
+pql: FILTER KPI("multi_kpi_filter") > 0; type: FILTER
+
+origin: PACKAGE
+
+id: on_hold_filter displayName: On-Hold Filter customAttributes: {}
+
+pql: FILTER KPI("on_hold_filter") >0; type: FILTER
+
+origin: PACKAGE
+
+id: unresolved_filter displayName: Unresolved Filter customAttributes: {}
+
+pql: FILTER KPI("unresolved_kpi_filter") > 0; type: FILTER
+
+origin: PACKAGE
+
+id: mismatch_filter displayName: Mismatch Filter
+
+pql: FILTER "Case Table"."URGENCY" != "Case Table"."PRIORITY"; type: FILTER
+
+origin: PACKAGE
+
+id: late_updation displayName: Late Updation customAttributes: {}
+
+pql: FILTER KPI("late_updation_filter") > 0;
+
+type: FILTER origin: PACKAGE
+
+id: rework_filter displayName: Rework Filter
+
+pql: FILTER pu_count("Case Table","Activity Table"."ACTIVITY_NAME","Activity Table"."ACTIVITY_NAME" = 'Queued') > 1;
+
+type: FILTER origin: PACKAGE
+
+variables: [] activities: [] eventLogsMetadata:
+
+eventLogs:
+
+- id: EL_ACTIVITY_TABLE ACTIVITY_NAME
+
+displayName: Activity Table Activity Name pql: '"Activity Table"."ACTIVITY_NAME"'
+
+transitions: [] kpiViews: []
+
+anomalies:
+
+id: multi_hop_tickets_ANOMALY displayName: Multi-Hop Tickets flag: multi_hop_tickets kpiIds: []
+
+kpis:
+
+id: COUNT_TABLE CASE_TABLE_ANOMALY_KPI kpiId: COUNT_TABLE CASE_TABLE
+
+impactCalculation: multi_hop_kpi knowledgeObjectId: CASE_TABLE_ANOMALY_Multi_Hop type: ANOMALY
+
+id: on_hold_tickets_ANOMALY displayName: On-Hold Tickets flag: on_hold_tickets kpiIds: []
+
+kpis:
+
+id: COUNT_TABLE CASE_TABLE_ANOMALY_KPI kpiId: COUNT_TABLE CASE_TABLE
+
+impactCalculation: onhold_kpi knowledgeObjectId: CASE_TABLE_ANOMALY_OnHold type: ANOMALY
+
+id: priority_urgency_mismatch_ANOMALY displayName: Priority/Urgency Mismatch flag: priority_urgency_mismatch kpiIds: []
+
+kpis:
+
+id: COUNT_TABLE CASE_TABLE_ANOMALY_KPI kpiId: COUNT_TABLE CASE_TABLE
+
+impactCalculation: mismatch_kpi knowledgeObjectId: CASE_TABLE_ANOMALY_Mismatch type: ANOMALY
+
+id: unresolved_tickets_ANOMALY displayName: Unresolved Tickets flag: unresolved_tickets kpiIds: []
+
+kpis:
+
+id: COUNT_TABLE CASE_TABLE_ANOMALY_KPI kpiId: COUNT_TABLE CASE_TABLE
+
+impactCalculation: unresolved_kpi knowledgeObjectId: CASE_TABLE_ANOMALY_Unresolved type: ANOMALY
+
+id: late_updation_ANOMALY displayName: Late Updation flag: late_updation kpiIds: []
+
+kpis:
+
+id: COUNT_TABLE CASE_TABLE_ANOMALY_KPI kpiId: COUNT_TABLE CASE_TABLE
+
+impactCalculation: late_updation_kpi knowledgeObjectId: CASE_TABLE_ANOMALY_Late_Update type: ANOMALY
+
+id: rework_tickets_ANOMALY displayName: Rework Tickets flag: rework_tickets kpiIds: []
+
+kpis:
+
+id: COUNT_TABLE CASE_TABLE_ANOMALY_KPI kpiId: COUNT_TABLE CASE_TABLE
+
+impactCalculation: rework_kpi knowledgeObjectId: CASE_TABLE_ANOMALY_REWORK type: ANOMALY
+
+eventLogs: [] customObjects:
+
+id: Status_Rule displayName: Status Rule customAttributes:
+
+comparator: TEXT_CONTAINS value: Closed
+
+style:
+
+iconName: status-successful iconPosition: LEFT iconSize: 24
+
+comparator: TEXT_CONTAINS
+
+value: Queued style:
+
+iconName: clock iconPosition: LEFT iconSize: 24
+
+id: Dropdown_SLATime displayName: SLATime DropDown customAttributes:
+
+list:
+
+
+
+- name:
+
+90
+
+- name:
+
+60
+
+- name:
+
+30
+
+- name:
+
+14
+
+- name:
+
+7
+
+- name:
+
+5
+
+- name:
+
+3
+
+- name:
+
+2
+
+- name:
+
+1
+
+id: Dropdown_MultiHop displayName: Dimension customAttributes:
+
+list:
+
+name: Priority
+
+name: Urgency
+
+name: Incident_Status
+
+id: Dropdown_Mismatch displayName: Dimension customAttributes:
+
+list:
+
+name: Priority
+
+name: Urgency
+
+id: GreaterColor displayName: Greater_Color customAttributes:
+
+comparator: GREATER_THAN value: 25
+
+style:
+
+textColor: "#167757"
+
+comparator: GREATER_THAN value: 10
+
+style:
+
+textColor: "#F9A609"
+
+comparator: GREATER_THAN_OR_EQUAL value: 0
+
+style:
+
+textColor: "#FF2E2E"
+
+id: LesserColor displayName: Lesser_Color customAttributes:
+
+comparator: GREATER_THAN value: 25
+
+style:
+
+textColor: "#FF2E2E"
+
+comparator: GREATER_THAN value: 10
+
+style:
+
+textColor: "#F9A609"
+
+comparator: GREATER_THAN_OR_EQUAL value: 0
+
+style:
+
+textColor: "#167757"
+
+id: Urgency_Priority_Rule displayName: Urgency Priority Rule customAttributes:
+
+comparator: TEXT_CONTAINS value: Low
+
+style:
+
+iconName: priority-low iconPosition: LEFT iconSize: 24
+
+comparator: TEXT_CONTAINS value: Medium
+
+style:
+
+iconName: priority-middle iconPosition: LEFT iconSize: 24
+
+comparator: TEXT_CONTAINS value: High
+
+style:
+
+iconName: priority-high iconPosition: LEFT iconSize: 24
+
+comparator: TEXT_CONTAINS value: Critical
+
+style:
+
+iconName: ce-notification--warning iconPosition: LEFT
+
+iconSize: 24 ruleGroups: [] visualMappings: []
+
+id: itsm-package.itsm-km
+
+tenantId: cc84ec38-5e3e-45f4-a3da-ec10c9fd9786 actions: []
+
+nodeEntityId: 2773e2c3-ce9c-4715-9ea3-1763fc1408c7

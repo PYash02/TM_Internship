@@ -1,0 +1,181 @@
+metadata: key: graphs
+
+template: false name: MTTR - Details
+
+knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_5628c56b-003f-4f11-a42f-7ce9da235fdc columns:
+
+- id: column_b576d21f-dd84-4116-8182-9c5caa8239bf componentId: kpi-list-a5ea673b-2929-4e5c-a306-4bf1a27827e1 size: "0.8"
+
+type: panel order: 100
+
+- id: column_4aa68705-c451-4797-ac22-2a264eb48dab componentId: kpi-list-cfa3c2de-62cc-4ac9-86e6-900c654af0fd size: "0.8"
+
+type: panel order: 200
+
+- id: column_ef9fd171-34f7-4096-86d3-7965130ad740 componentId: kpi-list-3558bce2-5aa3-4426-8415-015f3a6b3a05 size: "0.8"
+
+type: panel order: 300
+
+- id: column_df90ef05-ad1b-4260-8079-aba27a754da8 componentId: kpi-list-26421751-1d17-43d1-9f62-d215810e7ca1 size: "1"
+
+type: panel order: 400
+
+order: 100
+
+- id: row_66fa113d-43c3-49e8-80b7-a27fe572eb8f columns:
+
+- id: column_bdf2a96e-a896-4938-8396-cc53c4074912 componentId: kpi-list-a1529a43-7684-4d33-bec6-92a129aebf65 size: "1"
+
+type: panel order: 100
+
+order: 200
+
+- id: row_ad8d29aa-27f9-4682-a1b9-90081fe583d9 columns:
+
+- id: column_62297ded-e40c-4131-bb70-49979fd8eada
+
+componentId: execution-gap-list-c46b352f-7526-4161-8821-77e0c755a4dd size: "1"
+
+type: default order: 100
+
+order: 300
+
+- id: row_ffb5cc60-3ea7-4c5d-bb27-8ca5eedda361 columns:
+
+- id: column_bf47ed1f-4981-4b21-a6a0-6dfb26e5f9ca componentId: view-a8fd85f5-75eb-4241-a41a-bf8c7c35f055 size: "1"
+
+type: panel order: 100
+
+order: 400 components:
+
+- id: kpi-list-a5ea673b-2929-4e5c-a306-4bf1a27827e1 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: COUNT_TABLE CASE_TABLE
+
+show: true
+
+id: 1150c0b0-f644-47fe-9da2-4cab00ebf431 order: 100
+
+id: kpi-list-cfa3c2de-62cc-4ac9-86e6-900c654af0fd type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: closed_ticket show: true
+
+id: 87e2d79e-eb14-414a-a40b-7191dbdaf541 order: 100
+
+- id: kpi-list-3558bce2-5aa3-4426-8415-015f3a6b3a05 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: open_ticket show: true
+
+id: ba5dee7c-2022-4342-9c7f-5bef115a21da order: 100
+
+- id: kpi-list-26421751-1d17-43d1-9f62-d215810e7ca1 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: AVG_EVENTS_PER_CASE ACTIVITY_TABLE ACTIVITY_NAME CASE_TABLE
+
+show: true
+
+id: 6c43e362-a5d9-4e01-8611-dd3bdeed1b30 order: 100
+
+- id: kpi-list-a1529a43-7684-4d33-bec6-92a129aebf65 type: kpi-list
+
+settings:
+
+name: Time Based KPI's infoText:
+
+title: Selectable KPI
+
+content: Select one of these KPI to review the KPI in Graph Format below Execution Gap List.
+
+data:
+
+kpis:
+
+- kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+show: true
+
+id: 5f81b678-b016-4205-b659-8952a45105a5
+
+order: 100
+
+kpi: avg_open_time show: true
+
+id: 95bf0a0a-2464-432a-abc2-68d03e2b9444 order: 200
+
+kpi: avg_close_time show: true
+
+id: 5b872dcb-6d83-4267-af35-31c800678cfb order: 300
+
+onClick: update:
+
+variables:
+
+id: SecondaryAxis
+
+id: text-box-adcbcf14-2c8a-4c6a-8cb1-084effa6a3e1 type: text-box
+
+settings: title: EGL content: ""
+
+- id: view-a8fd85f5-75eb-4241-a41a-bf8c7c35f055 type: view
+
+settings:
+
+key: drilldown
+
+- id: text-box-841e550a-d9f4-4f8f-a9d9-f6c19b56caa8 type: text-box
+
+settings: title: egl content: ""
+
+- id: execution-gap-list-c46b352f-7526-4161-8821-77e0c755a4dd type: execution-gap-list
+
+settings:
+
+name: Execution Gap List infoText:
+
+title: Execution Gap List
+
+content: Select one of these Inefficiencies in the Process Cycle, to open
+
+the
+
+
+
+deep-dive on the same sortBy:
+
+defaultColumn: impact direction: DESC
+
+kpi: COUNT_TABLE CASE_TABLE
+
+tableView: true forwardFilterToProfileView: false columns:
+
+issue:
+
+title: Inefficiency Type hide: false
+
+impact: hide: false
+
+kpi:
+
+hide: false occurrences:
+
+hide: true

@@ -1,0 +1,474 @@
+
+metadata:
+
+key: sla-breach template: false name: SLA Breach
+
+knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+variables:
+
+- id: 735025bd-e020-468f-8771-0d1b500311e4
+
+name: active defaultValue: ""
+
+- id: 70f53f2f-65b7-47b0-9732-1a42d9b92afd name: id
+
+layout: rows:
+
+- id: row_a1df6bce-6e22-432a-bcd5-5c9bf521c5fb columns:
+
+- id: column_4b61ac83-7d78-4a9c-8c64-1e43ef2038a4 componentId: kpi-list-f5d21f12-37ce-4364-9049-4d6f0c9c66fc size: "5"
+
+type: panel order: 100
+
+- id: column_3c269c63-eae6-488c-b1e4-740c1766b35c componentId: image-02f45c97-2b63-4c00-8f19-7de444879c57 size: "1"
+
+type: panel order: 200
+
+order: 100
+
+- id: row_5c00e71d-b08d-414d-af2e-a50a917297de columns:
+
+- id: column_25d1bb9c-c7c8-423e-81da-30e3ce8d49e8 componentId: kpi-list-03929d2f-397d-4c9e-99d9-e2d1474355bc size: "5"
+
+type: panel order: 100
+
+- id: column_87f6ac18-9c61-4a63-ae65-7d663698c810
+
+componentId: button-list-3e51866e-5232-40c9-bbfd-cb55dcfb4247 size: "1"
+
+type: panel order: 200
+
+order: 200
+
+- id: row_3f34973e-8a38-48db-88b4-9065ff1a3ea7 growHeight: false
+
+columns:
+
+- id: column_7c390252-b4ca-4dc4-a040-612386a734f7 layout:
+
+rows:
+
+- id: row_645aeb34-fba0-4852-a4d1-271f94efff14 growHeight: false
+
+columns:
+
+- id: column_aec8fbca-2e26-4a15-9b57-697f817ea66e componentId: chart-9b6f4b84-4b93-4ab4-bc82-c5c28e79e1b6 size: "1"
+
+height: "325"
+
+order: 100
+
+order: 100
+
+- id: row_c0f3e670-a8b3-40a0-861e-032881688269
+
+growHeight: false columns:
+
+- id: column_cd0229d0-138b-48a0-96b2-88d8bc81aa69 componentId: chart-9189eac1-a815-4439-8293-2ca8586a4bb5 size: "1"
+
+height: "325"
+
+order: 0
+
+order: 200
+
+size: "1"
+
+type: ""
+
+height: "" order: 50
+
+- id: column_8faf73e0-c189-46f9-b437-57db6515eff6 componentId: view-f486b4f1-9939-4861-aad1-01f7510a2097 size: "0.21"
+
+type: "" order: 100
+
+height: "" order: 400
+
+- id: row_ed94facd-41aa-46aa-88ac-93e10c54ad50 growHeight: false
+
+columns:
+
+- id: column_87aef674-6b51-4431-9fb0-6eca7bb06d99 componentId: table-7c5b6358-baae-45f7-887d-c0f6822ccfc1 size: "1"
+
+type: default height: "500"
+
+order: 100
+
+order: 500
+
+components:
+
+id: kpi-list-a7ddb2e1-3de0-4f2f-97a8-257e0c0a79fb type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE CASE_TABLE
+
+show: true
+
+id: 1f14c393-c853-4ee6-ba78-13a5e865358f order: 100
+
+kpi: agents show: true
+
+id: 0e163377-ce5f-4d77-92d4-4eb49722e414
+
+order: 200
+
+kpi: departments show: true
+
+id: 55f2039b-4975-41ca-8d4c-6b349a08281d
+
+order: 300
+
+kpi: locations show: true
+
+id: 52ece72d-ceb1-4af9-ae18-fc4d8c8b5797 order: 400
+
+- id: image-39b6ca72-92bc-4840-ba7c-1772ec993606 type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: kpi-list-f5d21f12-37ce-4364-9049-4d6f0c9c66fc type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE CASE_TABLE
+
+show: true
+
+id: 1f14c393-c853-4ee6-ba78-13a5e865358f order: 100
+
+kpi: COUNT_TABLE ACTIVITY_TABLE
+
+show: true
+
+id: a3146332-aa63-4b54-ace0-ab68de3a5528 order: 200
+
+kpi: agents show: true
+
+id: 0e163377-ce5f-4d77-92d4-4eb49722e414
+
+order: 300
+
+kpi: departments
+
+show: true
+
+id: 55f2039b-4975-41ca-8d4c-6b349a08281d
+
+order: 400
+
+kpi: locations show: true
+
+id: 52ece72d-ceb1-4af9-ae18-fc4d8c8b5797 order: 500
+
+- id: image-02f45c97-2b63-4c00-8f19-7de444879c57 type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: kpi-list-03929d2f-397d-4c9e-99d9-e2d1474355bc type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: auto_activity_ show: true
+
+id: b3889799-8285-43bd-b637-1ea30bbbfca8 order: 100
+
+displayContentRule: GreaterColor
+
+kpi: on_hold_cases_ show: true
+
+id: b506ea98-72a8-48fd-8ee9-9325fbdbb216 order: 200
+
+displayContentRule: LesserColor
+
+kpi: rework_cases_ show: true
+
+id: 59f5f59e-a010-4d66-ae77-5c9a69ebea0d order: 300
+
+displayContentRule: LesserColor
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+show: true
+
+id: e631b07a-85a7-42a7-8427-58c3403fa4d5
+
+order: 400
+
+kpi: ${SLAType === 'Priority' && 'sla_breach_priority' || 'sla_breach_urgency'}
+
+show: true
+
+id: b4f75ff8-a11d-4162-884b-1a9d86378852
+
+order: 500
+
+displayContentRule: LesserColor options:
+
+showTarget: false showPriority: false
+
+showBenchmark: false layout: tile swapTitle: true
+
+- id: button-list-3e51866e-5232-40c9-bbfd-cb55dcfb4247 type: button-list
+
+settings: buttons:
+
+label: ${active === 'collapsed' && 'SLA Breach Editor' || 'Filter Box'} id: 89cac475-7f48-4eb5-96e7-24d348bfa478
+
+order: 100
+
+variant: ${active === 'collapsed' && 'danger' || 'primary'} onClick:
+
+update: variables:
+
+- name: active
+
+value: ${active === 'expanded' && 'collapsed' || 'expanded'}
+
+size: large type: group styles:
+
+position: vertical: center horizontal: full
+
+- id: text-box-1a6bb517-b61a-4cf2-9de7-74b012fc28c2 type: text-box
+
+settings:
+
+title: ${active} content: ""
+
+- id: view-12e3c8d0-7e1b-4a14-8684-557f7e62792b type: view
+
+settings: key:
+
+key: ${(size === 'expanded' && 'filterslist') || ''}
+
+- id: view-f486b4f1-9939-4861-aad1-01f7510a2097 type: view
+
+settings:
+
+key: ${(active === 'collapsed' && 'kpi-card-main-page') || 'sla-editbox'}
+
+- id: table-b36c9b42-b8c0-4c63-9fed-f9bb9050b443 type: table
+
+settings: data:
+
+columns:
+
+field: CASE_TABLE.INC_NUMBER
+
+id: 383dc4be-4a11-49ac-8b86-165bd788d654 order: 100
+
+field: CASE_TABLE.PRIORITY
+
+id: b8e025fc-6dda-498a-88a0-57eb4db440e9 order: 200
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+id: 8ba97d4f-3b3d-41a5-b74f-794daa7360fe order: 300
+
+field: sla_breach_
+
+id: daba88cd-0843-47f7-b6d3-c575df371241 order: 400
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: chart-9553ef00-e653-4a83-bfc1-0693545051de type: chart
+
+settings: visuals:
+
+mark:
+
+type: bar bandwidth: 0
+
+id: fa2595af-1ba3-4af9-b0d6-d5b5936411dc order: 100
+
+encodings: y:
+
+field: sla_breach_priority limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.PRIORITY
+
+- id: chart-77607c2c-b766-434d-82e4-f11a770a18d1 type: chart
+
+settings: visuals:
+
+mark:
+
+type: bar bandwidth: 0
+
+id: 734e35e9-b542-4416-9795-04042551d5af
+
+order: 100 encodings:
+
+y:
+
+field: dailydata.automated_task
+
+mark:
+
+type: line
+
+id: 10201bc8-9bdc-4e29-84f0-89d9bfbb3fbf order: 200
+
+encodings: y:
+
+field: on_hold_cases_ limit: 1000
+
+encodings: x:
+
+field: dailydata.day
+
+- id: chart-9b6f4b84-4b93-4ab4-bc82-c5c28e79e1b6 type: chart
+
+settings:
+
+name: MTTR/SLA by ${SLAType} infoText:
+
+title: Bar Graph
+
+content: Avg Resolve Time / Breach Rate Based on ${SLAType} visuals:
+
+mark:
+
+color: GRAY_60 type: bar bandwidth: 0
+
+id: 22bb7adc-05b7-4bff-9b80-1164c02655ac order: 100
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+mark:
+
+color: GRAY_30 type: point point:
+
+width: 5
+
+height: 5
+
+id: 662cac13-756a-4a48-ac50-27aa8770b297 order: 200
+
+encodings: y:
+
+field: ${SLAType === 'Priority' && 'sla_breach_priority' || 'sla_breach_urgency'}
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.PRIORITY
+
+- id: chart-9189eac1-a815-4439-8293-2ca8586a4bb5 type: chart
+
+settings:
+
+name: Automated / On-Hold Activity per Day infoText:
+
+
+
+The
+
+title: Bar Chart
+
+content: This Bar Chart displays the Total Activities Performed per Day.
+
+
+
+color of the block represents the No. of On-Hold Activities that day visuals:
+
+- mark:
+
+color: GRAY_30 type: bar bandwidth: 0
+
+id: 9604386d-b5cc-4965-b42a-50e2689d018e
+
+order: 100 encodings:
+
+y:
+
+field: dailydata.automated_task stackBy: dailydata.on_hold_task color:
+
+field: dailydata.on_hold_task scheme: SEQUENTIAL_GRAY_REVERSE
+
+limit: 1000 encodings:
+
+x:
+
+field: dailydata.day
+
+- id: table-7c5b6358-baae-45f7-887d-c0f6822ccfc1 type: table
+
+settings:
+
+name: Drilldown by INC_Number infoText:
+
+title: Table
+
+content: Select one of these Cases in the given Table, to open the deep-
+
+dive on
+
+the particular Case
+
+data:
+
+columns:
+
+field: CASE_TABLE.INC_NUMBER
+
+id: 418b100b-16f9-4e27-bf10-2a8ddb063648 order: 100
+
+onClick: openView:
+
+profileView: true syncFilters: forward-only openInSideOverlay: false
+
+update: variables:
+
+- name: EventLog
+
+field: CASE_TABLE.priority_Renamed
+
+id: f934e185-3699-4d3d-a86c-93301737ca51
+
+order: 200
+
+displayContentRule: Urgency_Priority_Rule
+
+field: CASE_TABLE.urgency_Renamed
+
+id: cd7acf64-b393-4e43-a696-887ae4f4eb64 order: 300
+
+displayContentRule: Urgency_Priority_Rule
+
+field: CASE_TABLE.LOCATION
+
+id: 479e75d4-0ffe-4731-acab-912b976a96ee order: 400
+
+field: CASE_TABLE.DEPARTMENT
+
+id: 438401fd-5572-4dc6-8240-cd3b77a90d9a order: 500
+
+field: CASE_TABLE.INCIDENT_STATUS
+
+id: 80b1a1ec-f669-4b8f-bb7e-15dcc6ea22df order: 600
+
+displayContentRule: Status_Rule breakdownSelector: {}
+
+options: showPagination: false selectable: false

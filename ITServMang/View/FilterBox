@@ -1,0 +1,247 @@
+metadata:
+
+key: kpi-card-main-page template: false
+
+name: FilterBox knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_1aea58d9-eee6-4d70-a580-396a6a4ad1a0 columns:
+
+- id: column_ca1a478d-7977-4c73-a44b-151b0010062d componentId: text-box-f24395bf-a2d2-418e-9e90-e07d6ba9be39 size: "1"
+
+type: panel order: 0
+
+order: 0
+
+- id: row_f60dcf4e-4e11-429d-81dc-a73a223ce87b columns:
+
+- id: column_5b120b0e-2006-490a-8203-12e837d07744
+
+componentId: dropdown-list-ff7ff452-9c1c-4f5c-b8ec-3fe3b78743f0 size: "1"
+
+type: default order: 100
+
+order: 100
+
+- id: row_ac7668b2-d883-410f-ac27-3509c21848a6 columns:
+
+- id: column_07a5ae31-2ebc-425d-b004-865c121e1de4
+
+componentId: dropdown-list-65929c78-8639-4a01-99c8-35ade9f15659 size: "1"
+
+type: default order: 100
+
+order: 200
+
+- id: row_49e5ece0-e26c-4a85-89ef-5f38fe359e6b columns:
+
+- id: column_5f833576-83eb-448c-9189-f8efc931fb3c
+
+componentId: dropdown-list-94501bad-a599-4c03-87f1-3e5d1706577b size: "1"
+
+type: default order: 100
+
+order: 300
+
+- id: row_b0fd8a69-b67f-4bc0-93df-19c692833316 columns:
+
+- id: column_f9878cb6-be65-42cc-9d0d-a77027310e3c
+
+componentId: dropdown-list-4f524b2b-a9d7-4239-8f0c-d54ba2bbc6fb size: "1"
+
+type: default order: 100
+
+order: 400
+
+- id: row_0c73a060-b9c2-4561-887f-e4786ba288c4 columns:
+
+- id: column_5a60d9cd-58a2-4425-80ea-a58adeb6f6ff
+
+componentId: dropdown-list-76611293-3f65-4187-8e11-68f2c94fd036 size: "1"
+
+type: default order: 100
+
+order: 450
+
+- id: row_915d5a9f-a6bb-484a-981e-543594ef15fd columns:
+
+- id: column_eb620022-80d2-4267-965e-fd6d1b3fb35a
+
+componentId: dropdown-list-16e7973f-9e2c-4a52-9b51-80bbb0032f39 size: "1"
+
+type: default order: 100
+
+order: 500
+
+- id: row_3d3cae28-96e3-4c30-b161-225e5d8479e1 columns:
+
+- id: column_de366195-029b-493a-bd50-a394f5c6906d componentId: text-box-e4e8ead5-1de1-417d-a159-409788525b7a size: "1"
+
+type: panel order: 100
+
+order: 600
+
+- id: row_f024b8a3-0acd-4470-88aa-73d07c46dbfc columns:
+
+- id: column_20d134b6-fe39-4fca-8c27-a54f6d031806
+
+componentId: time-filter-b6e7e8c7-cb42-41ce-9dbb-342e121845f6 size: "1"
+
+type: default order: 100
+
+order: 700
+
+- id: row_42234ca0-0c21-47ea-ad98-fcb5198d3bd8 columns:
+
+- id: column_bfcb1526-6259-4262-bce1-950e876a5899
+
+componentId: time-filter-ff5b2d9f-45d3-45a1-9c58-305185bff2e2 size: "1"
+
+type: default order: 100
+
+order: 800
+
+- id: row_1134c74b-57e0-4958-9c00-c77696382de5
+
+columns:
+
+- id: column_0ea8bfb9-59c7-47ab-8c4e-5725072ba1d5
+
+componentId: quick-filters-207c36b7-1f2c-48d7-b18f-250fe4a3d19b size: "1"
+
+type: default order: 100
+
+- id: column_da1a2635-b833-44d4-b8f5-e5542c007699
+
+componentId: quick-filters-08372dc0-47d7-4ab4-9fa4-8e47c352f2a8 size: "1"
+
+type: default order: 200
+
+order: 900 components:
+
+- id: kpi-list-81072ecd-344c-4918-9c0b-fb574be54280 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: closed_ticket show: true
+
+id: 1cff2395-7395-40b1-a1a2-d4618b94aabf order: 100
+
+- id: text-box-f24395bf-a2d2-418e-9e90-e07d6ba9be39 type: text-box
+
+settings:
+
+title: Filter Components -content: ""
+
+id: dropdown-list-ff7ff452-9c1c-4f5c-b8ec-3fe3b78743f0 type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: CASE_TABLE.INC_NUMBER
+
+id: c8db9627-1151-4c8b-8b4d-c89a6873ff0e order: 100
+
+- id: dropdown-list-65929c78-8639-4a01-99c8-35ade9f15659 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: CASE_TABLE.LOCATION
+
+id: fd5ec70a-6c5c-48fe-9d6e-efc2cb68115e order: 100
+
+- id: dropdown-list-94501bad-a599-4c03-87f1-3e5d1706577b type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: CASE_TABLE.DEPARTMENT
+
+id: 389c9e6a-f34f-4774-8b82-a7d22a3a58e8 order: 100
+
+id: dropdown-list-4f524b2b-a9d7-4239-8f0c-d54ba2bbc6fb type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: ACTIVITY_TABLE.USER
+
+id: a33fe40c-4b39-422f-affb-df0e1ef79227 order: 100
+
+- id: dropdown-list-24552466-8c00-4132-a22a-0313dbb4ef4e type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: ACTIVITY_TABLE.DEFINITION id: 1fb1de26-5285-4352-aa70-b82f1329055b
+
+order: 100
+
+- id: dropdown-list-16e7973f-9e2c-4a52-9b51-80bbb0032f39 type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: CASE_TABLE.INCIDENT_STATUS
+
+id: c291e4b6-eff9-4a38-915b-6c14a974c5ca order: 100
+
+- id: text-box-e4e8ead5-1de1-417d-a159-409788525b7a type: text-box
+
+settings:
+
+title: "Filter By Date - " content: ""
+
+- id: time-filter-b6e7e8c7-cb42-41ce-9dbb-342e121845f6 type: time-filter
+
+settings:
+
+label: Activity Event Time dateAttribute: ACTIVITY_TABLE.EVENTTIME
+
+- id: time-filter-ff5b2d9f-45d3-45a1-9c58-305185bff2e2 type: time-filter
+
+settings:
+
+label: Ticket Creation Time
+
+dateAttribute: CASE_TABLE.INCIDENT_CREATE_TIME
+
+- id: quick-filters-207c36b7-1f2c-48d7-b18f-250fe4a3d19b type: quick-filters
+
+settings: filters:
+
+- filter: first_6d
+
+id: 7135c446-098c-4dec-9210-4b0bafad507a order: 100
+
+label: ""
+
+- id: quick-filters-08372dc0-47d7-4ab4-9fa4-8e47c352f2a8 type: quick-filters
+
+settings: filters:
+
+- filter: last_6d
+
+id: ebc80cfe-b34f-4feb-9d69-3db5b472c419 order: 100
+
+label: ""
+
+- id: dropdown-list-76611293-3f65-4187-8e11-68f2c94fd036 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: ACTIVITY_TABLE.DEFINITION
+
+id: f4839ab9-dee5-4070-9b16-147d199b616b order: 100

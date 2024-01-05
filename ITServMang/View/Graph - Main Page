@@ -1,0 +1,243 @@
+metadata:
+
+key: innersection1 template: false name: Graphs
+
+knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_1e225093-5319-48c7-83f7-c10cd45ac021 columns:
+
+- id: column_eb33b072-e077-48a3-bd49-e76af684a4ba componentId: kpi-list-2b92491f-abf8-49da-8aa5-a4102af8df0a size: "1"
+
+type: default order: 100
+
+order: 100
+
+- id: row_bfe7e284-59e6-4d54-8244-72f8b6d741ca growHeight: false
+
+columns:
+
+- id: column_ee28fd3a-3d43-4855-a2f7-6e2c8999da23 componentId: treemap-0e247651-53e2-42c6-979f-8d3c047244d3 size: "1"
+
+type: panel height: "500"
+
+order: 200
+
+- id: column_454125d2-f5af-4eb6-810d-45c9014cb332 componentId: chart-8e960df2-6c6d-4bd1-be4a-dfd90e40adcd size: "1"
+
+type: panel order: 300
+
+order: 200 components:
+
+id: kpi-list-2b92491f-abf8-49da-8aa5-a4102af8df0a type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: closed_ticket show: true
+
+id: 3c35b392-0edf-4b45-8ae9-eb676380a9b8 order: 100
+
+kpi: open_ticket
+
+show: true
+
+id: c374875d-2871-4c93-bc62-de597ff8f766 order: 200
+
+onClick: update:
+
+variables: id: TickType
+
+- id: chart-4707838f-7ccd-4109-bdb3-21622540b78e type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 270a82f3-1d48-4370-886d-96f9d47ba4d3
+
+order: 100
+
+limit: 1000 encodings:
+
+x:
+
+field: CASE_TABLE.LOCATION
+
+y:
+
+field: ${TickType}
+
+- id: treemap-0e247651-53e2-42c6-979f-8d3c047244d3 type: treemap
+
+settings:
+
+name: Location/MTTR per Ticket infoText:
+
+title: Treemap
+
+content: This Treemap displays the ${TickType} per Location. The color of
+
+the
+
+
+
+block represents the Avg.Resolve Time of the Location kpis:
+
+kpi: ${TickType} type: primary
+
+id: 0c573bd2-c667-4fcc-9168-311802987aae order: 100
+
+default: true
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+type: secondary default: true
+
+id: 442ca4db-5848-4997-9a07-8951aef355ee order: 200
+
+dimensions:
+
+root: CASE_TABLE.LOCATION
+
+showConfig: false
+
+colors: SEQUENTIAL_GRAY_REVERSE
+
+id: chart-8e960df2-6c6d-4bd1-be4a-dfd90e40adcd type: chart
+
+settings:
+
+name: Drilldown by Department infoText:
+
+title: Bar Chart
+
+content: This Bar Chart displays the ${TickType} per Department. visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 29bbc0a2-d5ea-46a4-a1b7-68b32a37bed6 order: 100
+
+encodings: y:
+
+field: ${TickType} color:
+
+field: ${TickType}
+
+scheme: SEQUENTIAL_GRAY_REVERSE
+
+limit: 1000 encodings:
+
+x:
+
+field: CASE_TABLE.DEPARTMENT
+
+- id: treemap-f6604068-9c8e-4319-b890-58422f1d09fd type: treemap
+
+settings:
+
+name: Location/MTTR per Ticket kpis:
+
+- kpi: ${TickType == 'COUNT_TABLE CASE_TABLE'?'COUNT_TABLE CASE_TABLE'
+
+:'open_ticket'} type: primary
+
+id: 0c573bd2-c667-4fcc-9168-311802987aae order: 100
+
+default: true
+
+- kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+type: secondary default: true
+
+id: 442ca4db-5848-4997-9a07-8951aef355ee order: 200
+
+dimensions:
+
+root: CASE_TABLE.DEPARTMENT
+
+showConfig: false
+
+- id: chart-4f4d1779-7a76-4048-9f7c-32d4901f83da type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 29bbc0a2-d5ea-46a4-a1b7-68b32a37bed6 order: 100
+
+limit: 1000 encodings:
+
+x:
+
+field: ${TickType} y:
+
+field: CASE_TABLE.LOCATION
+
+- id: chart-d3ce29d0-b1ae-4a3c-9db0-9f6001273dd6 type: chart
+
+settings:
+
+name: Automated Task by Date visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 6611115e-1429-4111-bf43-28b382dee8c9
+
+order: 100 encodings:
+
+y:
+
+field: dailydata.total_task
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 1d73f912-2dbf-4c54-81bd-dbc6ba34e578 order: 200
+
+encodings: y:
+
+field: dailydata.automated_task limit: 1000
+
+encodings: x:
+
+field: dailydata.day filters:
+
+- id: ${TickType == 'closed_ticket'?'closed_ticket_filter':'open_ticket_filter'}
+
+- id: sankey-753088e5-0bbf-4cf4-9155-9497b727d245 type: sankey
+
+settings: kpis:
+
+- kpi: COUNT_TABLE ACTIVITY_TABLE
+
+type: primary
+
+id: 506464c9-7ae6-422c-b91e-7a9f0559f8b8 order: 100
+
+default: true dimensions:
+
+attribute: ACTIVITY_TABLE.USER
+
+id: 1b4de706-7faf-45e3-936a-6f07d5d17fd9 order: 100
+
+attribute: CASE_TABLE.LOCATION
+
+id: 11f3aebf-d710-40e4-bb1e-bf7f5b49204e order: 200
+
+attribute: CASE_TABLE.DEPARTMENT
+
+id: 0dc4c50a-23c9-41c4-8d40-1058e3e8a25e order: 300
+
+colors: SEQUENTIAL_GRAY_REVERSE

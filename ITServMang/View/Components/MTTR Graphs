@@ -1,0 +1,269 @@
+metadata:
+
+key: drilldown template: false
+
+name: Table-Drilldown knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_b56359d7-1149-4a33-9b69-271f056db4a8 columns:
+
+- id: column_8b3d0ff2-1dd8-4e80-9469-7869a54c8f56 componentId: text-box-1de56226-df9c-48dd-af1c-2541a80df4ca size: "1"
+
+type: default order: 100
+
+order: 50
+
+- id: row_27760517-7948-4ff2-9799-ecb3c6eb3537 growHeight: false
+
+columns:
+
+- id: column_ad52b6e2-7ab3-4281-9f9d-47fd3d761375 tabs:
+
+- id: tab-1d39338d-3112-4f6c-92ef-a464ca075b7e layout:
+
+rows:
+
+- id: row_793ffbdb-7016-4ff1-b519-cf8a1446d9e0 growHeight: false
+
+columns:
+
+- id: column_4478cbbc-6c6a-4b67-8f47-c0bdf9f2cc8f componentId: chart-d8c27297-2b22-4de2-b7cb-eb9730208e76 size: "1"
+
+order: 0
+
+height: "500"
+
+order: 100 label: Priority order: 100
+
+- id: tab-2f30d11d-99ba-4f8c-ab13-ee0c57d78a1c layout:
+
+rows:
+
+- id: row_bd0bf249-8555-4cb2-b162-41827b8c3885 growHeight: false
+
+columns:
+
+- id: column_16f0303d-bcae-41ee-b144-77dce0fdc442
+
+componentId: chart-96843034-a80e-4dae-9142-aa235afc4660 size: "1"
+
+order: 0
+
+height: "500"
+
+order: 100 label: Urgency order: 200
+
+- id: tab-ec3f20f9-efe4-41c2-a6d1-105f39066b05 layout:
+
+rows:
+
+- id: row_bbd46d49-4598-4890-b009-fc466a526ab2 growHeight: false
+
+columns:
+
+- id: column_f2cd7be8-1bed-4fc9-b63b-b06fd5dc3efb componentId: chart-d61d36a6-3487-486c-8442-907bfaf4289d size: "1"
+
+order: 0
+
+height: "500"
+
+order: 100 label: Status order: 400
+
+size: "1" type: default order: 100
+
+height: "" order: 100
+
+components:
+
+- id: chart-b584cc89-6eda-48c4-86d9-0be3cbe47e08 type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: a0fa1040-ff70-4a60-983e-5ea76630d230 order: 100
+
+encodings: y:
+
+field: COUNT_TABLE CASE_TABLE
+
+- mark:
+
+type: point labels: false
+
+id: c9e61f4f-a7a0-49f8-8e49-bec010f89f19 order: 200
+
+encodings:
+
+y:
+
+field: COUNT_TABLE ACTIVITY_TABLE
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.INCIDENT_STATUS
+
+- id: chart-d8c27297-2b22-4de2-b7cb-eb9730208e76 type: chart
+
+settings: visuals:
+
+- mark:
+
+color: GRAY_60 type: bar bandwidth: 0
+
+id: 72a0c37e-65cf-4dfe-abec-3d0b56696a19 order: 100
+
+encodings: y:
+
+field: COUNT_TABLE CASE_TABLE
+
+- mark:
+
+color: GRAY_30 type: point point:
+
+width: 5
+
+height: 5
+
+id: b712d20a-be5a-48c4-8009-e635e016f2d6 order: 200
+
+encodings: y:
+
+field: ${SecondaryAxis} axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.PRIORITY
+
+- id: chart-96843034-a80e-4dae-9142-aa235afc4660 type: chart
+
+settings: visuals:
+
+- mark:
+
+color: GRAY_60 type: bar
+
+bandwidth: 0
+
+id: 72a0c37e-65cf-4dfe-abec-3d0b56696a19 order: 100
+
+encodings: y:
+
+field: COUNT_TABLE CASE_TABLE
+
+- mark:
+
+color: GRAY_30 type: point point:
+
+height: 5
+
+width: 5
+
+id: b712d20a-be5a-48c4-8009-e635e016f2d6 order: 200
+
+encodings: y:
+
+field: ${SecondaryAxis} axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.URGENCY
+
+- id: chart-70e26d62-66e9-49f5-bafc-f080e8e222dc type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 72a0c37e-65cf-4dfe-abec-3d0b56696a19 order: 100
+
+encodings: y:
+
+field: COUNT_TABLE CASE_TABLE
+
+- mark:
+
+type: point point:
+
+height: 5
+
+width: 5
+
+id: b712d20a-be5a-48c4-8009-e635e016f2d6 order: 200
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.LOCATION
+
+- id: chart-d61d36a6-3487-486c-8442-907bfaf4289d type: chart
+
+settings: visuals:
+
+- mark:
+
+color: GRAY_60 type: bar bandwidth: 0
+
+id: 72a0c37e-65cf-4dfe-abec-3d0b56696a19 order: 100
+
+encodings: y:
+
+field: COUNT_TABLE CASE_TABLE
+
+- mark:
+
+color: GRAY_30 type: point point:
+
+height: 5
+
+width: 5
+
+id: b712d20a-be5a-48c4-8009-e635e016f2d6 order: 200
+
+encodings: y:
+
+field: ${SecondaryAxis} axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.INCIDENT_STATUS
+
+- id: text-box-66ca14c6-104b-4a55-b937-de8ae42fe3b6 type: text-box
+
+settings:
+
+title: Drilldown by Priority content: ""
+
+- id: text-box-1de56226-df9c-48dd-af1c-2541a80df4ca type: text-box
+
+settings:
+
+title: "Drilldown - #Tickets/${SecondaryAxis ===
+
+'TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME'?'Avg. Resolve
+
+Time':SecondaryAxis === 'avg_open_time'?'Avg. Open Time':'Avg. Close Time'}"
+
+content: ""

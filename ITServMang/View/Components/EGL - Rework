@@ -1,0 +1,453 @@
+metadata:
+
+key: egl-rework-tickets template: false
+
+name: EGL - Rework Tickets knowledgeModelKey: itsm-km knowledgeObjectId: CASE_TABLE_ANOMALY_REWORK profileView: true
+
+allowAdvancedFilters: true variables:
+
+- id: 85b2423e-9f6b-4203-bd78-f9c32af56907 name: Axis_Variable
+
+layout: rows:
+
+- id: row_8f687f17-b00f-4dba-8c3d-06389db4e563 growHeight: false
+
+columns:
+
+- id: column_8722ce8b-ac2f-4839-b9a6-9f1c61a5e9a9 layout:
+
+rows:
+
+- id: row_db71bca1-8164-4269-acd2-389da2f4b313 columns:
+
+- id: column_760a786f-ae51-4d4f-96ad-4eeddd86cec0 componentId: kpi-list-229ea6d3-185b-43cd-978c-10c7c443f201 size: "1"
+
+type: panel order: 0
+
+order: 100
+
+- id: row_fb4fe6b3-d30f-4782-a5b7-72ed81a44d7d columns:
+
+- id: column_b49c38fc-8a7a-4c1d-9b7e-d3c7b3956375 layout:
+
+rows: []
+
+size: "1"
+
+order: 0
+
+order: 150
+
+- id: row_f6d31515-867d-4523-b8bf-9f21d25bde5b growHeight: false
+
+columns:
+
+- id: column_4e55ef2e-7f49-4623-84bf-839a9f2ec706 componentId: chart-2b030a2f-8c96-42bb-8dec-bf8249e3f379
+
+
+
+854462c5158f
+
+
+
+f48d6c6aacb2
+
+
+
+8755b9714dd1
+
+size: "1" type: panel order: 0
+
+height: "300"
+
+order: 200
+
+- id: row_7d063510-72e3-4523-b13c-59f16295dd3b growHeight: false
+
+columns:
+
+- id: column_d37ea78e-57fc-4bf3-af2d-d077dc60f970 layout:
+
+rows:
+
+- id: row_cd9bc57c-9699-464e-a94f-bfc3dd1ae1ab growHeight: false
+
+columns:
+
+- id: column_78f39ef3-df40-4b47-85c6-05c87527099c componentId: text-box-2179e976-4b80-4e2e-b64e-
+
+
+
+size: "1"
+
+order: 50
+
+- id: column_80c7324b-c5ac-4fb0-858b-62365e867511 componentId: dropdown-list-05aab84c-df63-4713-aae2-
+
+
+
+size: "1" type: default order: 100
+
+height: "" order: 100
+
+- id: row_02b34473-661a-4b6d-978d-f8ed1a8d6268 growHeight: false
+
+columns:
+
+- id: column_d770fe25-bfb5-41cc-aa62-9151e01b331f componentId: chart-65e4ddcb-7bdd-4ba4-8e4b-
+
+
+
+size: "1"
+
+order: 0
+
+height: "250"
+
+order: 200
+
+size: "1" type: panel order: 0
+
+height: "365"
+
+order: 250
+
+size: "1" type: default order: 100
+
+- id: column_79b374c1-f3b1-4963-8ff8-266941bb598a componentId: table-f0b4bb9c-67b2-49b2-81d2-060eacce5ab0 size: "1"
+
+type: default height: "765"
+
+order: 200
+
+order: 50 components:
+
+- id: chart-555766bb-2705-424d-8f1d-0019925aa64d type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 21bf3208-9d2c-404a-9296-bf9d2305c29f order: 100
+
+limit: 1000 encodings:
+
+y:
+
+field: COUNT_TABLE CASE_TABLE
+
+axis:
+
+position: left
+
+x:
+
+field: multi_hop.assignment_group_count axis:
+
+position: bottom
+
+- id: table-ee24888c-b6a6-4d36-aa05-245deb16c3a6 type: table
+
+settings: data:
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: chart-2b030a2f-8c96-42bb-8dec-bf8249e3f379 type: chart
+
+settings:
+
+name: Rework Activity per Day infoText:
+
+title: Bar Graph
+
+content: This Bar Chart displays the No of Rework Activity created on each day
+
+limit: 1000 encodings:
+
+x:
+
+field: dailydata.day axis:
+
+position: bottom visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 8cf175e5-916b-4f52-bb16-08573b088a4a order: 100
+
+encodings: color:
+
+field: dailydata.rework_task scheme: SEQUENTIAL_GRAY_REVERSE
+
+y:
+
+field: dailydata.rework_task axis:
+
+position: left
+
+- id: chart-efbb7a3d-0169-430f-8d19-9b7e0e3aebf2 type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 74aca753-034c-4067-8a89-a78d11e413a0
+
+order: 100 encodings:
+
+y:
+
+field: multi_hop_kpi
+
+- mark:
+
+type: point
+
+id: db679ea9-b7d9-418d-ac3b-69bd53a00d62 order: 200
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.PRIORITY
+
+- id: dropdown-list-294e5be7-e152-4413-90ee-c0f94a741a45 type: dropdown-list
+
+settings:
+
+data:
+
+columns:
+
+- attribute: Dropdown_MultiHop
+
+id: 034b1ab0-3b61-43bd-8171-64b863ec2b4d order: 100
+
+styles: position:
+
+vertical: center horizontal: right
+
+- id: chart-e3ae54ca-2214-4cd4-8f82-1c3615d5a0a2 type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 74aca753-034c-4067-8a89-a78d11e413a0
+
+order: 100 encodings:
+
+y:
+
+field: multi_hop_kpi
+
+- mark:
+
+type: point
+
+id: db679ea9-b7d9-418d-ac3b-69bd53a00d62 order: 200
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.PRIORITY
+
+- id: dropdown-list-35e8ef38-c888-419c-9cf8-bbab6972a196 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: Dropdown_MultiHop
+
+id: f6c748b3-3e4c-4c86-b27c-5cd3ffc8c932 order: 100
+
+styles: position:
+
+vertical: center
+
+horizontal: right
+
+- id: dropdown-list-0f0fc6b2-63f4-4b1f-837f-77bfd2b5e7bd type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: Dropdown_MultiHop
+
+id: f6c748b3-3e4c-4c86-b27c-5cd3ffc8c932 order: 100
+
+displayName: "" onClick:
+
+update: variables:
+
+- name: Axis_Variable selection: single
+
+styles: position:
+
+vertical: center horizontal: right
+
+- id: chart-65e4ddcb-7bdd-4ba4-8e4b-8755b9714dd1 type: chart
+
+settings: visuals:
+
+- mark:
+
+color: GRAY_60 type: bar bandwidth: 0
+
+id: 74aca753-034c-4067-8a89-a78d11e413a0
+
+order: 100 encodings:
+
+y:
+
+field: rework_kpi
+
+- mark:
+
+color: GRAY_30 type: point point:
+
+width: 5
+
+height: 5
+
+id: db679ea9-b7d9-418d-ac3b-69bd53a00d62 order: 200
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+axis:
+
+position: right
+
+limit: 1000 encodings:
+
+x:
+
+field:
+
+${Axis_Variable=='Priority'?'CASE_TABLE.PRIORITY':Axis_Variable=='Urgency'?'CASE_ TABLE.URGENCY':'CASE_TABLE.INCIDENT_STATUS'}
+
+- id: kpi-list-85f36aa0-27dc-4a89-8474-d7cf1e847afe type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: ag_tpt_per_ticket_ show: true
+
+id: 02e5c0d9-88d2-4fd7-a38c-084c3d092614 order: 100
+
+kpi: accuracy_ show: true
+
+id: 1a19239c-fe34-4f17-83f2-12b69493a0da order: 200
+
+kpi: multi_hop_count show: true
+
+id: 28c90217-847a-4d63-a17c-3b6c14a63f9d order: 300
+
+- id: table-f0b4bb9c-67b2-49b2-81d2-060eacce5ab0 type: table
+
+settings:
+
+name: Drilldown data:
+
+columns:
+
+field: CASE_TABLE.INC_NUMBER
+
+id: 3ab09078-905a-418c-8b87-0a2906552ed2
+
+order: 100 onClick:
+
+openView: profileView: true
+
+syncFilters: forward-only openInSideOverlay: false
+
+field: CASE_TABLE.INCIDENT_STATUS
+
+id: 89ac4799-908e-468c-a01b-7b321e77e0b2 order: 200
+
+field: CASE_TABLE.rework_count
+
+id: 5e617bbb-1d6a-44a7-8030-3d58caf77c4b order: 300
+
+breakdownSelector: {} pageSize: 16
+
+options: showPagination: true
+
+filters:
+
+- id: rework_filter
+
+- id: kpi-list-229ea6d3-185b-43cd-978c-10c7c443f201 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: rework_cases_ show: true
+
+id: 695265aa-0d13-403c-b734-af0ea296b076 order: 100
+
+displayContentRule: LesserColor
+
+kpi: rework_activity show: true
+
+id: 33034b60-a2a4-48cf-b0ad-a2c150e782f2 order: 200
+
+kpi: no_rework_cases_ show: true
+
+id: 80a34a08-5f07-49f7-a8ee-abce0a09e355 order: 300
+
+displayContentRule: GreaterColor
+
+- id: dropdown-list-05aab84c-df63-4713-aae2-f48d6c6aacb2 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: Dropdown_MultiHop
+
+id: f6c748b3-3e4c-4c86-b27c-5cd3ffc8c932 order: 100
+
+displayName: "" onClick:
+
+update: variables:
+
+- name: Axis_Variable selection: single
+
+styles: position:
+
+vertical: center horizontal: right
+
+- id: text-box-2179e976-4b80-4e2e-b64e-854462c5158f type: text-box
+
+settings: content: ""
+
+title: Rework/MTTR Based on ${Axis_Variable}

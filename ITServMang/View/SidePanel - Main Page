@@ -1,0 +1,77 @@
+metadata:
+
+key: side-panel-kpi-ed template: false
+
+name: Side Panel knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_f0eaebfe-4937-4373-9da8-856c5866f639 columns:
+
+- id: column_c237854f-6a89-473c-91c9-e10c23974f21 componentId: view-81d16ea7-cbe9-48a9-8ed0-39364f405865 size: "1"
+
+type: default order: 100
+
+- id: column_fa6cc1c1-d1d2-4220-97b5-a4e485998bfb componentId: view-8fc8de72-6e87-45e9-9ce8-99fecd902834 size: "0.21"
+
+type: default order: 200
+
+order: 300 components:
+
+- id: kpi-list-39f69fb1-b27d-43f1-9ddc-5833a7744fa0 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: COUNT_TABLE CASE_TABLE
+
+show: true
+
+id: 0dc94a85-3394-4ff8-9f81-bac08826c6ba order: 100
+
+- id: kpi-list-0fcea1a5-fbba-4a48-89eb-317d5151dab4 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: closed_ticket show: true
+
+id: b320dd6b-7f96-4235-8f72-0603c3c5849c
+
+order: 100
+
+- id: kpi-list-d22db4aa-c8e8-42db-8022-f327400c06bc type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: closed_ticket show: true
+
+id: 6dcfae18-c0d6-40d7-9333-f313f06ebe0e order: 100
+
+kpi: open_ticket show: true
+
+id: 7afd09c4-7b01-4159-943d-05638e625635
+
+order: 200
+
+kpi: unassigned_tickets show: true
+
+id: 78d83c74-9706-41bb-98d4-112b481d2dd3
+
+order: 300
+
+- id: view-81d16ea7-cbe9-48a9-8ed0-39364f405865 type: view
+
+settings:
+
+key: innersection1
+
+- id: view-8fc8de72-6e87-45e9-9ce8-99fecd902834 type: view
+
+settings:
+
+key: kpi-card-main-page

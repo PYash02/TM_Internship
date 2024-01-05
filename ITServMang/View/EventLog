@@ -1,0 +1,173 @@
+metadata:
+
+key: eventlog-itsm template: false
+
+name: EventLog - ITSM knowledgeModelKey: itsm-km knowledgeObjectId: CASE_TABLE profileView: true allowAdvancedFilters: true
+
+variables:
+
+- id: 2655fa72-c132-42a9-ab8b-9aa71e8f31f2 name: id
+
+defaultValue: ""
+
+- id: 152e80ea-b0e2-459d-8464-63084f63bc41
+
+name: INC_Num
+
+defaultValue: " ACTIVITY_TABLE.INC_NUMBER" layout:
+
+rows:
+
+- id: row_62bfa88b-2755-47ae-b061-f29fbd15f6fd columns:
+
+id: column_3a519f92-3ff4-4292-a3fb-6aae2dcfd2b2 componentId: kpi-list-ee1c0fb7-61a5-4c46-8dce-477aed3ef444 size: "1"
+
+type: panel order: 50
+
+id: column_c1e28ec6-d5ce-4f7e-b5c0-ed3697e70cff componentId: kpi-list-90c0c181-22a7-4b2f-91a2-bc3b3b648746 size: "1"
+
+type: panel order: 100
+
+order: 100
+
+- id: row_f20fe627-90f5-4c20-a3a8-7420d0c0603b growHeight: false
+
+columns:
+
+- id: column_5be85d8b-5976-4a74-aee7-e712930c4d65 componentId: table-c23552e9-65ca-4b35-a324-41b33e22922f size: "1"
+
+type: default height: "" order: 100
+
+- id: column_f3945af6-fea6-45e6-8948-08722e9089b2
+
+componentId: activity-history-f3658c91-4e54-4dc7-acbe-71e3512cf6ca size: "1"
+
+type: default height: "" order: 200
+
+height: "" order: 200
+
+components:
+
+- id: kpi-list-0d25662b-8394-4095-a6ae-61c1f254cfcb type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: AVG_EVENTS_PER_CASE ACTIVITY_TABLE ACTIVITY_NAME CASE_TABLE
+
+show: true
+
+id: 7dea5fa5-5706-48fa-a62b-a640dbe7b8e2 order: 100
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+show: true
+
+id: 625cab42-595e-40f7-96af-f12e680cb905 order: 200
+
+options: size: lg
+
+- id: kpi-list-5bf7c0fc-ff33-4e5e-b4d7-79b371f58893 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: auto_activity_ show: true
+
+id: f200c2a4-0fed-4d94-8f9d-86edbdf0f709 order: 100
+
+- id: kpi-list-90c0c181-22a7-4b2f-91a2-bc3b3b648746 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: auto_activity_ show: true
+
+id: ca42da1a-b49f-44c4-aa4a-72b33935589e order: 100
+
+displayContentRule: GreaterColor
+
+kpi: on_hold_activity_ show: true
+
+id: 7bcd7371-d619-49a9-bd22-1b66b289c079
+
+order: 200
+
+displayContentRule: LesserColor options:
+
+size: lg
+
+id: kpi-list-ee1c0fb7-61a5-4c46-8dce-477aed3ef444 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE ACTIVITY_TABLE
+
+show: true
+
+id: 42594a6e-b539-4565-be4c-f7fbbaef8a6f order: 100
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+show: true
+
+id: 2e7841df-3cb0-4a9f-80c2-86b3c856baf5 order: 200
+
+options: sortBy: name size: lg
+
+- id: table-c23552e9-65ca-4b35-a324-41b33e22922f type: table
+
+settings:
+
+name: Event Log data:
+
+columns:
+
+field: ACTIVITY_TABLE.INC_NUMBER
+
+id: b99bf98d-2d99-4e85-9072-043c437ff82c order: 100
+
+field: ACTIVITY_TABLE.ACTIVITY_NAME
+
+id: 32f0152a-7abe-4fb8-808a-511a345dd53d order: 200
+
+field: ACTIVITY_TABLE.EVENTTIME
+
+id: a7e108a9-d26b-4327-9449-0f23d3898c30
+
+order: 300
+
+field: ACTIVITY_TABLE.USER
+
+id: 6c6e68e8-38e3-48d4-a05a-b1c195295a03 order: 400
+
+field: ACTIVITY_TABLE.DEFINITION
+
+id: 9bfc9881-fc4f-41f8-b6d5-01036bcf3bf9 order: 500
+
+breakdownSelector: {} options:
+
+showPagination: false resizeMode: fit
+
+id: activity-history-f3658c91-4e54-4dc7-acbe-71e3512cf6ca type: activity-history
+
+settings:
+
+name: Activity History recordMetadataId: ACTIVITY_TABLE objectId: ${id}
+
+sortDirection: ASC pageSize: 10000
+
+- id: text-box-76653123-68ad-46ff-8210-cae80e68e71b type: text-box
+
+settings: title: ${id} content: ""
+
+- id: text-box-e7087849-60bf-4b84-ba02-b5efef538052 type: text-box
+
+settings:
+
+title: ${EventLog} content: ""

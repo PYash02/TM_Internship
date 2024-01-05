@@ -1,0 +1,41 @@
+metadata:
+
+key: labour-productivity template: false
+
+name: MTTR knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_9d5f3a3a-0b66-45e0-ada6-a3e918a0cf87 growHeight: false
+
+columns:
+
+- id: column_490ab76a-6909-4f75-b1e2-4d901038257a componentId: view-d1062248-a634-48a0-b17c-650e1e35fb12 size: "1"
+
+height: "750"
+
+order: 200
+
+- id: column_159ce447-e020-4282-9ee1-ec27f365ddd9 componentId: view-7f8200c0-0f60-4aa7-a284-3fc830cb3a49 size: "0.75"
+
+height: "750"
+
+order: 300
+
+order: 100 components:
+
+- id: view-3ac043be-eb85-4ba7-b2bd-2fd0c6ab2bba type: view
+
+settings:
+
+key: process-discovery
+
+- id: view-d1062248-a634-48a0-b17c-650e1e35fb12 type: view
+
+settings: key: graphs
+
+- id: view-7f8200c0-0f60-4aa7-a284-3fc830cb3a49 type: view
+
+settings:
+
+key: process-discovery

@@ -1,0 +1,45 @@
+metadata:
+
+key: process-discovery template: false
+
+name: Process Explorer allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_a961a085-a8b6-4d63-b7e7-031f9cf131a5 growHeight: false
+
+columns:
+
+- id: column_dc5776dc-b0f9-4bc5-8b5f-4c69a4da4cfa
+
+componentId: process-explorer-11af70e1-bcb3-4aad-b3f2-f9c9f1160325 size: "1"
+
+type: default height: "750"
+
+order: 100
+
+order: 100 components:
+
+id: process-explorer-11af70e1-bcb3-4aad-b3f2-f9c9f1160325 type: process-explorer
+
+knowledgeModelKey: itsm-km settings:
+
+eventLogs:
+
+eventLog: EL_ACTIVITY_TABLE ACTIVITY_NAME
+
+id: 1085fc8e-3014-493d-8392-8b96fdc2ff22 order: 100
+
+transitions: false
+
+- id: kpi-list-b8ba0783-ed0d-4e17-9064-19e0b62644b6 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi: COUNT_TABLE CASE_TABLE
+
+show: true
+
+id: 9b6279b8-ea34-44d5-a984-c3f3bde4bcec order: 100

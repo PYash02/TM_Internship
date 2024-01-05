@@ -1,0 +1,413 @@
+metadata:
+
+key: egl-on-holdticket template: false
+
+name: EGL - On Hold Ticket knowledgeModelKey: itsm-km knowledgeObjectId: CASE_TABLE_ANOMALY_OnHold profileView: true
+
+allowAdvancedFilters: true variables:
+
+- id: 85b2423e-9f6b-4203-bd78-f9c32af56907 name: Axis_Variable
+
+layout: rows:
+
+- id: row_8f687f17-b00f-4dba-8c3d-06389db4e563 growHeight: false
+
+columns:
+
+- id: column_8722ce8b-ac2f-4839-b9a6-9f1c61a5e9a9 layout:
+
+rows:
+
+- id: row_db71bca1-8164-4269-acd2-389da2f4b313 columns:
+
+- id: column_760a786f-ae51-4d4f-96ad-4eeddd86cec0 componentId: kpi-list-229ea6d3-185b-43cd-978c-10c7c443f201 size: "1"
+
+type: panel order: 0
+
+order: 100
+
+- id: row_f6d31515-867d-4523-b8bf-9f21d25bde5b growHeight: false
+
+columns:
+
+- id: column_4e55ef2e-7f49-4623-84bf-839a9f2ec706 componentId: chart-2b030a2f-8c96-42bb-8dec-bf8249e3f379 size: "1"
+
+type: panel order: 0
+
+height: "300"
+
+order: 200
+
+- id: row_7d063510-72e3-4523-b13c-59f16295dd3b growHeight: false
+
+columns:
+
+- id: column_d37ea78e-57fc-4bf3-af2d-d077dc60f970 layout:
+
+rows:
+
+
+
+8e582f028f4a
+
+
+
+77bfd2b5e7bd
+
+
+
+8755b9714dd1
+
+- id: row_cd9bc57c-9699-464e-a94f-bfc3dd1ae1ab growHeight: false
+
+columns:
+
+- id: column_c791f22e-2846-4d8a-8b11-35347f1babdf componentId: text-box-cd28dd3e-7706-4314-94aa-
+
+
+
+size: "1"
+
+order: 0
+
+- id: column_799107c4-8a85-4fe1-a816-0f53f67d8fcf componentId: dropdown-list-0f0fc6b2-63f4-4b1f-837f-
+
+
+
+size: "0.35"
+
+order: 100 height: "" order: 100
+
+- id: row_02b34473-661a-4b6d-978d-f8ed1a8d6268 growHeight: false
+
+columns:
+
+- id: column_d770fe25-bfb5-41cc-aa62-9151e01b331f componentId: chart-65e4ddcb-7bdd-4ba4-8e4b-
+
+
+
+size: "1"
+
+order: 0
+
+height: "250"
+
+order: 200
+
+size: "1" type: panel order: 0
+
+height: "365"
+
+order: 250
+
+size: "1" type: default order: 100
+
+- id: column_79b374c1-f3b1-4963-8ff8-266941bb598a componentId: table-f0b4bb9c-67b2-49b2-81d2-060eacce5ab0 size: "1"
+
+type: default height: "765"
+
+order: 200
+
+order: 50 components:
+
+- id: chart-555766bb-2705-424d-8f1d-0019925aa64d type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 21bf3208-9d2c-404a-9296-bf9d2305c29f order: 100
+
+limit: 1000 encodings:
+
+y:
+
+field: COUNT_TABLE CASE_TABLE
+
+axis:
+
+position: left
+
+x:
+
+field: multi_hop.assignment_group_count axis:
+
+position: bottom
+
+- id: table-ee24888c-b6a6-4d36-aa05-245deb16c3a6 type: table
+
+settings: data:
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: chart-2b030a2f-8c96-42bb-8dec-bf8249e3f379 type: chart
+
+settings:
+
+name: On-Hold Task Per Dates visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 21bf3208-9d2c-404a-9296-bf9d2305c29f order: 100
+
+encodings: color:
+
+field: dailydata.on_hold_task scheme: SEQUENTIAL_GRAY_REVERSE
+
+y:
+
+field: dailydata.on_hold_task limit: 1000
+
+encodings: x:
+
+field: dailydata.day axis:
+
+position: bottom
+
+- id: chart-efbb7a3d-0169-430f-8d19-9b7e0e3aebf2
+
+type: chart settings:
+
+visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 74aca753-034c-4067-8a89-a78d11e413a0
+
+order: 100 encodings:
+
+y:
+
+field: multi_hop_kpi
+
+- mark:
+
+type: point
+
+id: db679ea9-b7d9-418d-ac3b-69bd53a00d62 order: 200
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.PRIORITY
+
+- id: dropdown-list-294e5be7-e152-4413-90ee-c0f94a741a45 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: Dropdown_MultiHop
+
+id: 034b1ab0-3b61-43bd-8171-64b863ec2b4d order: 100
+
+styles: position:
+
+vertical: center horizontal: right
+
+- id: chart-e3ae54ca-2214-4cd4-8f82-1c3615d5a0a2 type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 74aca753-034c-4067-8a89-a78d11e413a0
+
+order: 100
+
+encodings: y:
+
+field: multi_hop_kpi
+
+- mark:
+
+type: point
+
+id: db679ea9-b7d9-418d-ac3b-69bd53a00d62 order: 200
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: CASE_TABLE.PRIORITY
+
+- id: dropdown-list-35e8ef38-c888-419c-9cf8-bbab6972a196 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: Dropdown_MultiHop
+
+id: f6c748b3-3e4c-4c86-b27c-5cd3ffc8c932 order: 100
+
+styles: position:
+
+vertical: center horizontal: right
+
+- id: dropdown-list-0f0fc6b2-63f4-4b1f-837f-77bfd2b5e7bd type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: Dropdown_MultiHop
+
+id: f6c748b3-3e4c-4c86-b27c-5cd3ffc8c932 order: 100
+
+displayName: "" onClick:
+
+update: variables:
+
+- name: Axis_Variable selection: single
+
+styles: position:
+
+vertical: center
+
+horizontal: right
+
+- id: chart-65e4ddcb-7bdd-4ba4-8e4b-8755b9714dd1 type: chart
+
+settings: visuals:
+
+- mark:
+
+color: GRAY_60 type: bar bandwidth: 0
+
+id: 74aca753-034c-4067-8a89-a78d11e413a0
+
+order: 100 encodings:
+
+y:
+
+field: onhold_kpi
+
+- mark:
+
+color: GRAY_30 type: point point:
+
+width: 5
+
+height: 5
+
+id: db679ea9-b7d9-418d-ac3b-69bd53a00d62 order: 200
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS ACTIVITY_TABLE EVENTTIME
+
+axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field:
+
+${Axis_Variable=='Priority'?'CASE_TABLE.PRIORITY':Axis_Variable=='Urgency'?'CASE_ TABLE.URGENCY':'CASE_TABLE.INCIDENT_STATUS'}
+
+- id: kpi-list-85f36aa0-27dc-4a89-8474-d7cf1e847afe type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: ag_tpt_per_ticket_ show: true
+
+id: 02e5c0d9-88d2-4fd7-a38c-084c3d092614 order: 100
+
+kpi: accuracy_ show: true
+
+id: 1a19239c-fe34-4f17-83f2-12b69493a0da
+
+order: 200
+
+kpi: multi_hop_count show: true
+
+id: 28c90217-847a-4d63-a17c-3b6c14a63f9d order: 300
+
+- id: table-f0b4bb9c-67b2-49b2-81d2-060eacce5ab0 type: table
+
+settings:
+
+name: Drilldown data:
+
+columns:
+
+field: CASE_TABLE.INC_NUMBER
+
+id: 6d27ece7-4581-4f56-a1bd-c88e944cc85c order: 100
+
+onClick: openView:
+
+profileView: true syncFilters: forward-only openInSideOverlay: false
+
+field: CASE_TABLE.on_hold_count
+
+id: 3feb0d17-91b0-4e6d-a5f3-8fc0770d15fd order: 200
+
+field: time_on_hold_in_hours_
+
+id: 97806153-e6e1-4b2f-bcae-c35333b0698c order: 300
+
+breakdownSelector: {} pageSize: 16
+
+options: showPagination: true
+
+filters:
+
+- id: on_hold_filter
+
+- id: kpi-list-229ea6d3-185b-43cd-978c-10c7c443f201 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: on_hold_cases_ show: true
+
+id: f3bdc60b-ce42-4d59-a6b3-a3581273faf6 order: 100
+
+displayContentRule: LesserColor
+
+kpi: cases_onhold_1 show: true
+
+id: 52ec5b75-22eb-4bf6-b42c-0408ce384da2 order: 200
+
+displayContentRule: LesserColor
+
+kpi: onhold_time_per_ticket_ show: true
+
+id: 70514b30-0597-4e90-947f-b1db15b94f83
+
+order: 300
+
+- id: text-box-cd28dd3e-7706-4314-94aa-8e582f028f4a type: text-box
+
+settings:
+
+title: Resolve Date of On-Hold Cases Based on ${Axis_Variable} content: ""

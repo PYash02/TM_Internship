@@ -1,0 +1,95 @@
+metadata:
+
+key: itsm-viewmain template: false name: ITSM - View
+
+knowledgeModelKey: itsm-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_d70d181b-74c5-4648-8615-e564560821be
+
+columns:
+
+- id: column_a5bfc05d-b5c8-4dd7-af56-fe9fd865c08e tabs:
+
+- id: tab-083b3e92-cae7-456f-919e-9ba0dec4fe2b layout:
+
+rows:
+
+- id: row_bc450b84-bfa1-4bea-994c-6763a4c5a557 columns:
+
+- id: column_3fa817a0-4dea-4f6a-8077-0f2f081836dd componentId: view-58ec726b-aa00-46d4-b982-682431aaa63c size: "1"
+
+order: 0
+
+order: 100 label: Main Dashboard order: 100
+
+- id: tab-e7678035-a01a-4afd-80c0-46d17a9784ff layout:
+
+rows:
+
+- id: row_27ed2f3b-30bf-4663-8e0d-c99b4d0f21c3 columns:
+
+- id: column_9ec5eb30-5d01-40f1-8958-00079750ed8e componentId: view-8b6c6ff0-b833-447e-a0b1-31235880ff80 size: "1"
+
+type: default order: 100
+
+order: 100 label: SLA - CS order: 200
+
+- id: tab-cc4e0b3f-87c9-48bc-8271-36b93e7f0ece layout:
+
+rows:
+
+- id: row_a7cae473-56c3-4b21-ba33-769e430b250e columns:
+
+- id: column_b089f5e3-5622-42f2-a737-c24082dff81a componentId: view-1536a7dc-fc3e-4703-a8ac-4ca2be100bb1 size: "1"
+
+order: 0
+
+order: 100 label: MTTR - EGL order: 300
+
+size: "1" type: default order: 100
+
+order: 100 components:
+
+- id: view-58ec726b-aa00-46d4-b982-682431aaa63c type: view
+
+settings:
+
+key: itsm-view
+
+- id: view-d3611299-6833-4ab3-a9fe-5d0acfd10008 type: view
+
+settings:
+
+key: labour-productivity
+
+- id: view-1536a7dc-fc3e-4703-a8ac-4ca2be100bb1 type: view
+
+settings:
+
+key: labour-productivity
+
+- id: view-8b6c6ff0-b833-447e-a0b1-31235880ff80 type: view
+
+settings:
+
+key: sla-breach
+
+- id: table-772cbb27-4db1-4480-a516-8af418ea1bf1 type: table
+
+settings: data:
+
+columns:
+
+field: CASE_TABLE.testfield_1
+
+id: 6a580b52-1962-40a8-b4ac-9b491795ed0c order: 100
+
+field: auto_activity_
+
+id: aaa89edc-0534-40b0-841d-d85d9a63c5f1 order: 200
+
+breakdownSelector: {} options:
+
+showPagination: false

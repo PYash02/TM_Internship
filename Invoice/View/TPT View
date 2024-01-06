@@ -1,0 +1,369 @@
+metadata:
+
+key: tpt-view-invoice template: false
+
+name: TPT View - Invoice knowledgeModelKey: invoice-km allowAdvancedFilters: true
+
+variables:
+
+- id: a6101e1f-fcb5-4bbb-bd10-2d050ad26a0e name: id
+
+layout: rows:
+
+- id: row_8c3dfc6c-d306-48f8-82c2-cac4dcf188ae columns:
+
+- id: column_76c7712a-153b-42d9-8490-6308df232796 componentId: image-61916fe7-130f-496f-b220-69e890a90e69 size: "0.7"
+
+type: panel order: 100
+
+- id: column_5e03f4d6-a918-4b42-9e75-42adfa03c88f componentId: kpi-list-273ed4ca-914d-4b68-9b63-aa37951d55d1 size: "1.5"
+
+type: panel order: 200
+
+id: column_2abde01c-2e9f-4cbe-b377-cdb80b92ddab componentId: kpi-list-62f43ada-1555-4d54-8a27-3379c2ea943d size: "2"
+
+type: panel order: 300
+
+order: 100
+
+- id: row_55023d66-65cb-4e58-9fb9-0cde5706a22e growHeight: false
+
+columns:
+
+- id: column_f97193ca-1d94-40e3-9418-e6ed22f1d05b componentId: view-12422b76-f058-4a66-a67f-0e9d433013cf size: "0.485"
+
+order: 100
+
+- id: column_5f3f2f28-e32e-4906-9328-6934ecf0517f componentId: chart-6d343497-71e1-4ac7-80ba-1fa7efe48716 size: "0.75"
+
+type: default order: 200
+
+- id: column_d37c2d22-1c1d-49ce-b284-c0c18b47c5c8 componentId: chart-8986faff-54aa-4523-8421-4fb650ab6c9a
+
+size: "0.75"
+
+order: 300
+
+- id: column_333d40a4-6f3d-4fad-9f9c-c1ac7138545c componentId: table-19f8b52b-5aba-4215-8e0c-234e5bbf75d8 size: "0.8"
+
+order: 400
+
+height: "550"
+
+order: 200
+
+- id: row_69bba1bf-9b6f-4f95-a639-a32d63b70976 growHeight: false
+
+columns:
+
+- id: column_400d7c61-644a-40b4-9eac-85bacb7b43dd componentId: table-f4160302-036f-49d6-8a79-ea142d4e3821 size: "1"
+
+type: default height: "500"
+
+order: 100
+
+order: 300 components:
+
+- id: image-61916fe7-130f-496f-b220-69e890a90e69 type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: view-dc9e3938-3b0a-4830-a2c7-60668fde5f0b type: view
+
+settings:
+
+key: kpilist-tpt-view
+
+- id: table-f4160302-036f-49d6-8a79-ea142d4e3821 type: table
+
+settings: data:
+
+columns:
+
+- field: TABLE_CASES.CASE
+
+id: 138a3cf2-2907-473f-80d5-0da8b3a5c6d5 order: 100
+
+onClick: openView:
+
+profileView: true syncFilters: forward-only openInSideOverlay: false
+
+- field: TABLE_CASES.AUGMENTED_priority_check id: 873cad11-d769-456d-9d8a-22d97c07d59f order: 200
+
+onEdit:
+
+updateAugmentedAttribute: allowBulkUpdate: true
+
+displayContentRule: Status_Rule
+
+field: TABLE_CASES.CASE_OWNER
+
+id: 07a1419a-c65b-4c84-b399-8411007f8231
+
+order: 300
+
+field: ${id === 'total_amount' && 'TABLE_CASES.AMOUNT'} id: cf17716d-2fc5-4dd6-b95d-3bf0779cb280
+
+order: 400
+
+field: start_end_date.start_date
+
+id: 5d8f3ecf-749d-4da1-9df1-0b7922429092 order: 500
+
+field: start_end_date.end_date
+
+id: ee7563c0-24d9-4c8d-beb4-f68d1e707828 order: 600
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+id: 7d27c2f2-bde1-401a-8fda-3c23fb9d8e33 order: 700
+
+breakdownSelector: {} options:
+
+showPagination: false selectable: false
+
+tools:
+
+- id: default-action
+
+- id: chart-c3eabf24-1331-4b87-87c9-aecd620f2b56 type: chart
+
+settings:
+
+name: TPT Per Department visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 7c63022a-c0d6-4fba-80b8-4c65d0cd2af7 order: 100
+
+encodings: color:
+
+field: invoice_type.tpt_in_days_ scheme: SEQUENTIAL_YELLOW_REVERSE
+
+limit: 1000 encodings:
+
+y:
+
+field: invoice_type.tpt_in_days_ axis:
+
+position: left
+
+x:
+
+field: invoice_type.invoice_type axis:
+
+position: bottom
+
+- id: chart-8986faff-54aa-4523-8421-4fb650ab6c9a type: chart
+
+settings:
+
+name: TPT Per Department showLegend: true encodings:
+
+x:
+
+field: invoice_type.department type: ordinal
+
+format: Q%q y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+encodings: color:
+
+field: invoice_type.invoice_type scheme: SEQUENTIAL_BLUE
+
+stackBy: invoice_type.invoice_type id: 4869c599-6eaf-4324-950f-c8cf026f9e1d order: 100
+
+limit: 1000
+
+- id: table-19f8b52b-5aba-4215-8e0c-234e5bbf75d8 type: table
+
+settings: data:
+
+columns:
+
+field: time_per_process.source
+
+id: 2d81a0f7-c977-4c4e-bc13-d33c7f52e662 order: 100
+
+hide: false
+
+field: time_per_process.target
+
+id: 42e3d1ec-f3a7-4969-a121-1ddf5a24b740 order: 200
+
+hide: false
+
+field: time_per_process.tpt_in_days_ id: a4ecd15e-f143-4a8a-a808-c45c4645ee87 order: 300
+
+hide: false breakdownSelector: {}
+
+pageSize: 13 options:
+
+showPagination: true
+
+- id: kpi-list-62f43ada-1555-4d54-8a27-3379c2ea943d type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: total_amount show: true
+
+id: 9b9e9317-7a45-4ca9-a23b-61154eba4498 order: 100
+
+kpi:
+
+AVG_EVENTS_PER_CASE INVOICE_ACTIVITIES ACTIVITY_EN TABLE_CASES
+
+show: true
+
+id: f102fa22-28a6-4cd7-ba4f-f4c4cbf9553d order: 200
+
+kpi: automation_rate show: true
+
+id: c45af7f5-57a5-40b0-8835-c46c54a2416d order: 300
+
+displayContentRule: AutoPerc
+
+kpi: rework_1 show: true
+
+id: d45e9e1b-5a6b-4b74-bfbb-48e0f4f8f3dd order: 400
+
+displayContentRule: ReworkPerc onClick:
+
+update: variables:
+
+id: id
+
+- id: kpi-list-fa71d3be-0cbd-4567-aba5-471a4329b99f type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE TABLE_CASES
+
+show: true
+
+id: 616bb3e4-5625-42e0-897a-c83c9011648c
+
+order: 100 options:
+
+size: lg swapTitle: true sortBy: value
+
+styles:
+
+overflow: line-break position:
+
+vertical: center horizontal: full
+
+- id: view-12422b76-f058-4a66-a67f-0e9d433013cf type: view
+
+settings:
+
+key: filterlist-view
+
+- id: chart-6d343497-71e1-4ac7-80ba-1fa7efe48716 type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: a2a6ad72-edef-41ef-b416-dcff1c64ff2b order: 100
+
+encodings: color:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME scheme: SEQUENTIAL_YELLOW_REVERSE
+
+limit: 1000 encodings:
+
+x:
+
+field: invoice_type.invoice_type axis:
+
+position: bottom
+
+y:
+
+field: ${id}
+
+- id: table-ab031ef4-601c-4c8e-ad49-b30425ad8caf type: table
+
+settings: data:
+
+columns:
+
+field: TABLE_CASES_AUGMENTED_COMMENT.CHANGE_DATE
+
+id: 769b91f7-574c-42b5-b7fd-a0a7565b9c89 order: 100
+
+field: TABLE_CASES_AUGMENTED_COMMENT.CHANGED_BY
+
+id: 058296e2-80f0-45ad-8cbd-6049b72cfc1f order: 200
+
+field: TABLE_CASES_AUGMENTED_COMMENT.ID id: e84e5b18-0d9c-424d-9177-9128c475d739
+
+order: 300
+
+field: TABLE_CASES_AUGMENTED_COMMENT.IDENTIFIER_AS_ATTRIBUTE
+
+id: 73957bb2-1dc3-409e-8cad-57e510f416ea
+
+order: 400
+
+field: TABLE_CASES_AUGMENTED_COMMENT.KNOWLEDGE_MODEL_KEY
+
+id: f5ae5049-44d1-4baa-9777-762f1a42147a order: 500
+
+field: TABLE_CASES_AUGMENTED_COMMENT.TABLE_CASES CASE_KEY id: 659375f4-ad24-4507-8519-8d5a7220c0e4
+
+order: 600
+
+field: TABLE_CASES_AUGMENTED_COMMENT.VALUE
+
+id: 4a390693-b7b2-41e2-916f-ceab21580fca order: 700
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: kpi-list-273ed4ca-914d-4b68-9b63-aa37951d55d1 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 9302426f-68cf-499c-80d3-bc9d4e7838c7 order: 100
+
+kpi: COUNT_TABLE TABLE_CASES
+
+show: true
+
+id: 38da69de-62f2-4865-b989-19a40e8edead order: 200
+
+options: swapTitle: true size: lg
+
+- id: text-box-0b85d92f-dac2-428f-9b26-571f7f080ed3 type: text-box
+
+settings: title: "" content: <hr>
+
+- id: text-box-4ae598a7-53a5-48ce-865f-bdaed06088bb type: text-box
+
+settings: title: ${id} content: ""

@@ -1,0 +1,5 @@
+select (count(distinct _CASE_KEY)) as reworkcount from ( select _CASE_KEY, _ACTIVITY_EN
+
+from _INVOICE_ACTIVITIES
+
+group by _CASE_KEY, _ACTIVITY_EN having count(*)>1) as rework;

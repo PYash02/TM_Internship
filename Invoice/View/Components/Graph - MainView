@@ -1,0 +1,409 @@
+metadata:
+
+key: invoice-view template: false
+
+name: Graphs - MainView knowledgeModelKey: invoice-km showCaseCount: true allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_99296440-dde5-435c-8dfc-8279a0a65165 columns:
+
+- id: column_cdadd125-4199-46cd-a5ac-5509f20c6435 componentId: kpi-list-9031ebb8-577c-4fbd-9753-ad3a5b9fb89a size: "1"
+
+type: panel order: 0
+
+order: 0
+
+- id: row_53a5de2a-cf6d-4ff6-b77d-4835d53dd8ea growHeight: false
+
+columns:
+
+- id: column_02ad70d7-2da1-4f0f-8998-8863ca0c8f99 componentId: chart-d85ed5fe-bc6c-426f-a4fb-f6dbff0e213c size: "1"
+
+type: "" order: 200
+
+- id: column_15fa97cc-365b-4b9c-b1a6-d6d2898f8daa componentId: treemap-8315cbd0-55d9-46d5-a330-cb10a83243f1 size: "1"
+
+type: "" order: 300
+
+height: "400"
+
+order: 100 components:
+
+- id: table-c0eec27b-7891-4f21-a63f-940663acd6e1 type: table
+
+settings: data:
+
+columns:
+
+field: TABLE_CASES.AMOUNT
+
+id: b4ecfd83-9069-452c-97d5-2a5fcf2011f2 order: 100
+
+field: TABLE_CASES.CASE
+
+id: ffb4320f-6a5a-4ac2-81c8-2673d7b83b91 order: 200
+
+field: TABLE_CASES.CASE_OWNER
+
+id: 8dd0c105-2041-4c66-9732-8e4f0ac5892c
+
+order: 300
+
+field: TABLE_CASES.CASE_TYPE
+
+id: 0acb037f-0e0e-4345-b18b-e5f9322195fc order: 400
+
+field: TABLE_CASES.SUPPLIER
+
+id: c33c16e4-eb72-41c2-abe2-4eaf2b6ac156 order: 500
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: text-box-26574563-cb69-4581-b3e8-fdf1be198908 type: text-box
+
+settings: title: ""
+
+content: <h1><p align = "center"><u color = "Yellow">Invoice Overview</u></p></h1>
+
+id: kpi-list-be1f2f5d-5d9b-4b33-b026-54a116bfde6d type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 1d2b2c77-45ed-4c64-97ff-a4928f918354 order: 100
+
+kpi: automation_rate show: true
+
+id: f25b2772-708e-448c-a33d-43c9108ecfd6 order: 200
+
+- id: image-d77b0429-5611-4264-b799-3a6d9bdb67ab type: image
+
+settings: src:
+
+https://th.bing.com/th/id/R.b1eeb8bfbd6c1d5968f2516d8aee6dcc?rik=Usa1Katxqcsf9w&r iu=http%3a%2f%2fclipart-library.com%2fnewhp%2f15-155034_professional-billing-and-invoicing-accounting-icon-png-white.png&ehk=wGIAFo6JBXcXZclDmGXeEJ3ebNMTYxbGuZEAs3xE4oY%3d&risl=&pid=ImgRaw&r=0
+
+width: 100px height: 85px
+
+- id: kpi-list-9ce4267f-dc21-4f34-84ab-e6c81a51ae32 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 2b6cec1e-c89f-4f93-99e7-868ba2996198 order: 100
+
+kpi: automation_rate show: true
+
+id: f9c7617d-7f57-401c-9e11-e095de58426c order: 200
+
+kpi:
+
+AVG_EVENTS_PER_CASE INVOICE_ACTIVITIES ACTIVITY_EN TABLE_CASES
+
+show: true
+
+id: 17291503-5660-40fa-8445-559561f7616d
+
+order: 300
+
+kpi: rework_rate show: true
+
+id: 0c493001-5324-4a43-a395-4169aa623fdc
+
+order: 400
+
+- id: dropdown-list-e01dd2f0-a7d5-44c6-8374-2d2fe141857f type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: TABLE_CASES.CASE
+
+id: 68c801fe-791a-4d0c-b10d-705c3ed6fbd0 order: 100
+
+attribute: TABLE_CASES.CASE_OWNER
+
+id: 8a44b5d2-ebbb-4bc2-bc5f-87d0ea6057f5 order: 200
+
+attribute: TABLE_CASES.SUPPLIER
+
+id: 8655f5dd-9110-469c-84f0-546321182588
+
+order: 300
+
+attribute: TABLE_USERS.USER
+
+id: c2a489e4-b14b-43fb-acd1-db1854b55f57 order: 400
+
+attribute: INVOICE_ACTIVITIES.COUNTRY
+
+id: 4a2a9fd4-05b0-49e5-8daa-ae10a9630478 order: 500
+
+- id: view-508ffd6d-8c7e-481a-9f59-95bf6405b5ac type: view
+
+settings:
+
+key: filterlist-view allowHeader: false
+
+allowFilters: false
+
+- id: chart-98b4db4f-e153-4bed-ae70-3437bcdf9f25 type: chart
+
+settings:
+
+name: Days Sales Outstanding showLegend: true
+
+encodings: x:
+
+field: INVOICE_ACTIVITIES.COUNTRY
+
+type: ordinal format: Q%q '%y
+
+visuals:
+
+- mark:
+
+type: line point: true
+
+encodings: y:
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+- id: chart-3203919c-3d81-4c69-bb79-e3583dc10dee type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 2a8f25de-18fc-4d7a-9907-95cd148d1818 order: 100
+
+encodings: color:
+
+field: automation_rate limit: 1000
+
+encodings: y:
+
+field: automation_rate axis:
+
+position: left
+
+x:
+
+field: TABLE_CASES.CASE
+
+axis:
+
+position: bottom
+
+- id: table-0f453d86-d633-45b2-b81b-530c7540c0b9 type: table
+
+settings: data:
+
+columns:
+
+field: INVOICE_ACTIVITIES.CASE_KEY
+
+id: eea43641-febf-452a-b463-eb9639b1cafa order: 100
+
+field: INVOICE_ACTIVITIES.ACTIVITY_EN
+
+id: 00ab6f24-c2a5-472e-a3ae-37ff84161e83 order: 200
+
+field: INVOICE_ACTIVITIES.COUNTRY
+
+id: 267b928c-5f00-4acc-b659-65544cb2d44b order: 300
+
+field: INVOICE_ACTIVITIES.EVENTTIME
+
+id: 9f96dfb9-db7b-4579-898d-e381559b3a6b order: 400
+
+field: INVOICE_ACTIVITIES.USER
+
+id: a958e927-f4c2-4dab-90db-dff8a5cba7b4 order: 500
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: text-box-411ece4b-a6da-43c2-9a37-1e90ac124396 type: text-box
+
+settings: title: ""
+
+content: <h1><p color = 'Red'>Invoice</p></h1>
+
+- id: kpi-list-9031ebb8-577c-4fbd-9753-ad3a5b9fb89a type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 40ba5df4-7200-4f79-b3af-9efce1fcd5bc order: 100
+
+kpi:
+
+AVG_EVENTS_PER_CASE INVOICE_ACTIVITIES ACTIVITY_EN TABLE_CASES
+
+show: true
+
+id: 61e5f064-6e74-4b83-919b-92fb3f550aff order: 200
+
+kpi: automation_rate show: true
+
+id: 46f6ab75-b896-442c-8769-e7d26ecc000c order: 300
+
+displayContentRule: AutoPerc
+
+kpi: rerate show: true
+
+id: d646ce29-5809-490e-a8d9-9f1085cd4b33
+
+order: 400 displayContentRule: ReworkPerc
+
+- id: chart-e20bfb2f-e36a-4936-b6de-86e30e393ee2 type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0
+
+id: 917c32ff-e288-4024-a6bf-2a9b0dad2558 order: 100
+
+limit: 1000
+
+- id: chart-d85ed5fe-bc6c-426f-a4fb-f6dbff0e213c type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar
+
+color: YELLOW_100 bandwidth: 0
+
+id: c2a824dc-0e68-4b9c-baaa-511c06a34dc3 order: 100
+
+encodings: y:
+
+field: invoices color:
+
+field: invoices
+
+scheme: SEQUENTIAL_YELLOW_REVERSE
+
+mark:
+
+type: line color: BLUE_60 point: true
+
+id: 541f5b01-d451-4d47-a55a-42db52ad4e29 order: 200
+
+encodings: y:
+
+field: invoice_per_month.amount axis:
+
+position: right limit: 1000
+
+encodings: x:
+
+field: invoice_per_month.month
+
+- id: table-a2951be1-4fcb-4c44-b4f1-e1457c2f7179 type: table
+
+settings: data:
+
+columns:
+
+field: invoice_per_month.case
+
+id: 9a4171b4-5537-4fb0-8f55-90c79dcf342f order: 100
+
+field: invoice_per_month.start_mont
+
+id: c83da862-c45a-4285-ae36-7e1bbc2dc98b order: 200
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: treemap-8315cbd0-55d9-46d5-a330-cb10a83243f1 type: treemap
+
+settings:
+
+name: Amount/Count per Country showConfig: false
+
+colors: DIVERGING_YELLOW_TO_BLUE
+
+dimensions: root: COUNTRY
+
+kpis:
+
+kpi: total_amount_when_pay_invoice_ type: primary
+
+default: true
+
+id: 99904dd9-59b7-41ae-94a2-f42d2391e0d7 order: 100
+
+kpi: case_count type: secondary
+
+id: c0699542-47ce-4fe0-90b5-06c669f78085
+
+order: 200 default: true
+
+- id: table-304c1acc-3629-473a-a331-3412caca1cb9 type: table
+
+settings: data:
+
+breakdownSelector: {} columns:
+
+field: invoice_per_month.month
+
+id: 7fdb00c6-653a-4ad8-a822-c566fef0dd00 order: 100
+
+field: invoice_per_month.amount
+
+id: c80b48da-4f84-43a2-81b9-58848bc66e10 order: 200
+
+field: invoices
+
+id: 01fc9ae7-c812-49a9-8476-7735ec4ba263
+
+order: 300 options:
+
+showPagination: false
+
+- id: chart-f16aa42a-5f09-40c1-b945-e57cb9c6c6c7 type: chart
+
+settings: visuals:
+
+mark:
+
+type: line
+
+id: 7a3a3d0c-a208-4096-9f0a-9504294a17f5
+
+order: 100 encodings:
+
+x:
+
+field: invoice_per_month.month y:
+
+field: invoice_per_month.amount limit: 1000

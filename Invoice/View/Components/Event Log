@@ -1,0 +1,185 @@
+metadata:
+
+key: eventlog-tpt-view template: false
+
+name: EventLog - TPT View knowledgeModelKey: invoice-km knowledgeObjectId: TABLE_CASES profileView: true showCaseCount: false allowAdvancedFilters: true
+
+variables:
+
+- id: 071cb3c7-5580-43f2-bba8-494bcca00b26 name: id
+
+defaultValue: "1" layout:
+
+rows:
+
+- id: row_7ff63ed9-7b61-4ca8-bd45-0163e61d910f columns:
+
+- id: column_71e003ea-6e0b-430a-9945-15c81750f310 componentId: kpi-list-2e71d792-b433-42df-81fe-3dec696bc9d0 size: "1"
+
+type: panel order: 100
+
+- id: column_df9e5d55-f002-4f06-968a-1512a1b040df componentId: kpi-list-f8100e21-039b-4818-85e4-b8ec7ecb7775 size: "1"
+
+type: panel order: 150
+
+order: 50
+
+- id: row_c1679881-71a2-475a-a3f9-a95a5126e913 columns:
+
+- id: column_7cb04293-17bb-4566-9bdd-aac728ba6e83 componentId: table-545931be-6d09-41de-90ef-b87148e40d62 size: "1"
+
+order: 200
+
+order: 100
+
+- id: row_c81f3628-49de-47a7-9ccb-433520452e33 columns:
+
+- id: column_e5c4d2c5-d297-4b71-8539-988c6a6f2cfb
+
+componentId: activity-history-7d208042-48b8-407a-af2e-d171f67f3db3 size: "1"
+
+type: default order: 100
+
+order: 200
+
+components:
+
+- id: table-545931be-6d09-41de-90ef-b87148e40d62 type: table
+
+settings: data:
+
+columns:
+
+field: INVOICE_ACTIVITIES.CASE_KEY
+
+id: 216c45d6-5529-4c88-a1af-f65157f08236
+
+order: 100
+
+field: INVOICE_ACTIVITIES.ACTIVITY_EN
+
+id: e3fbc948-2d79-4c47-a446-d84ad4689562 order: 200
+
+displayContentRule: ${color == 'rework_1'?'AutomationColor_Rule':'Default_Rule'}
+
+field: INVOICE_ACTIVITIES.COUNTRY
+
+id: b8b04f70-bdb2-4163-b7ca-4c62ba21e0f7 order: 300
+
+field: INVOICE_ACTIVITIES.EVENTTIME
+
+id: 37eef527-b8dd-4187-8da3-701e91f596de order: 400
+
+showAlerts: false sticky: none
+
+field: INVOICE_ACTIVITIES.TEAM
+
+id: a5d7af1a-fcfc-435d-8ce1-4af6b14f5e6a order: 500
+
+field: INVOICE_ACTIVITIES.USER
+
+id: fa9f2df8-e207-4ec6-8498-a2f0781c72ab order: 600
+
+displayContentRule: ${color == 'automation_rate'?'AutomationColor_Rule':'Default_Rule'}
+
+breakdownSelector: {} options:
+
+showPagination: false tools:
+
+- id: default-action
+
+id: activity-history-ee859c1f-3f24-4ae5-ac74-a47aa881ade7 type: activity-history
+
+settings:
+
+recordMetadataId: INVOICE_ACTIVITIES objectId: ${id}
+
+activityAttribute: INVOICE_ACTIVITIES.ACTIVITY_EN name: Activity History
+
+groupDateFormat: yy-MM-dd dateFormat: yy-MM-dd hh:mm pageSize: 10
+
+sortDirection: DESC hideSources:
+
+task: true activity: true
+
+- id: kpi-list-2e71d792-b433-42df-81fe-3dec696bc9d0 type: kpi-list
+
+settings: data:
+
+kpis:
+
+- kpi:
+
+AVG_EVENTS_PER_CASE INVOICE_ACTIVITIES ACTIVITY_EN TABLE_CASES
+
+show: true
+
+id: c65e2fdc-b918-4398-92e6-51be822efca7 order: 100
+
+- kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: bfc29e51-225c-47d8-a698-8c272ce8ed64 order: 200
+
+options: size: lg
+
+- id: kpi-list-f8100e21-039b-4818-85e4-b8ec7ecb7775 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: automation_rate show: true
+
+id: de666d20-d980-4477-b03b-b8cfd692367d order: 100
+
+displayContentRule: AutoPerc
+
+kpi: rework_1 show: true
+
+id: 1de74713-4c78-4aa7-9c21-8b042f2442bb order: 200
+
+displayContentRule: ReworkPerc onClick:
+
+update: variables:
+
+id: color options:
+
+layout: tile
+
+id: kpi-list-971ef465-368c-407b-afbe-ddbc83dcb3ac type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: start_date show: true
+
+id: fbd69b96-4c5b-45b6-aced-958c8a6c250e order: 100
+
+kpi: end_date show: true
+
+id: d020a671-8c13-4757-ba4b-5c74d5c489be order: 200
+
+id: activity-history-7d208042-48b8-407a-af2e-d171f67f3db3 type: activity-history
+
+settings:
+
+recordMetadataId: INVOICE_ACTIVITIES objectId: ${id}
+
+sortDirection: ASC
+
+id: process-explorer-5a9d4a9f-cfc0-4a1c-a7d7-b5b9f9bcbcee type: process-explorer
+
+settings: eventLogs:
+
+eventLog: EL_INVOICE_ACTIVITIES ACTIVITY_EN
+
+id: 560b12ac-8298-43ae-9eb4-738a6b8405e0 order: 100
+
+transitions: false tools:
+
+id: default-action settings:
+
+actionIds: []

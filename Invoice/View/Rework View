@@ -1,0 +1,292 @@
+
+metadata:
+
+key: reworkview-invoice template: false
+
+name: ReworkView - Invoice knowledgeModelKey: invoice-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_b5323f18-9a1f-43cb-9a9e-2a16719a222d columns:
+
+- id: column_b18eb773-3619-4c6a-8310-b6834b24f3dd componentId: image-49d24fe7-5efc-46f0-bb47-a0a0d1abab7a size: "1"
+
+type: panel order: 100
+
+- id: column_1132735c-511b-4d57-a3db-ab4b7cbbc480 componentId: kpi-list-5f432b8c-4c7f-4806-8d13-252b3f9e6ae4 size: "3"
+
+type: panel order: 200
+
+- id: column_df59d83b-c342-44cc-b87a-d4c070018499 componentId: kpi-list-343b76a1-25e6-4f1f-bc7c-002732d7365b size: "2"
+
+type: panel order: 300
+
+order: 100
+
+- id: row_b14b2c3e-727e-4efa-98d2-f47deadb640e growHeight: false
+
+columns:
+
+- id: column_d75a7c57-5c2b-4d93-b5d9-7e9a600a3e9e componentId: view-7137a5d6-9d35-45ba-bf60-833b8954b80a size: "0.53"
+
+type: default order: 100
+
+- id: column_f1b88c30-7dce-444f-b1ef-1c735c349b3b componentId: histogram-4917cdf2-d9ad-453b-945f-7fe17c31ce10 size: "0.75"
+
+order: 200
+
+- id: column_d0a5ae04-227c-46ff-9585-9a849e2b1c54 componentId: chart-65c3d134-ff6d-44c6-8307-6ac872395083
+
+size: "0.75"
+
+order: 300
+
+id: column_2f306e6f-c3ef-4a8c-9e1e-b0d8d9255c4a componentId: table-ba94ddbb-1eb4-4ebb-9c48-45de21b08b13 size: "1"
+
+type: default order: 400
+
+height: "550"
+
+order: 200
+
+- id: row_df416888-2e76-4cef-a1d2-57fd92ba477a growHeight: false
+
+columns:
+
+id: column_fdb3e28b-00bf-4470-afba-c10672c63aac componentId: table-7b8fca31-aa00-47eb-9462-daf6dff26161 size: "1"
+
+type: default order: 100
+
+height: "500"
+
+order: 250 components:
+
+- id: image-49d24fe7-5efc-46f0-bb47-a0a0d1abab7a type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: kpi-list-5f432b8c-4c7f-4806-8d13-252b3f9e6ae4 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE INVOICE_ACTIVITIES
+
+show: true
+
+id: 44b9f347-6f73-4dc0-8762-d88eddcc2c54 order: 100
+
+kpi: total_amount show: true
+
+id: a4967cb3-8431-4add-a59d-ec4c12ac2bf2 order: 200
+
+kpi: rerate show: true
+
+id: 7059227f-acf5-4045-a4bf-cf9dd64e8e34 order: 300
+
+displayContentRule: ReworkPerc
+
+- id: kpi-list-343b76a1-25e6-4f1f-bc7c-002732d7365b type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE TABLE_CASES
+
+show: true
+
+id: 2e22ab81-7cbc-48c7-9673-23ae8835bc06 order: 100
+
+kpi: rework_activtiy show: true
+
+id: 65ebbc11-da1f-482f-b20d-75a58d9e3e7e order: 200
+
+- id: table-0f9e217e-52db-4eb8-b5cb-2711ed3c05bd type: table
+
+settings: data:
+
+columns:
+
+field: rework.activity
+
+id: 37259b02-d819-4cf5-9df3-78277651c39f
+
+order: 100
+
+field: rework.check
+
+id: 1e60fa94-087a-44d8-9785-7bfdb639fd67 order: 200
+
+field: rework.id
+
+id: e434726c-de6a-43e7-8ec8-8990c0b63d47 order: 300
+
+sortBy:
+
+field: rework.id direction: ASC breakdownSelector: {}
+
+options: showPagination: false
+
+- id: view-7137a5d6-9d35-45ba-bf60-833b8954b80a type: view
+
+settings:
+
+key: filterlist-view
+
+- id: chart-16682dae-487f-4e86-b21a-32f074f1fc9d type: chart
+
+settings: visuals:
+
+- mark:
+
+type: bar bandwidth: 0 color: BLUE_60
+
+id: c2115404-a835-487a-b97e-05733646acd3
+
+order: 100
+
+encodings: {} limit: 1000 encodings:
+
+x:
+
+field: invoice_amount_per_country.country y:
+
+field: rework_graph
+
+- id: table-ba94ddbb-1eb4-4ebb-9c48-45de21b08b13 type: table
+
+settings:
+
+name: Rework% per Activity data:
+
+columns:
+
+field: process_rework_automation.process id: 11a16851-38dd-4761-96ef-9a6e6beb6cfa order: 100
+
+field: rework_1
+
+id: b3b5b7a7-b562-48da-affa-967daa23faf9 order: 200
+
+displayContentRule: ReworkPerc sticky: none
+
+breakdownSelector: {} pageSize: 13
+
+options: showPagination: true
+
+- id: histogram-536a0248-04cf-4573-96a3-697484e50b6d type: histogram
+
+settings:
+
+attribute: rework.check displayContentRule: HistogramColor_Rule annotations:
+
+- value: 1
+
+label: <- Initial Work | Rework -> labelAlign: middle
+
+color: BLACK line: none
+
+additionalKpis:
+
+kpi: rerate
+
+kpi: initial_work_
+
+- id: table-8b1d715d-f224-48ed-bee0-bc087e686906 type: table
+
+settings: data:
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: chart-65c3d134-ff6d-44c6-8307-6ac872395083 type: chart
+
+settings: visuals:
+
+mark:
+
+type: bar color: BLUE_60 bandwidth: 0
+
+id: 0b32290e-1c51-46d1-af69-47be11574dba order: 100
+
+limit: 1000 encodings:
+
+y:
+
+field: rework_1 axis:
+
+position: left
+
+x:
+
+field: invoice_per_month.month axis:
+
+position: bottom
+
+- id: histogram-f36e3fd9-9808-473f-804f-45d953d141e4 type: histogram
+
+settings:
+
+attribute: rework.check displayContentRule: HistogramColor_Rule annotations:
+
+value: 1
+
+label: <- Initial Work | Rework -> labelAlign: middle
+
+color: BLACK line: none
+
+additionalKpis:
+
+kpi: rerate
+
+kpi: initial_work_
+
+- id: histogram-4917cdf2-d9ad-453b-945f-7fe17c31ce10 type: histogram
+
+settings:
+
+attribute: rework.check displayContentRule: HistogramColor_Rule annotations:
+
+value: 1
+
+label: <- Initial Work | Rework -> labelAlign: middle
+
+color: BLACK
+
+line: none additionalKpis:
+
+kpi: rerate
+
+kpi: initial_work_
+
+- id: table-7b8fca31-aa00-47eb-9462-daf6dff26161 type: table
+
+settings:
+
+name: Drilldown by Rework(In Months) data:
+
+columns:
+
+field: invoice_per_month.month
+
+id: b76fe3af-be08-487b-af67-67d4f967e00b order: 100
+
+field: invoice_per_month.amount
+
+id: 4e3a3bb6-c32b-4c29-bbd9-e7f1fb18be63 order: 200
+
+field: COUNT_TABLE TABLE_CASES
+
+id: 0c7f8ba6-729a-4729-bca6-90e303f6e052 order: 300
+
+field: rework_1
+
+id: 35f91b90-59b8-46e8-9eb3-7798dfd9dd1c order: 400
+
+breakdownSelector: {} options:
+
+showPagination: false

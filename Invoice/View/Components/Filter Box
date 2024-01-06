@@ -1,0 +1,197 @@
+metadata:
+
+key: filterlist-view template: false
+
+name: FilterList - Invoice knowledgeModelKey: invoice-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_a5e16442-5c36-47c6-98bb-2fc070b588aa growHeight: false
+
+columns:
+
+- id: column_148b0602-9578-4c20-93c6-1dc38f9fcf82 componentId: text-box-5b861a10-d195-468a-9354-c109f26e7ee4 size: "1"
+
+type: panel height: "100"
+
+order: 100
+
+order: 50
+
+- id: row_9834daeb-8dd6-438d-8ced-7a773b8c13e1 columns:
+
+- id: column_1247b96e-dd19-4622-b537-a6af772280d2
+
+componentId: dropdown-list-be23f6e1-3923-4337-a710-18b1c19d0708 size: "1"
+
+type: "" order: 100
+
+order: 100
+
+- id: row_fdba1e88-a897-4591-b038-10f4d43aac4a columns:
+
+- id: column_8682742f-072e-4d42-b402-31014d54f66d
+
+componentId: dropdown-list-64f958a7-984e-4857-9509-1c5d13bae3c8 size: "1"
+
+type: default order: 100
+
+order: 150
+
+- id: row_70a59cb7-5fd0-4d51-ba7c-6388fb98a077 columns:
+
+- id: column_9b2548b5-bd1b-4bc1-8f33-04e67f45cce0
+
+componentId: dropdown-list-c059402e-2f1a-44d1-a4ca-4090b9eb6233 size: "1"
+
+type: default order: 100
+
+order: 200
+
+- id: row_e242bd62-2f41-48ff-b2fe-5aa74f777819 columns:
+
+- id: column_5cf75b62-c4ce-44fe-9eea-0cf23949577d
+
+componentId: dropdown-list-fb0e3f3b-379a-45db-8846-56e78db0119c size: "1"
+
+type: default order: 100
+
+order: 300
+
+- id: row_21c60869-b91c-431e-8fb9-74fab5ab2c01 columns:
+
+- id: column_fbbdf54b-31a5-4aa0-98f3-9d4b1221251f
+
+componentId: dropdown-list-c2a1b0b5-5ad3-4908-bbaf-53f0bded3a78 size: "1"
+
+type: default order: 100
+
+order: 400
+
+- id: row_922b9ffb-9c96-44c3-8ebe-d97c215100ac growHeight: false
+
+columns:
+
+- id: column_3a5408ad-368e-4238-9a4f-ac5aed6bd3f0 componentId: text-box-6e33bb7a-9326-45a7-9f19-2fd67c9d6350 size: "1"
+
+type: panel height: "100"
+
+order: 100
+
+order: 500
+
+- id: row_0d48a38d-3e95-4dbb-9f71-52afb413d87c columns:
+
+- id: column_ec40e27c-5c60-470b-84e0-6df157efdec7
+
+componentId: time-filter-b50a4b29-1d13-4a42-a0e9-7e3028484e0b size: "1"
+
+type: default order: 100
+
+order: 600
+
+- id: row_b6b3e90c-9b3d-4e23-bd01-67c5261071f7 columns:
+
+- id: column_c0187ccc-a006-4b2b-ada5-6c35b89ab2f1
+
+componentId: quick-filters-a2363bc1-9820-41ef-a035-912d1d888d7e size: "1"
+
+type: default order: 100
+
+- id: column_cadc5220-75e7-44b9-8713-96b046ddbc47
+
+componentId: quick-filters-1aa721fd-b22c-4882-b54a-979572d2b08f size: "1"
+
+order: 200
+
+order: 700 components:
+
+- id: dropdown-list-be23f6e1-3923-4337-a710-18b1c19d0708 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: TABLE_CASES.CASE_KEY
+
+id: 769ae58f-7fe7-4d77-ac7d-1bc70c8bbadd order: 100
+
+displayName: ""
+
+- id: dropdown-list-c059402e-2f1a-44d1-a4ca-4090b9eb6233 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: TABLE_CASES.SUPPLIER
+
+id: d206ab85-4b95-42b8-9fab-072e75a663fd order: 100
+
+- id: dropdown-list-fb0e3f3b-379a-45db-8846-56e78db0119c type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: TABLE_CASES.CASE_OWNER
+
+id: 2f6abcfc-2946-4656-926b-847a1a60b611 order: 100
+
+- id: dropdown-list-c2a1b0b5-5ad3-4908-bbaf-53f0bded3a78 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: TABLE_USERS.USER
+
+id: 2d02c31e-9e47-4a07-a592-a0433ed18ddd order: 100
+
+- id: text-box-5b861a10-d195-468a-9354-c109f26e7ee4 type: text-box
+
+settings:
+
+title: Filter Options -content: ""
+
+- id: dropdown-list-64f958a7-984e-4857-9509-1c5d13bae3c8 type: dropdown-list
+
+settings: data:
+
+columns:
+
+- attribute: TABLE_CASES.CASE_TYPE
+
+id: 51fd12ae-07d0-49b4-80a9-ceca865095bc order: 100
+
+- id: text-box-6e33bb7a-9326-45a7-9f19-2fd67c9d6350 type: text-box
+
+settings:
+
+title: Filter By Date -content: ""
+
+- id: time-filter-b50a4b29-1d13-4a42-a0e9-7e3028484e0b type: time-filter
+
+settings:
+
+dateAttribute: INVOICE_ACTIVITIES.EVENTTIME
+
+- id: quick-filters-a2363bc1-9820-41ef-a035-912d1d888d7e type: quick-filters
+
+settings: filters:
+
+- filter: last_6m
+
+id: d98ad945-2a26-4fa1-b33e-675ce8a03454 order: 100
+
+label: ""
+
+- id: quick-filters-1aa721fd-b22c-4882-b54a-979572d2b08f type: quick-filters
+
+settings: filters:
+
+- filter: last_1y
+
+id: 8f1c3607-de58-4170-b0fe-b9aa13ae61f1 order: 100
+
+label: ""

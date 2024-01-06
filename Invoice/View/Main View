@@ -1,0 +1,629 @@
+metadata:
+
+key: invoice-mainview template: false
+
+name: Main Page - Invoice knowledgeModelKey: invoice-km allowAdvancedFilters: true
+
+variables:
+
+- id: 7bc7352e-2fcf-4500-977a-d1286b986a76 name: var1
+
+layout: rows:
+
+- id: row_c48ac018-002d-4551-9986-0895a1cdb366 growHeight: false
+
+columns:
+
+- id: column_f8011156-26f9-428b-b655-48eca0360724 componentId: image-57e4ed5b-ae9a-4e60-a144-c52537a009a8 size: "1"
+
+type: panel height: "100"
+
+order: 100
+
+- id: column_d4a77a44-2dae-4264-bb51-886577d208a9 componentId: kpi-list-ed4c9814-8753-4b92-bf2f-389f8a1d2192 size: "5"
+
+type: panel order: 200
+
+order: 100
+
+- id: row_53d991e3-0e89-45ae-858d-01707702186f
+
+growHeight: false columns:
+
+- id: column_ada33bbb-b847-4738-83c0-a812a2f94620 componentId: view-bb457309-fe54-4be4-aacc-e5f0300ca911 size: "0.21"
+
+type: ""
+
+height: "" order: 100
+
+- id: column_c1936091-d0c9-4883-81b1-79a48a216818 componentId: view-e862879b-874f-480b-9cc1-231533a3501a size: "1"
+
+type: "" order: 200
+
+order: 200
+
+- id: row_9b26d1c8-c0f7-42b6-8626-57e8775b3858
+
+columns:
+
+- id: column_d0c953f2-0d54-4cb9-9b3d-58982ce147b7 layout:
+
+rows:
+
+- id: row_8482f9e5-e2a1-4a24-abda-a641004fb2d0 columns:
+
+- id: column_d6fed6e6-0e7c-4d41-86db-742a2fd7b092 componentId: text-box-b12d4a6d-e20e-4de8-9ae8-a017dc4fd376 size: "1"
+
+order: 0
+
+- id: column_cbc469c3-f3a7-4c48-bf36-87b60e5baf3e componentId: text-box-b76b7d5e-52dd-47a3-a770-ab8ba3326957 size: "3"
+
+order: 50
+
+- id: column_5e580b62-3187-40cd-8c4e-677d38670a99 componentId: dropdown-list-375aad0d-6e7f-4002-b247-
+
+cd830430d8ba
+
+
+
+size: "1"
+
+order: 100
+
+order: 50
+
+- id: row_e8522c8e-a8d5-439b-b76c-52fc66cad8dc columns:
+
+- id: column_6880b79c-6492-47e8-84c5-565617c22acd componentId: table-b88992e4-5b18-437c-8aad-2376e86e4db6 size: "1"
+
+type: default order: 100
+
+order: 100
+
+size: "1" type: panel order: 100
+
+order: 250 components:
+
+- id: image-a6057650-bbe5-4293-948e-feb80d97d109 type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: view-3fb19e79-f0a6-4a8f-adc8-780b5d644ee4 type: view
+
+settings:
+
+key: filterlist-view
+
+- id: kpi-list-67e5a51f-1bae-4ef5-b090-e56dcc7758c2 type: kpi-list
+
+settings:
+
+data:
+
+kpis:
+
+kpi: automation_rate show: true
+
+id: 73b11229-3d39-449b-b50d-93f352e64b91
+
+order: 100
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: cd96d72b-4da8-440e-96bc-8585f369d935 order: 200
+
+- id: kpi-list-0b6cbd94-e31f-4c28-b7a4-212c61e4b9a0 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: automation_rate show: true
+
+id: 8060ca27-aaf5-4ae8-9208-2b30e5b52d19 order: 100
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 884a3a68-d53f-40ae-ae6a-19573d691b3b order: 200
+
+- id: image-57e4ed5b-ae9a-4e60-a144-c52537a009a8 type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: kpi-list-ed4c9814-8753-4b92-bf2f-389f8a1d2192 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: invoices show: true
+
+id: 3d1cf6d3-2952-4007-b4c0-78affdf0122a order: 100
+
+kpi: suppliers show: true
+
+id: 4d9ad316-407a-495d-9c61-2f5e407fe2b3 order: 200
+
+kpi: users show: true
+
+id: 24e572ec-3d02-418c-9c87-a632bf705115
+
+order: 300
+
+kpi: total_amount show: true
+
+id: 8684c732-27a3-429e-8760-f3a9bbf974d0
+
+order: 400
+
+- id: view-bb457309-fe54-4be4-aacc-e5f0300ca911 type: view
+
+settings:
+
+key: filterlist-view
+
+- id: kpi-list-84e01d4a-e8d3-4b10-aad0-596e86199381 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 5197d184-78c5-4c29-a5b2-96256a5b06e0
+
+order: 100
+
+kpi:
+
+AVG_EVENTS_PER_CASE INVOICE_ACTIVITIES ACTIVITY_EN TABLE_CASES
+
+show: true
+
+id: c9f225a8-40a7-4cdc-b006-4c8cf7494ea7 order: 200
+
+kpi: automation_rate show: true
+
+id: 3d8837f1-1951-44ca-b45a-685dc78ed2a3 order: 300
+
+kpi: rework_rate show: true
+
+id: 4acffcb4-ef43-4e43-89a7-684b28198503 order: 400
+
+- id: view-e862879b-874f-480b-9cc1-231533a3501a type: view
+
+settings:
+
+key: invoice-view
+
+- id: table-3a966957-7052-41fe-9f34-ac1099aae589 type: table
+
+settings: data:
+
+columns:
+
+field: invoice_amount_per_country.activity id: 01c3b176-92dd-4a57-8191-a662856058b0
+
+order: 100
+
+field: invoice_amount_per_country.amount id: e6b6aa86-9d16-4e69-9c79-9308969d5417
+
+order: 200
+
+field: invoice_amount_per_country.country id: 6b896f3e-c61e-4ce3-b39f-fcf015495405 order: 300
+
+breakdownSelector: {} options:
+
+showPagination: false filters:
+
+- id: country
+
+- id: table-7c8f1bbc-1a56-4b18-9f9e-b0a92b74eda5 type: table
+
+settings:
+
+name: Drilldown by Supplier data:
+
+columns:
+
+field: drilldown_by_supplier.supplier id: 48acced1-bbd4-4802-8b57-775047663667
+
+order: 100
+
+field: drilldown_by_supplier.invoices id: 031e9edc-c23d-45db-a43b-dd9b55affb43 order: 200
+
+field: drilldown_by_supplier.net_amount id: 0c7181d7-c2b3-40d9-8743-0a746a745014
+
+order: 300
+
+field: drilldown_by_supplier.tpt_in_days_ id: b6f7cb88-5f9b-47d1-8e59-37596068f12f order: 400
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: dropdown-list-0fba0613-bb86-4a83-92d0-d7c5040ef137 type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: Drilldown1
+
+id: 4159a333-0222-4872-923d-1a9cbd3085f4
+
+order: 100 displayName: "" onClick:
+
+update: variables:
+
+name: Field selection: single
+
+- id: text-box-e7cc96a8-e558-45b1-8840-221ea3195436 type: text-box
+
+settings:
+
+title: Drilldown by ${Field} content: ""
+
+- id: text-box-49f9882f-2243-401d-ae9c-837a3f1fab3d type: text-box
+
+settings:
+
+title: Drilldown by ${Field} content: ""
+
+- id: dropdown-list-375aad0d-6e7f-4002-b247-cd830430d8ba type: dropdown-list
+
+settings: data:
+
+columns:
+
+attribute: Drilldown1
+
+id: 5abea84b-96d3-4f66-b1da-099f10a31d84 order: 100
+
+displayName: Drilldown Selection onClick:
+
+update: variables:
+
+name: var1 selection: single
+
+styles: position:
+
+vertical: top horizontal: full
+
+- id: table-728ef777-a207-4077-8ac5-68592961b156
+
+type: table settings:
+
+data:
+
+columns:
+
+field:
+
+"${field == 'Supplier'? TABLE_CASES.SUPPLIER": TABLE_CASES.CASE_OWNER}
+
+id: 77e98ae3-2e05-4f35-b756-9f797bd9d695 order: 100
+
+field: invoices
+
+id: 0d2aea61-3ef3-4298-842a-21ccf251b1e5 order: 200
+
+field: total_amount
+
+id: 2cce5d4a-01d4-4fcb-aa5f-439450180148 order: 300
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+id: 006087f5-bd9b-41ef-9047-305dbbd23da4 order: 400
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: text-box-3c24e516-8921-4c3e-a9dd-c7f8e449b016 type: text-box
+
+settings:
+
+title: Drilldown by ${var1} content: ""
+
+- id: table-b88992e4-5b18-437c-8aad-2376e86e4db6 type: table
+
+settings: data:
+
+columns:
+
+field:
+
+${var1=='Supplier'?'TABLE_CASES.SUPPLIER':'TABLE_CASES.CASE_OWNER'} id: 2c634985-cb53-47b6-b889-66ce19d98b67
+
+order: 100
+
+field: invoices
+
+id: e5388773-0565-4539-bae3-d0bbcc36032e order: 200
+
+field: total_amount_when_pay_invoice_ id: 2e2be616-4762-4d64-a787-3ae7d3718c1b order: 300
+
+field: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME id: 029d3667-44fe-4409-9976-e765998c74aa
+
+order: 400 breakdownSelector: {}
+
+options: showPagination: false
+
+- id: text-box-b12d4a6d-e20e-4de8-9ae8-a017dc4fd376 type: text-box
+
+settings: title: ""
+
+content: <h3>Drilldown by ${var1} <h3>
+
+- id: text-box-b76b7d5e-52dd-47a3-a770-ab8ba3326957 type: text-box
+
+settings: title: "" content: ""
+
+- id: text-box-b7f6ab30-26ee-4821-b340-8c4aee8f4b14 type: text-box
+
+settings: name: jdisj
+
+content: oisoisijsfoij {0} infoText:
+
+title: ssij
+
+content: isafoijaoifjsa placeholders:
+
+- field: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+Final Page
+
+metadata:
+
+key: invoice1-view template: false name: Invoice View
+
+knowledgeModelKey: invoice-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_f5e82047-be7c-4988-be4f-ae2a36cbdda5 columns:
+
+- id: column_6b13e0e8-f6ec-4348-883d-fef026f623cd tabs:
+
+- id: tab-446fc0a8-cc35-4c29-bd17-cdb67e87fa37 layout:
+
+rows:
+
+- id: row_ec72252c-3970-4fb3-ab6c-8b4d7cbfd094 columns:
+
+- id: column_e7bff508-7c5f-4bfc-90b5-594631db82f7 componentId: view-195efb4e-e79b-4b6a-a9e6-3fc0a92fccda size: "1"
+
+type: default order: 100
+
+order: 100 label: Main Page order: 100
+
+- id: tab-59537eb9-0ce6-430c-823c-a2f06d39ec4b componentId: ""
+
+layout: rows:
+
+- id: row_76142a55-588e-40ee-8d44-6e6561e3ac02 columns:
+
+- id: column_1d346aea-cc1a-463f-af05-89317827dfdc componentId: view-85ccc74d-3477-40d0-838d-73dc0c8194fb size: "1"
+
+order: 0
+
+order: 100 label: TPT order: 200
+
+- id: tab-f94e0ecb-2de5-4bec-aa08-fc8541e01085 componentId: ""
+
+layout: rows:
+
+- id: row_0f9a3e2c-ebbc-41a2-ba77-0320c6510804 columns:
+
+- id: column_06e893a4-fdc1-475f-a484-be38ffb8abf2 componentId: view-674e57e4-4137-46fc-baad-be8a3394b2d8 size: "1"
+
+order: 0
+
+order: 100 label: Automation Rate order: 300
+
+- id: tab-3520dd37-27a4-426a-a9a2-639aa3f68277 layout:
+
+rows:
+
+- id: row_a6ff8ad4-345d-4f34-8dd3-04f653746233 columns:
+
+- id: column_ca0c9ff2-a3b4-4324-a6a9-4ccbd1b75c7e componentId: view-176651d6-1883-4157-94ed-de5d85f933fa size: "1"
+
+type: default order: 100
+
+order: 100 label: Rework Rate order: 400
+
+size: "1" type: default order: 100
+
+order: 100 components:
+
+- id: view-195efb4e-e79b-4b6a-a9e6-3fc0a92fccda type: view
+
+settings:
+
+key: invoice-mainview
+
+- id: view-2e8cfc70-97eb-420b-b36b-c56967742faa type: view
+
+settings:
+
+key: automationview-invoice
+
+- id: view-959d59a9-6cac-4489-8f6c-55c547b7eed3 type: view
+
+settings:
+
+key: reworkview-invoice
+
+- id: view-803251bd-7a0a-4bed-a8b5-29435e32959b type: view
+
+settings:
+
+key: reworkview-invoice
+
+- id: table-cde6452d-7cc3-4201-9e4c-faa30f4afa69 type: table
+
+settings: data:
+
+columns:
+
+- field: TABLE_CASES.CASE
+
+id: b87e74db-9f43-48f4-ab78-a16b00c4d86c order: 100
+
+onClick: openView:
+
+profileView: true syncFilters: both-ways openInSideOverlay: true
+
+field: TABLE_CASES.AMOUNT
+
+id: 1b7054ce-2d55-48cf-a77b-4f2e243d6882 order: 200
+
+field: TABLE_CASES.CASE_KEY
+
+id: 56aa4cb6-2f01-4f46-b3e6-806a59487dcf order: 300
+
+field: TABLE_CASES.CASE_OWNER
+
+id: abcbef8c-06d8-4606-89a0-55bb401d5c17 order: 400
+
+field: TABLE_CASES.CASE_TYPE
+
+id: dc87a1b7-8b6e-44b3-bb3e-2f911fcc1666 order: 500
+
+field: TABLE_CASES.IDENTIFIER_AS_ATTRIBUTE
+
+id: d64ec690-fb6b-48dd-8185-5c3758b8bf02 order: 600
+
+field: TABLE_CASES.SUPPLIER
+
+id: 49ba5dc5-521c-4b54-a8c3-afeb355e759a order: 700
+
+field: TABLE_CASES.SUPPLIER_TYPE
+
+id: 2850c846-b8b6-4368-8734-83fc9172d017
+
+order: 800 breakdownSelector: {}
+
+options: showPagination: false
+
+- id: table-517a75cc-7a7a-47b9-aea3-0885e919bdf8 type: table
+
+settings: data:
+
+columns:
+
+field: TABLE_CASES.CASE
+
+id: 13bc567b-9cf2-424b-b09c-80dda9256f83 order: 100
+
+onClick: openView:
+
+profileView: true syncFilters: both-ways openInSideOverlay: true
+
+field: TABLE_CASES.AMOUNT
+
+id: eef4baad-2320-455b-b1cf-baaff36c6069 order: 200
+
+field: TABLE_CASES.CASE_KEY
+
+id: 944db768-ce13-486c-9351-dc5109a6e626
+
+order: 300
+
+field: TABLE_CASES.CASE_OWNER
+
+id: 3da9c389-50ca-4eba-a1d5-623751a9219a order: 400
+
+field: TABLE_CASES.CASE_TYPE
+
+id: f6a87e77-f2ea-45fd-b61f-febeabbeaafa order: 500
+
+field: TABLE_CASES.IDENTIFIER_AS_ATTRIBUTE
+
+id: 17d3e475-6d9a-4f68-bae9-21a924e3bdf1 order: 600
+
+field: TABLE_CASES.SUPPLIER
+
+id: ed909ffc-bca5-46c9-a89b-176f316043c7 order: 700
+
+field: TABLE_CASES.SUPPLIER_TYPE
+
+id: bc56c76b-e040-45c9-b292-32828612bce9 order: 800
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: view-8bd06a96-a1cc-49cb-8822-54314dad1bb8 type: view
+
+settings:
+
+key: automationview-invoice
+
+- id: view-8ea503b3-1e85-4b1a-8ce7-584216479a5a type: view
+
+settings:
+
+key: reworkview-invoice
+
+- id: view-674e57e4-4137-46fc-baad-be8a3394b2d8 type: view
+
+settings:
+
+key: automationview-invoice
+
+- id: view-176651d6-1883-4157-94ed-de5d85f933fa type: view
+
+settings:
+
+key: reworkview-invoice
+
+- id: view-85ccc74d-3477-40d0-838d-73dc0c8194fb type: view
+
+settings:
+
+key: tpt-view-invoice
+
+- id: table-e422b249-6048-42cc-a704-684cbd5c19a5 type: table
+
+settings: data:
+
+columns:
+
+field: invoice.activtiy
+
+id: 9fc9d904-4580-45f8-9c57-de717b5ee667 order: 100
+
+field: invoice.case_key
+
+id: 95138eea-6cc9-494b-ac01-5ce0cc288d28 order: 200
+
+field: invoice.case_name
+
+id: 2a2a4186-2922-49d1-a08d-6f72cb82c43a order: 300
+
+field: invoice.start_time
+
+id: 60724a57-b339-4e4e-885b-b4739707c3c6
+
+order: 400
+
+field: invoice.time
+
+id: 7f09afd4-f2d3-40c5-ab26-e39e7d852512 order: 500
+
+breakdownSelector: {} options:
+
+showPagination: false

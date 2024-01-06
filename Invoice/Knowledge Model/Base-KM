@@ -1,0 +1,947 @@
+kind: BASE metadata:
+
+key: invoice-km displayName: Invoice - KM
+
+dataModelId: ${{invoice_data_model}} isDataModelFromBG: false
+
+records:
+
+id: invoice_per_month displayName: CASE Start Month customAttributes: {} attributes:
+
+id: month displayName: Month customAttributes: {}
+
+pql: TO_DATE ((TO_STRING("_INVOICE_ACTIVITIES"."_EVENTTIME", FORMAT('%m-
+
+%Y'))), FORMAT('%m-%Y'))
+
+columnType: DATE format: "%m-%Y" type: ATTRIBUTE
+
+id: amount displayName: Amount customAttributes: {}
+
+pql: KPI("total_amount") columnType: STRING format: .3s
+
+type: ATTRIBUTE
+
+id: auto_user displayName: Auto% customAttributes: {} pql: KPI("autouser") columnType: INTEGER unit: "%"
+
+format: ",.2f" type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: invoice_amount_per_country
+
+displayName: Amount per Country (Pay Invoice) customAttributes: {}
+
+attributes:
+
+id: country displayName: Country customAttributes: {}
+
+pql: CASE WHEN ("_INVOICE_ACTIVITIES"."_ACTIVITY_EN" = 'Pay invoice')
+
+THEN "_INVOICE_ACTIVITIES"."_COUNTRY" END
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: amount displayName: Amount customAttributes: {}
+
+pql: CASE WHEN ("_INVOICE_ACTIVITIES"."_ACTIVITY_EN" = 'Pay invoice')
+
+THEN "TABLE_CASES"."AMOUNT" END
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: rework displayName: rework customAttributes: {} attributes:
+
+id: check displayName: Rework customAttributes: {} pql: |-
+
+(CASE WHEN PU_COUNT_DISTINCT ("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") <
+
+
+
+PU_COUNT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") THEN 1
+
+ELSE 0 END)
+
+columnType: INTEGER format: ",.0f" type: ATTRIBUTE
+
+id: case_key displayName: Case Key
+
+pql: '"TABLE_CASES"."_CASE_KEY"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: activity displayName: activity
+
+pql: '"_INVOICE_ACTIVITIES"."_ACTIVITY_EN"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: TABLE_CASES
+
+customAttributes: {} identifier:
+
+id: id displayName: id
+
+customAttributes: {}
+
+pql: '"TABLE_CASES"."_CASE_KEY"'
+
+attributes:
+
+- id: CASE
+
+displayName: Case customAttributes: {}
+
+pql: '"TABLE_CASES"."CASE"'
+
+format: "" type: ATTRIBUTE
+
+- id: CASE_OWNER
+
+displayName: Case Owner customAttributes: {}
+
+pql: '"TABLE_CASES"."CASE_OWNER"'
+
+format: "" type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes:
+
+id: priority_check displayName: Priority possibleValues:
+
+Middle
+
+Low
+
+Urgent defaultValue: Middle columnType: STRING housekeeping: false
+
+type: AUGMENTED_ATTRIBUTE
+
+flags:
+
+id: creditor_does_not_exist displayName: Creditor Does Not Exist customAttributes: {}
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Creditor does not
+
+exist'"
+
+id: process_invoice displayName: Process Invoice
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Process invoice'"
+
+id: post_process_invoice displayName: Post-Process Invoice
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Post-process invoice'"
+
+id: pay_employee_reimbursement displayName: Pay Employee Reimbursement
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Pay employee reimbursement'"
+
+id: process_employee_reimbursement displayName: Process Employee Reimbursement customAttributes: {}
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Process employee reimbursement'"
+
+id: checked_and_approved displayName: Checked and Approved
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Checked and approved'"
+
+id: repeat_payment_process displayName: Repeat Payment Process
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Repeat payment process'"
+
+id: check_contract_condition displayName: Check Contract Condition
+
+pql: "\"_INVOICE_ACTIVITIES\".\"_ACTIVITY_EN\" = 'Check contract conditions'"
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: process_rework_automation displayName: Process Rework/Automation customAttributes: {}
+
+attributes:
+
+id: process displayName: Process
+
+pql: '"_INVOICE_ACTIVITIES"."_ACTIVITY_EN"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: rework_rate displayName: Automation Rate customAttributes: {}
+
+pql: KPI("automation_rate") columnType: FLOAT
+
+unit: "%" format: ",.2f" type: ATTRIBUTE
+
+id: rework displayName: Rework customAttributes: {} pql: |-
+
+(sum(PU_COUNT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN")
+
+-
+
+PU_COUNT_DISTINCT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN"))) * 100/ sum(PU_COUNT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN"))
+
+columnType: INTEGER unit: "%"
+
+format: ",.00f" type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: start_end_date displayName: Start/End Date customAttributes: {} identifier:
+
+id: id displayName: id
+
+pql: '"TABLE_CASES"."CASE"'
+
+attributes:
+
+id: case_name displayName: Case Name
+
+pql: '"TABLE_CASES"."CASE"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: start_date displayName: Start Date customAttributes: {}
+
+pql: 'PU_FIRST ( "TABLE_CASES", "_INVOICE_ACTIVITIES"."_EVENTTIME" , ORDER BY INDEX_ACTIVITY_ORDER( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN")) '
+
+columnType: DATETIME format: "%d-%m-%Y" type: ATTRIBUTE
+
+id: end_date displayName: End Date customAttributes: {}
+
+pql: 'PU_FIRST ( "TABLE_CASES", "_INVOICE_ACTIVITIES"."_EVENTTIME" , ORDER BY INDEX_ACTIVITY_ORDER_REVERSE( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN")) '
+
+columnType: DATE format: "%d-%m-%Y" type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: invoice displayName: Invoice customAttributes: {} attributes:
+
+id: case_key displayName: case key
+
+pql: '"_INVOICE_ACTIVITIES"."_CASE_KEY"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: activtiy displayName: Activtiy
+
+pql: '"_INVOICE_ACTIVITIES"."_ACTIVITY_EN"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: time displayName: Time
+
+pql: '"_INVOICE_ACTIVITIES"."_EVENTTIME"'
+
+columnType: DATE format: "%Y-%m-%d %H:%M" type: ATTRIBUTE
+
+id: start_time displayName: Start Time pql: |-
+
+CASE WHEN (INDEX_ACTIVITY_ORDER( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN" )
+
+= 1)
+
+
+
+THEN "_INVOICE_ACTIVITIES"."_EVENTTIME" END
+
+columnType: DATE format: "%Y-%m-%d" type: ATTRIBUTE
+
+id: case_name displayName: Case Name
+
+pql: '"TABLE_CASES"."CASE"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: invoice_type displayName: Invoice Type customAttributes: {} attributes:
+
+id: invoice_type displayName: Invoice Type
+
+pql: '"TABLE_CASES"."CASE_TYPE"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: tpt_in_days_ displayName: TPT (In Days) customAttributes: {}
+
+pql: KPI("TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME")
+
+columnType: FLOAT format: ",.2f" type: ATTRIBUTE
+
+id: department displayName: Department
+
+pql: '"_INVOICE_ACTIVITIES"."_TEAM"'
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: []
+
+flags: [] priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: INVOICE_ACTIVITIES
+
+customAttributes: {} identifier:
+
+id: id displayName: id
+
+pql: '"TABLE_CASES"."_CASE_KEY"'
+
+attributes:
+
+id: CASE_KEY
+
+displayName: Case Key customAttributes: {}
+
+pql: '"_INVOICE_ACTIVITIES"."_CASE_KEY"' type: ATTRIBUTE
+
+id: ACTIVITY_EN
+
+displayName: Activity En customAttributes: {}
+
+pql: '"_INVOICE_ACTIVITIES"."_ACTIVITY_EN"'
+
+format: "" type: ATTRIBUTE
+
+id: index_order displayName: Index Order
+
+pql: INDEX_ACTIVITY_TYPE ( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN" )
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: user_type displayName: User Type customAttributes: {}
+
+pql: (case when "_INVOICE_ACTIVITIES"."_USER" IN ('Robo1','Robo2','Robo3','System') THEN 0 ELSE 1 END)
+
+columnType: INTEGER format: ",.0f" type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+id: time_per_process
+
+displayName: Time per Process customAttributes: {} attributes:
+
+id: source displayName: Source
+
+pql: source("_INVOICE_ACTIVITIES"."_ACTIVITY_EN")
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: target displayName: Target
+
+pql: target("_INVOICE_ACTIVITIES"."_ACTIVITY_EN")
+
+columnType: STRING format: ""
+
+type: ATTRIBUTE
+
+id: tpt_in_days_ displayName: TPT(in Days) customAttributes: {}
+
+pql: avg(DAYS_BETWEEN ( source("_INVOICE_ACTIVITIES"."_EVENTTIME"), target("_INVOICE_ACTIVITIES"."_EVENTTIME")))
+
+columnType: INTEGER format: ",.0f" type: ATTRIBUTE
+
+newAttributes: [] augmentedAttributes: [] flags: []
+
+priorities: [] triggers: [] type: RECORD origin: PACKAGE
+
+kpis:
+
+id: automation_rate displayName: Automation Rate
+
+pql: (count(case when "TABLE_USERS"."USER_TYPE" = 'B' THEN "_INVOICE_ACTIVITIES"."_USER" END)/KPI("COUNT_TABLE NVOICE_ACTIVITIES"))*100
+
+unit: "%" format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+displayName: "#TPT" customAttributes: {}
+
+pql: AVG(CALC_THROUGHPUT(CASE_START TO CASE_END, REMAP_TIMESTAMPS("_INVOICE_ACTIVITIES"."_EVENTTIME", DAYS)))
+
+unit: Days format: ",.0f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: AVG_EVENTS_PER_CASE INVOICE_ACTIVITIES ACTIVITY_EN TABLE_CASES
+
+displayName: Avg Event Per Cases customAttributes: {}
+
+pql: AVG(PU_COUNT("TABLE_CASES", "_INVOICE_ACTIVITIES"."_ACTIVITY_EN"))
+
+unit: Events format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: invoices displayName: "#Invoices" customAttributes: {}
+
+pql: count("TABLE_CASES"."CASE")
+
+format: .3s breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: suppliers displayName: "#Suppliers" customAttributes: {}
+
+pql: COUNT(DISTINCT("TABLE_CASES"."SUPPLIER"))
+
+format: .3s breakdowns: [] aggregations: []
+
+parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: case_owners displayName: "#Case Owners"
+
+pql: COUNT ( DISTINCT "TABLE_CASES"."CASE_OWNER" )
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: users displayName: "#Users" customAttributes: {}
+
+pql: COUNT ( DISTINCT "TABLE_USERS"."USER" )
+
+format: .3s breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: total_amount displayName: Total Amount customAttributes: {}
+
+pql: sum("TABLE_CASES"."AMOUNT")
+
+unit: $ format: .3s breakdowns: []
+
+aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: COUNT_TABLE INVOICE_ACTIVITIES
+
+displayName: Activity Count customAttributes: {}
+
+pql: COUNT_TABLE("_INVOICE_ACTIVITIES")
+
+format: .3s
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: auto_activity
+
+displayName: "#Automated Activity" customAttributes: {}
+
+pql: |-
+
+sum(case when("_INVOICE_ACTIVITIES"."_USER" LIKE 'Robo%'
+
+
+
+OR "_INVOICE_ACTIVITIES"."_USER" = 'System') THEN 1 ELSE 0 END)
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: total_amount_when_pay_invoice_ displayName: Amount shortDisplayName: Amount customAttributes: {}
+
+pql: SUM(CASE WHEN ("_INVOICE_ACTIVITIES"."_ACTIVITY_EN" = 'Pay invoice') THEN "TABLE_CASES"."AMOUNT" ELSE 0 END)
+
+format: .3s breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: case_count displayName: Case Count
+
+pql: KPI("COUNT_TABLE INVOICE_ACTIVITIES")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: autouser displayName: Auto customAttributes: {}
+
+pql: sum((case when "_INVOICE_ACTIVITIES"."_USER" IN ('Robo1','Robo2','Robo3','System') THEN 1 END))/COUNT_TABLE("_INVOICE_ACTIVITIES")*100
+
+unit: "%" format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: manual_user displayName: "Manual " customAttributes: {}
+
+pql: sum((case when "_INVOICE_ACTIVITIES"."_USER" NOT IN ('Robo1','Robo2','Robo3','System') THEN 1 END))/COUNT_TABLE("_INVOICE_ACTIVITIES")*100
+
+format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: auto_work_count displayName: Auto(Count) customAttributes: {}
+
+pql: KPI("invoices")*(KPI("autouser")/100) format: ",.0f"
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: rework_activtiy displayName: "#Rework Cases" customAttributes: {}
+
+pql: |-
+
+(sum(CASE WHEN PU_COUNT_DISTINCT ("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") <
+
+
+
+PU_COUNT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") THEN 1 ELSE 0
+
+END))
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: initial_work_ displayName: "Initial Work " customAttributes: {}
+
+pql: |-
+
+(sum(CASE WHEN PU_COUNT_DISTINCT ("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") =
+
+PU_COUNT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") THEN 1 ELSE 0 END))/COUNT_TABLE("TABLE_CASES")*100
+
+format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: COUNT_TABLE TABLE_CASES
+
+displayName: "#Cases" customAttributes: {}
+
+pql: COUNT_TABLE("TABLE_CASES")
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: PROCESS_VARIANTS INVOICE_ACTIVITIES ACTIVITY_EN
+
+displayName: Process Available customAttributes: {}
+
+pql: SHORTENED(VARIANT("_INVOICE_ACTIVITIES"."_ACTIVITY_EN"))
+
+breakdowns: [] aggregations: []
+
+parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: rerate
+
+displayName: Rework Rate pql: |-
+
+(sum(CASE WHEN PU_COUNT_DISTINCT ("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") <
+
+
+
+PU_COUNT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") THEN 1 ELSE 0 END))/COUNT_TABLE("TABLE_CASES")*100
+
+unit: "%" format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: rework_activity displayName: Rework Activity customAttributes: {}
+
+pql: |-
+
+((sum(CASE WHEN PU_COUNT_DISTINCT ("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") <
+
+
+
+PU_COUNT("TABLE_CASES","_INVOICE_ACTIVITIES"."_ACTIVITY_EN") THEN 1 ELSE 0
+
+END))
+
+
+
+/COUNT_TABLE ( "_INVOICE_ACTIVITIES"))*100
+
+unit: "%" format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: start_date displayName: Start Date customAttributes: {}
+
+pql: |-
+
+CASE WHEN (INDEX_ACTIVITY_ORDER( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN" ) =
+
+1)
+
+
+
+THEN "_INVOICE_ACTIVITIES"."_EVENTTIME" END
+
+format: "%d-%m-%Y" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: end_date displayName: End Date customAttributes: {} pql: |-
+
+CASE WHEN (INDEX_ACTIVITY_ORDER_REVERSE( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN" ) = 1)
+
+THEN "_INVOICE_ACTIVITIES"."_EVENTTIME" END
+
+format: "%d-%m-%Y" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: indexorder_rework displayName: Index Order customAttributes: {}
+
+pql: INDEX_ACTIVITY_TYPE ( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN" )
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: case_10 displayName: case>45 customAttributes: {} pql: |-
+
+COUNT( DISTINCT case
+
+when
+
+CALC_THROUGHPUT( first_occurrence['Receive invoice'] TO last_occurrence['Pay invoice'], remap_timestamps
+
+("_INVOICE_ACTIVITIES"."_EVENTTIME",days)) > 45
+
+
+
+THEN "_INVOICE_ACTIVITIES"."_CASE_KEY" END
+
+
+
+)
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: kpi_total displayName: KPI_Total
+
+pql: COUNT_TABLE ( "TABLE_CASES" )
+
+format: .3s breakdowns: [] aggregations: [] parameters: [] targets: []
+
+desiredDirection: INCREASE type: KPI
+
+origin: PACKAGE
+
+id: check displayName: check customAttributes: {}
+
+pql: 'INDEX_ACTIVITY_TYPE ( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN" ) '
+
+breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: rework_1 displayName: Rework customAttributes: {} pql: |-
+
+case when (sum(case when INDEX_ACTIVITY_TYPE( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN")>1 then 1 end))/COUNT_TABLE ( "_INVOICE_ACTIVITIES"."_CASE_KEY" )*100
+
+
+
+IS NOT NULL THEN (sum(case when INDEX_ACTIVITY_TYPE( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN")>1 then 1 end))/COUNT_TABLE ( "_INVOICE_ACTIVITIES"."_CASE_KEY" )*100
+
+
+
+ELSE 0 END
+
+unit: "%" format: ",.2f" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE
+
+id: lead_time displayName: Lead Time pql: |-
+
+CASE WHEN ACTIVITY_LEAD ( "_INVOICE_ACTIVITIES"."_ACTIVITY_EN") IS NULL THEN NULL ELSE
+
+
+
+lead("_INVOICE_ACTIVITIES"."_EVENTTIME") END
+
+format: "%Y-%m-%d" breakdowns: [] aggregations: [] parameters: [] targets: []
+
+allowTargetUpdate: true type: KPI
+
+origin: PACKAGE filters:
+
+id: last_6m displayName: Last 6M customAttributes: {} pql: |-
+
+FILTER ROUND_DAY ( "_INVOICE_ACTIVITIES"."_EVENTTIME" ) < ({d '2018-07-06'}) AND
+
+
+
+ROUND_DAY ( "_INVOICE_ACTIVITIES"."_EVENTTIME" ) > ({d '2018-01-06'}) ;
+
+type: FILTER origin: PACKAGE
+
+id: last_1y
+
+displayName: Last 1Y pql: |-
+
+FILTER ROUND_DAY ( "_INVOICE_ACTIVITIES"."_EVENTTIME" ) < ({d '2018-07-06'}) AND
+
+
+
+ROUND_DAY ( "_INVOICE_ACTIVITIES"."_EVENTTIME" ) > ({d '2017-07-06'}) ;
+
+type: FILTER origin: PACKAGE
+
+variables: [] activities: [] eventLogsMetadata:
+
+eventLogs: [] transitions: [] kpiViews: []
+
+anomalies: [] eventLogs: [] customObjects:
+
+id: Rework_Rule displayName: Rework Color customAttributes:
+
+comparator: EQUAL
+
+value: Final check of invoice style:
+
+textColor: "#FF0000"
+
+id: Default_Rule displayName: Default Color customAttributes:
+
+comparator: IS_NOT_EMPTY style:
+
+textColor: "#000000"
+
+id: HistogramColor_Rule displayName: Histogram Color customAttributes:
+
+comparator: LESS_THAN value: 100
+
+style:
+
+backgroundColor: "#F7CC63"
+
+id: AutomationColor_Rule displayName: Automation Color customAttributes:
+
+comparator: EQUAL value: Robo1 style:
+
+textColor: "#FF0000"
+
+comparator: EQUAL
+
+value: Robo2 style:
+
+textColor: "#FF0000"
+
+comparator: EQUAL value: Robo3 style:
+
+textColor: "#FF0000"
+
+comparator: EQUAL value: System style:
+
+textColor: "#FF0000"
+
+id: Status_Rule displayName: Status Rule customAttributes:
+
+comparator: EQUAL value: Low style:
+
+iconName: priority-low iconPosition: LEFT iconSize: 24
+
+comparator: EQUAL value: Middle style:
+
+iconName: priority-middle iconPosition: LEFT iconSize: 24
+
+comparator: EQUAL value: Urgent style:
+
+iconName: priority-high iconPosition: LEFT iconSize: 24
+
+id: Drilldown1 displayName: Dropdown_View customAttributes:
+
+list:
+
+name: Supplier
+
+name: Case Owner
+
+id: AutoPerc
+
+displayName: AutoPerc_Color customAttributes:
+
+comparator: GREATER_THAN value: 10
+
+style:
+
+textColor: "#167757"
+
+comparator: GREATER_THAN value: 0
+
+style:
+
+textColor: "#F9A609"
+
+comparator: EQUAL value: 0
+
+style:
+
+textColor: "#FF2E2E"
+
+id: ReworkPerc
+
+displayName: ReworkPerc_Color customAttributes:
+
+comparator: GREATER_THAN value: 10
+
+style:
+
+textColor: "#FF2E2E"
+
+comparator: GREATER_THAN value: 0
+
+style:
+
+textColor: "#F9A609"
+
+comparator: EQUAL value: 0
+
+style:
+
+textColor: "#167757" ruleGroups: [] visualMappings: []
+
+id: invoice-package.invoice-km
+
+tenantId: cc84ec38-5e3e-45f4-a3da-ec10c9fd9786 actions:
+
+id: send_email displayName: Send Email customAttributes:
+
+options: iconPosition: right hideLabel: false
+
+tooltipPosition: below buttonVariant: primary
+
+ownerIds: [] viewKeys: null ownerTypes: null componentTypes: null
+
+skillKey: skill-invoice records:
+
+TABLE_CASES
+
+filters: [] inputs:
+
+name: Case Name
+
+attribute: TABLE_CASES.CASE
+
+name: Case Key
+
+attribute: TABLE_CASES.CASE_KEY
+
+name: Supplier
+
+attribute: TABLE_CASES.SUPPLIER
+
+name: Case Owner
+
+attribute: TABLE_CASES.CASE_OWNER
+
+name: Amount
+
+attribute: TABLE_CASES.AMOUNT type: ACTION
+
+nodeEntityId: 26273c46-b3a6-4725-8201-ccd9c7720472

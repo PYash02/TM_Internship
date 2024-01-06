@@ -1,0 +1,43 @@
+/*
+
+DELETE FROM _INVOICE_ACTIVITIES;
+
+*/
+
+INSERT INTO _INVOICE_ACTIVITIES (
+
+_CASE_KEY
+
+, _ACTIVITY_EN
+
+, _EVENTTIME
+
+, _COUNTRY
+
+, _TEAM
+
+, _USER
+
+, _SORTING
+
+)
+
+SELECT
+
+Invoice2_Sheet1.CASE_ID AS _CASE_KEY, Invoice2_Sheet1.ACTIVITY AS _ACTIVITY_EN, Invoice2_Sheet1.ENTRYDATE_FINAL AS _EVENTTIME,
+
+Invoice2_Sheet1.COUNTRY AS _COUNTRY, Invoice2_Sheet1.TEAM AS _TEAM, Invoice2_Sheet1.USER AS _USER,
+
+10 AS _SORTING
+
+FROM Invoice2_Sheet1 JOIN User_Sheet1 ON 1=1
+
+AND "User_Sheet1"."USER" = "Invoice2_Sheet1"."USER" INNER JOIN Invoice_Cases ON 1=1
+
+AND "Invoice_Cases"."CASE_ID" = "Invoice2_Sheet1"."CASE_ID"
+
+WHERE "Invoice2_Sheet1"."CASE_ID" IN (SELECT DISTINCT("Invoice_Cases"."CASE_ID") FROM "Invoice_Cases");
+
+
+
+SELECT * FROM "_INVOICE_ACTIVITIES" WHERE _ACTIVITY_EN = 'Approve invoice';

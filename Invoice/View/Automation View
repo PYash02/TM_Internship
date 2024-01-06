@@ -1,0 +1,343 @@
+metadata:
+
+key: automationview-invoice template: false
+
+name: AutomationView - Invoice knowledgeModelKey: invoice-km allowAdvancedFilters: true
+
+layout: rows:
+
+- id: row_c48ac018-002d-4551-9986-0895a1cdb366 growHeight: false
+
+columns:
+
+- id: column_f8011156-26f9-428b-b655-48eca0360724 componentId: image-57e4ed5b-ae9a-4e60-a144-c52537a009a8 size: "1"
+
+type: panel height: "100"
+
+order: 100
+
+- id: column_d4a77a44-2dae-4264-bb51-886577d208a9 componentId: kpi-list-ed4c9814-8753-4b92-bf2f-389f8a1d2192 size: "3"
+
+type: panel order: 200
+
+- id: column_d41efa0b-f29b-46d2-9194-9481e533de50 componentId: kpi-list-22fc1d4f-e98b-4b78-8198-99326c619a70 size: "2"
+
+type: panel order: 300
+
+order: 100
+
+- id: row_53d991e3-0e89-45ae-858d-01707702186f
+
+growHeight: false columns:
+
+- id: column_ada33bbb-b847-4738-83c0-a812a2f94620 componentId: view-bb457309-fe54-4be4-aacc-e5f0300ca911 size: "0.53"
+
+type: ""
+
+height: "" order: 100
+
+- id: column_ff7695bc-adbc-4b12-8c08-8a27ff42a40d componentId: histogram-708ff396-189a-407e-89d2-3b350aab11dd size: "0.75"
+
+order: 200
+
+- id: column_71aaefc9-3392-40f1-a358-d3892e480bc0 componentId: chart-dbecaaf9-9c5c-4479-bc76-abd7361ecb6d size: "0.75"
+
+order: 300
+
+- id: column_8af7dbbd-a0b2-4e17-b1ae-3d97a28b5a58 componentId: table-83494b82-7ca7-4c3c-8528-7e6d2f1938e9 size: "1"
+
+order: 400
+
+height: "550"
+
+order: 200
+
+- id: row_76006bb5-c986-4ca2-a681-59206bdf8437 growHeight: false
+
+removePadding: false columns:
+
+- id: column_9cc1061b-0a31-4ce9-9574-d718dbd71cae componentId: table-756bb9ef-0980-4eef-9b3d-9b6795d7f824 size: "1"
+
+type: default order: 100
+
+height: "500"
+
+order: 300 components:
+
+- id: image-a6057650-bbe5-4293-948e-feb80d97d109 type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: view-3fb19e79-f0a6-4a8f-adc8-780b5d644ee4 type: view
+
+settings:
+
+key: filterlist-view
+
+- id: kpi-list-67e5a51f-1bae-4ef5-b090-e56dcc7758c2 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: automation_rate show: true
+
+id: 73b11229-3d39-449b-b50d-93f352e64b91
+
+order: 100
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: cd96d72b-4da8-440e-96bc-8585f369d935 order: 200
+
+- id: kpi-list-0b6cbd94-e31f-4c28-b7a4-212c61e4b9a0 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: automation_rate show: true
+
+id: 8060ca27-aaf5-4ae8-9208-2b30e5b52d19 order: 100
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 884a3a68-d53f-40ae-ae6a-19573d691b3b order: 200
+
+- id: image-57e4ed5b-ae9a-4e60-a144-c52537a009a8 type: image
+
+settings:
+
+src: https://logonoid.com/images/tech-mahindra-logo.png width: 200px
+
+- id: kpi-list-ed4c9814-8753-4b92-bf2f-389f8a1d2192 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: invoices show: true
+
+id: 3d1cf6d3-2952-4007-b4c0-78affdf0122a order: 100
+
+kpi: total_amount show: true
+
+id: 8684c732-27a3-429e-8760-f3a9bbf974d0
+
+order: 200
+
+kpi: automation_rate show: true
+
+id: 8542af8b-9243-4001-bf92-eeb2f318b76b order: 300
+
+displayContentRule: AutoPerc
+
+- id: view-bb457309-fe54-4be4-aacc-e5f0300ca911 type: view
+
+settings:
+
+key: filterlist-view
+
+- id: kpi-list-84e01d4a-e8d3-4b10-aad0-596e86199381 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: TOTAL_THROUGHPUT_TIME_IN_DAYS INVOICE_ACTIVITIES EVENTTIME
+
+show: true
+
+id: 5197d184-78c5-4c29-a5b2-96256a5b06e0
+
+order: 100
+
+kpi:
+
+AVG_EVENTS_PER_CASE INVOICE_ACTIVITIES ACTIVITY_EN TABLE_CASES
+
+show: true
+
+id: c9f225a8-40a7-4cdc-b006-4c8cf7494ea7 order: 200
+
+kpi: automation_rate show: true
+
+id: 3d8837f1-1951-44ca-b45a-685dc78ed2a3 order: 300
+
+kpi: rework_rate show: true
+
+id: 4acffcb4-ef43-4e43-89a7-684b28198503 order: 400
+
+- id: view-e862879b-874f-480b-9cc1-231533a3501a type: view
+
+settings:
+
+key: invoice-view
+
+- id: table-3a966957-7052-41fe-9f34-ac1099aae589 type: table
+
+settings: data:
+
+columns:
+
+field: invoice_amount_per_country.activity id: 01c3b176-92dd-4a57-8191-a662856058b0
+
+order: 100
+
+field: invoice_amount_per_country.amount id: e6b6aa86-9d16-4e69-9c79-9308969d5417
+
+order: 200
+
+field: invoice_amount_per_country.country id: 6b896f3e-c61e-4ce3-b39f-fcf015495405 order: 300
+
+breakdownSelector: {} options:
+
+showPagination: false filters:
+
+- id: country
+
+- id: table-7c8f1bbc-1a56-4b18-9f9e-b0a92b74eda5 type: table
+
+settings:
+
+name: Drilldown by Supplier data:
+
+columns:
+
+field: drilldown_by_supplier.supplier id: 48acced1-bbd4-4802-8b57-775047663667
+
+order: 100
+
+field: drilldown_by_supplier.invoices id: 031e9edc-c23d-45db-a43b-dd9b55affb43 order: 200
+
+field: drilldown_by_supplier.net_amount id: 0c7181d7-c2b3-40d9-8743-0a746a745014
+
+order: 300
+
+field: drilldown_by_supplier.tpt_in_days_ id: b6f7cb88-5f9b-47d1-8e59-37596068f12f order: 400
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: kpi-list-22fc1d4f-e98b-4b78-8198-99326c619a70 type: kpi-list
+
+settings: data:
+
+kpis:
+
+kpi: COUNT_TABLE INVOICE_ACTIVITIES
+
+show: true
+
+id: 0c7c203e-947e-49d6-8ff2-2352fc2a5350 order: 100
+
+kpi: auto_activity show: true
+
+id: 04f92085-39e5-4054-a903-a282bdbd2feb order: 200
+
+- id: histogram-708ff396-189a-407e-89d2-3b350aab11dd type: histogram
+
+settings:
+
+attribute: INVOICE_ACTIVITIES.user_type displayContentRule: HistogramColor_Rule annotations:
+
+- value: 1
+
+label: <- Automated Task | Manual Task -> labelAlign: middle
+
+color: BLACK line: none
+
+additionalKpis:
+
+kpi: automation_rate
+
+kpi: manual_user
+
+id: chart-dbecaaf9-9c5c-4479-bc76-abd7361ecb6d type: chart
+
+settings: encodings:
+
+x:
+
+field: invoice_per_month.month y:
+
+field: automation_rate visuals:
+
+mark:
+
+type: bar color: BLUE_60 bandwidth: 0
+
+id: 7cfda376-3cda-47ff-86b4-2f8078b336f6 order: 100
+
+limit: 1000
+
+- id: table-83494b82-7ca7-4c3c-8528-7e6d2f1938e9 type: table
+
+settings:
+
+name: Auto% per Activity data:
+
+columns:
+
+field: process_rework_automation.process id: cc4c4e78-0a9c-40d5-b8d9-12dee7236399 order: 100
+
+field: process_rework_automation.rework_rate id: e1aa799a-0200-451a-84ac-dae776dc6a4a order: 200
+
+displayContentRule: AutoPerc breakdownSelector: {}
+
+pageSize: 13 options:
+
+showPagination: true
+
+- id: table-756bb9ef-0980-4eef-9b3d-9b6795d7f824 type: table
+
+settings:
+
+name: Drilldown By Automation(In Months) data:
+
+columns:
+
+field: invoice_per_month.month
+
+id: 598a38fc-75c4-4196-a9e0-69e136aa4b8d order: 100
+
+field: invoice_per_month.amount
+
+id: 7bfdbc15-dc0c-4179-8bb3-8d23a9d4b9af order: 200
+
+field: invoices
+
+id: 3334b7f3-4732-4b9b-890a-10175ee619d8
+
+order: 300
+
+field: invoice_per_month.auto_user
+
+id: 8eebc31e-6cdb-4186-b642-e09b1805c947 order: 400
+
+field: auto_work_count
+
+id: 670f969d-ace1-4707-9e9b-61e8485bcbb7 order: 500
+
+breakdownSelector: {} options:
+
+showPagination: false
+
+- id: chart-7b7489c2-bd3a-4a68-8d71-af3b0de1a528 type: chart
+
+settings: visuals:
+
+mark:
+
+type: bar
+
+id: 15f5c374-cdec-42b7-bc8f-3ecfec633988 order: 100
+
+limit: 1000
